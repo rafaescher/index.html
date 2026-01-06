@@ -486,7 +486,8 @@
 
   // Usando imagens reais via Unsplash Source (safe para GitHub Pages)
   // Dica: o "sig" força variação entre imagens.
-  const uimg = (keywords, sig) => `https://source.unsplash.com/featured/800x600?${encodeURIComponent(keywords)}&sig=${sig}`;
+ const uimg = (keywords, sig) =>
+  `https://source.unsplash.com/800x600/?${encodeURIComponent(keywords)}&sig=${sig}`;
 
   // 100 itens (valores fictícios) - teto R$ 5.000
   const ITENS = [
@@ -618,7 +619,8 @@
       card.className = "card";
       card.innerHTML = `
         <div class="photo">
-          <img src="${it.img}" alt="${it.nome}" loading="lazy" />
+          <img src="${it.img}" alt="${it.nome}" loading="lazy" referrerpolicy="no-referrer"
+     onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#f7e3e1,#f4d3b8)';" />
           <div class="chip">${it.cat}</div>
         </div>
         <div class="content">
@@ -698,3 +700,4 @@
 </script>
 </body>
 </html>
+
