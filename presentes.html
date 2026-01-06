@@ -469,37 +469,64 @@
   const PIX_KEY = "INSERIR_SUA_CHAVE_PIX_AQUI"; // TODO
 
   // Itens fictícios com ícones
-  const ITENS = [
-    // COZINHA
-    {cat:"Cozinha", icon:"🍳", nome:"Kit de panelas (inox)", desc:"Para cozinhar e receber com carinho.", valor: 220},
-    {cat:"Cozinha", icon:"🍟", nome:"Airfryer", desc:"Praticidade no dia a dia.", valor: 180},
-    {cat:"Cozinha", icon:"🍽️", nome:"Aparelho de jantar", desc:"Um clássico para a nova fase.", valor: 260},
-    {cat:"Cozinha", icon:"🥂", nome:"Conjunto de taças", desc:"Brindes e memórias.", valor: 120},
-    {cat:"Cozinha", icon:"☕", nome:"Cafeteira", desc:"Café, conversa e rotina boa.", valor: 160},
-    {cat:"Cozinha", icon:"🧁", nome:"Micro-ondas", desc:"Mais praticidade para o lar.", valor: 350},
+ const ITENS = [
 
-    // SALA
-    {cat:"Sala", icon:"🛋️", nome:"Sofá confortável", desc:"Para descansar e curtir bons momentos.", valor: 480},
-    {cat:"Sala", icon:"🧶", nome:"Tapete para sala", desc:"Aconchego e estilo.", valor: 210},
-    {cat:"Sala", icon:"💡", nome:"Luminária decorativa", desc:"Clima perfeito em casa.", valor: 140},
-    {cat:"Sala", icon:"🖼️", nome:"Conjunto de quadros", desc:"Detalhes que transformam o ambiente.", valor: 190},
+  /* ===================== COZINHA ===================== */
+  {cat:"Cozinha", icon:"🍳", nome:"Kit de panelas premium", desc:"Para o dia a dia da nossa casinha.", valor: 320},
+  {cat:"Cozinha", icon:"🍳", nome:"Conjunto de panelas completas", desc:"Cozinhar com amor.", valor: 680},
+  {cat:"Cozinha", icon:"🍽️", nome:"Aparelho de jantar 42 peças", desc:"Para receber bem quem amamos.", valor: 450},
+  {cat:"Cozinha", icon:"🥂", nome:"Jogo de taças de cristal", desc:"Brindes especiais.", valor: 520},
+  {cat:"Cozinha", icon:"☕", nome:"Cafeteira automática", desc:"Começar bem todos os dias.", valor: 890},
+  {cat:"Cozinha", icon:"🍞", nome:"Torradeira inox", desc:"Pequenos detalhes da rotina.", valor: 260},
+  {cat:"Cozinha", icon:"🧊", nome:"Geladeira dos sonhos (contribuição)", desc:"Um grande passo para a casa nova.", valor: 2500},
+  {cat:"Cozinha", icon:"🔥", nome:"Cooktop", desc:"Funcionalidade e estilo.", valor: 1350},
+  {cat:"Cozinha", icon:"🧁", nome:"Micro-ondas", desc:"Praticidade no dia a dia.", valor: 980},
+  {cat:"Cozinha", icon:"🥗", nome:"Processador de alimentos", desc:"Facilitando a vida.", valor: 760},
 
-    // QUARTO
-    {cat:"Quarto", icon:"🛏️", nome:"Jogo de lençóis premium", desc:"Conforto para as melhores noites.", valor: 180},
-    {cat:"Quarto", icon:"🧸", nome:"Edredom / manta", desc:"Aquele abraço em dias frios.", valor: 160},
-    {cat:"Quarto", icon:"🪟", nome:"Cortinas para o quarto", desc:"Privacidade e aconchego.", valor: 220},
+  /* ===================== SALA ===================== */
+  {cat:"Sala", icon:"🛋️", nome:"Sofá confortável", desc:"Para descansar e curtir juntos.", valor: 1800},
+  {cat:"Sala", icon:"🛋️", nome:"Sofá dos sonhos (contribuição)", desc:"Nosso cantinho de aconchego.", valor: 3200},
+  {cat:"Sala", icon:"📺", nome:"Painel para TV", desc:"Organização e estilo.", valor: 980},
+  {cat:"Sala", icon:"📺", nome:"Smart TV (contribuição)", desc:"Cinema em casa.", valor: 2800},
+  {cat:"Sala", icon:"🧶", nome:"Tapete grande para sala", desc:"Aconchego para o lar.", valor: 650},
+  {cat:"Sala", icon:"💡", nome:"Luminária decorativa", desc:"Iluminar bons momentos.", valor: 420},
+  {cat:"Sala", icon:"🖼️", nome:"Quadros decorativos", desc:"Nossa identidade na parede.", valor: 390},
+  {cat:"Sala", icon:"🪑", nome:"Poltronas decorativas", desc:"Conforto com estilo.", valor: 1400},
 
-    // DECORAÇÃO
-    {cat:"Decoração", icon:"🪴", nome:"Vasos + plantas", desc:"Um toque natural e leve.", valor: 150},
-    {cat:"Decoração", icon:"🪞", nome:"Espelho decorativo", desc:"Elegância para o ambiente.", valor: 240},
-    {cat:"Decoração", icon:"🕯️", nome:"Velas aromáticas", desc:"Cheiro de casa nova.", valor: 90},
-    {cat:"Decoração", icon:"🪑", nome:"Mesa lateral", desc:"Detalhe funcional e bonito.", valor: 230},
+  /* ===================== QUARTO ===================== */
+  {cat:"Quarto", icon:"🛏️", nome:"Jogo de lençóis premium", desc:"Noites tranquilas.", valor: 420},
+  {cat:"Quarto", icon:"🛏️", nome:"Jogo de cama completo", desc:"Conforto todos os dias.", valor: 680},
+  {cat:"Quarto", icon:"🧸", nome:"Edredom king size", desc:"Aconchego para dois.", valor: 750},
+  {cat:"Quarto", icon:"🪟", nome:"Cortinas blackout", desc:"Privacidade e conforto.", valor: 890},
+  {cat:"Quarto", icon:"🛌", nome:"Cabeceira estofada", desc:"Detalhes que fazem diferença.", valor: 1200},
+  {cat:"Quarto", icon:"🛌", nome:"Cama dos sonhos (contribuição)", desc:"Onde tudo começa e termina.", valor: 4800},
 
-    // EXPERIÊNCIAS
-    {cat:"Experiências", icon:"🌴", nome:"Lua de mel (contribuição)", desc:"Ajude a construir memórias inesquecíveis.", valor: 300},
-    {cat:"Experiências", icon:"🍷", nome:"Jantar romântico", desc:"Uma noite especial a dois.", valor: 180},
-    {cat:"Experiências", icon:"🚗", nome:"Passeio / experiência", desc:"Um momento divertido e leve.", valor: 160},
-  ];
+  /* ===================== BANHEIRO ===================== */
+  {cat:"Decoração", icon:"🛁", nome:"Kit banheiro completo", desc:"Organização com charme.", valor: 260},
+  {cat:"Decoração", icon:"🛁", nome:"Toalhas premium", desc:"Conforto no dia a dia.", valor: 420},
+  {cat:"Decoração", icon:"🪞", nome:"Espelho decorativo", desc:"Beleza e funcionalidade.", valor: 980},
+
+  /* ===================== DECORAÇÃO ===================== */
+  {cat:"Decoração", icon:"🪴", nome:"Plantas e vasos decorativos", desc:"Mais vida para a casa.", valor: 360},
+  {cat:"Decoração", icon:"🕯️", nome:"Velas aromáticas", desc:"Cheiro de lar.", valor: 190},
+  {cat:"Decoração", icon:"🖼️", nome:"Decoração parede completa", desc:"Personalidade no ambiente.", valor: 1500},
+  {cat:"Decoração", icon:"🪑", nome:"Mesa lateral decorativa", desc:"Funcional e elegante.", valor: 720},
+  {cat:"Decoração", icon:"🏡", nome:"Decoração completa da casa", desc:"Nosso lar com a nossa cara.", valor: 5000},
+
+  /* ===================== EXPERIÊNCIAS ===================== */
+  {cat:"Experiências", icon:"🌴", nome:"Lua de mel (contribuição)", desc:"Criar memórias inesquecíveis.", valor: 3000},
+  {cat:"Experiências", icon:"🌍", nome:"Viagem dos sonhos", desc:"Explorar o mundo juntos.", valor: 5000},
+  {cat:"Experiências", icon:"🍷", nome:"Jantar romântico especial", desc:"Uma noite só nossa.", valor: 480},
+  {cat:"Experiências", icon:"🚗", nome:"Passeio especial", desc:"Momentos leves e felizes.", valor: 650},
+  {cat:"Experiências", icon:"🎶", nome:"Experiência inesquecível", desc:"Criar memórias para a vida.", valor: 1200},
+
+  /* ===================== CONTRIBUIÇÕES LIVRES ===================== */
+  {cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Qualquer valor com muito amor.", valor: 100},
+  {cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Um gesto cheio de carinho.", valor: 250},
+  {cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Ajudando a realizar sonhos.", valor: 500},
+  {cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Para nossa nova fase.", valor: 1000},
+  {cat:"Experiências", icon:"💖", nome:"Contribuição especial", desc:"Um presente inesquecível.", valor: 2000},
+];
 
   // Helpers
   const formatBRL = (n) => n.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
@@ -599,4 +626,5 @@
 </script>
 </body>
 </html>
+
 
