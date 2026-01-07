@@ -525,6 +525,12 @@
 <div class="toast" id="toast">Chave PIX copiada ✅</div>
 
 <script>
+  document.body.insertAdjacentHTML("afterbegin", "<div style='position:fixed;top:10px;left:10px;z-index:99999;background:#000;color:#fff;padding:8px 10px;border-radius:10px;font:12px/1.2 system-ui'>JS OK ✅</div>");
+window.onerror = (msg, src, line, col) => {
+  document.body.insertAdjacentHTML("afterbegin", `<div style="position:fixed;top:52px;left:10px;right:10px;z-index:99999;background:#b00020;color:#fff;padding:10px;border-radius:10px;font:12px/1.2 system-ui">ERRO JS ❌<br>${msg}<br>Linha: ${line}:${col}</div>`);
+};
+console.log("JS carregou ✅");
+
   // =========================
   // CONFIG (TROQUE AQUI)
   // =========================
@@ -538,4 +544,5 @@
     /* ===================== COZINHA ===================== */
     { cat:"Cozinha", icon:"🍳", nome:"Kit de Panelas Premium", desc:"Para as primeiras receitas… e os primeiros “quem queimou isso?” 😂", valor: 320 },
     { cat:"Cozinha", icon:"🍳", nome:"Conjunto de Panelas Completo", desc:"
+
 
