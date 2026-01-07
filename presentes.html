@@ -589,6 +589,18 @@
 
   // Itens fictícios com ícones
  const ITENS = [
+// ✅ Garantir que todo item tenha imagem e evitar "undefined"
+const makeImage = (it, i) => {
+  // opção A: picsum (fixo por item)
+  return `https://picsum.photos/seed/${encodeURIComponent(it.cat + "-" + it.nome + "-" + i)}/800/600`;
+};
+
+// Se faltar img (ou icon), cria automaticamente
+for (let i = 0; i < ITENS.length; i++) {
+  if (!ITENS[i].img) ITENS[i].img = makeImage(ITENS[i], i + 1);
+  if (!ITENS[i].cat) ITENS[i].cat = "Presentes";
+  if (!ITENS[i].desc) ITENS[i].desc = "";
+}
 
   /* ===================== COZINHA ===================== */
  { cat:"Cozinha", nome:"Kit de Panelas Premium", desc:"Para as primeiras receitas… e os primeiros “quem queimou isso?” 😂", valor: 320 },
@@ -691,7 +703,7 @@
       card.className = "card";
       card.innerHTML = `
         <div class="top">
-          <div class="icon" aria-hidden="true">${it.icon}</div>
+          <div class="icon">${it.icon ?? ""}</div>
           <div class="meta">
             <div class="cat">${it.cat}</div>
             <h3>${it.nome}</h3>
@@ -772,6 +784,7 @@
 </script>
 </body>
 </html>
+
 
 
 
