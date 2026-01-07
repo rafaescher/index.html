@@ -12,6 +12,62 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    /* =========================
+   MOBILE FIRST FIX PACK
+   ========================= */
+
+/* Evita overflow horizontal no mobile */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* Tipografia mais confortável */
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  h1 { font-size: 2rem !important; line-height: 1.1 !important; }
+  h2 { font-size: 1.45rem !important; }
+  p  { font-size: 1rem !important; }
+}
+
+/* Container padrão */
+@media (max-width: 900px) {
+  .container, .wrap, .content, .section, main {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+/* Botões clicáveis no dedo */
+@media (max-width: 640px) {
+  a, button, .btn { min-height: 44px; }
+}
+
+/* Grid vira 1 coluna no celular */
+@media (max-width: 900px) {
+  .grid, .cards, .columns {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Cards com padding melhor */
+@media (max-width: 640px) {
+  .card { border-radius: 16px !important; }
+  .card, .box, .panel { padding: 16px !important; }
+}
+
+/* MAPA: altura boa no celular */
+@media (max-width: 640px) {
+  .map-embed iframe {
+    height: 320px !important;
+  }
+}
+
+/* Form (RSVP) mais confortável */
+@media (max-width: 640px) {
+  input, select, textarea {
+    width: 100% !important;
+    font-size: 16px !important;
+  }
+}
+
     :root {
       --primary: #c58b8b;          /* rosé */
       --primary-dark: #a96c6c;
@@ -853,6 +909,7 @@
   </script>
 </body>
 </html>
+
 
 
 
