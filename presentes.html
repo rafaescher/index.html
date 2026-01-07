@@ -104,7 +104,7 @@
     .hero p{
       color:var(--muted);
       margin-bottom:1rem;
-      max-width:80ch;
+      max-width:75ch;
       font-size:0.98rem;
     }
 
@@ -114,8 +114,8 @@
       border-radius:18px;
       padding:1rem 1.1rem;
       display:grid;
-      gap:0.55rem;
-      max-width:900px;
+      gap:0.6rem;
+      max-width:860px;
     }
 
     .note strong{color:#2e2e2e}
@@ -173,61 +173,48 @@
     .card{
       grid-column: span 4;
       background:var(--card);
-      border-radius:22px;
+      border-radius:var(--radius);
       box-shadow:var(--shadow);
+      padding:1.2rem 1.2rem 1.1rem;
       border:1px solid rgba(0,0,0,0.04);
-      overflow:hidden;
       display:flex;
       flex-direction:column;
-      min-height: 310px;
+      gap:0.7rem;
+      min-height: 220px;
     }
 
-    .photo{
-      position:relative;
-      width:100%;
-      height:150px;
+    .top{
+      display:flex;gap:0.85rem;align-items:flex-start;
+    }
+
+    .icon{
+      width:46px;height:46px;
+      border-radius:16px;
+      display:flex;align-items:center;justify-content:center;
       background:linear-gradient(135deg, var(--soft), var(--accent));
-      overflow:hidden;
-    }
-    .photo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      filter:saturate(1.05);
-    }
-    .chip{
-      position:absolute;
-      left:12px;
-      bottom:12px;
-      background:rgba(255,255,255,0.92);
-      border:1px solid rgba(0,0,0,0.06);
-      padding:0.35rem 0.6rem;
-      border-radius:999px;
-      font-size:0.75rem;
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      color:#666;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      font-size:22px;
+      flex:0 0 auto;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.06);
     }
 
-    .content{
-      padding:1rem 1.1rem 1.1rem;
-      display:flex;
-      flex-direction:column;
-      gap:0.55rem;
-      flex:1;
-    }
-
-    .title{
-      font-weight:600;
+    .meta h3{
       font-size:1rem;
       line-height:1.25;
+      margin-bottom:0.2rem;
+      font-weight:600;
+    }
+
+    .meta .cat{
+      font-size:0.78rem;
+      text-transform:uppercase;
+      letter-spacing:0.14em;
+      color:#9a9a9a;
     }
 
     .desc{
       color:#666;
       font-size:0.92rem;
+      margin-top:0.1rem;
       flex:1;
     }
 
@@ -237,11 +224,10 @@
       justify-content:space-between;
       gap:0.7rem;
       margin-top:0.2rem;
-      flex-wrap:wrap;
     }
 
     .price{
-      font-weight:800;
+      font-weight:700;
       color:var(--primary-dark);
       font-size:0.98rem;
       white-space:nowrap;
@@ -375,7 +361,6 @@
     @media (max-width: 640px){
       .card{grid-column: span 12;}
       .nav{align-items:flex-start}
-      .photo{height:170px;}
     }
   </style>
 </head>
@@ -395,32 +380,31 @@
 
 <div class="wrap">
   <section class="hero">
-    <h1>Lista de Presentes</h1>
+    <h1>Lista de presentes (simbólica)</h1>
+  <p>
+  Criamos essa lista com muito carinho, pensando em cada detalhe da nossa casinha.
+  Uma forma especial de vocês fazerem parte dessa nova fase, cheia de sonhos e amor.
+</p>
 
-    <p>
-      Criamos essa lista com muito carinho, pensando em cada detalhe da nossa casinha.
-      Uma forma especial de vocês fazerem parte dessa nova fase, cheia de sonhos e amor.
-    </p>
-
-    <div class="note">
-      <div>
-        <strong>Como funciona:</strong>
-        escolha um item e finalize pelo <em>PIX</em> ou <em>cartão</em>.
-      </div>
-      <small>
-        Se preferir, você também pode contribuir com qualquer outro valor — toda contribuição
-        será recebida com muito carinho no coração ♥️
-      </small>
-      <small style="margin-top:0.3rem;">
-        <em>PS: os itens são simbólicos/fictícios e representam os nossos sonhos ✨</em>
-      </small>
-    </div>
+<div class="note">
+  <div>
+    <strong>Como funciona:</strong>
+    escolha um item e finalize pelo <em>PIX</em> ou <em>cartão</em>.
+  </div>
+  <small>
+    Se preferir, você também pode contribuir com qualquer outro valor — toda contribuição
+    será recebida com muito carinho no coração♥️
+  </small>
+  <small style="margin-top:0.3rem;">
+    <em>PS: os itens são simbólicos/fictícios e representam os nossos sonhos ✨</em>
+  </small>
+</div>
   </section>
 
   <div class="controls">
     <div class="search">
       🔎
-      <input id="searchInput" type="text" placeholder="Buscar item (ex.: sofá, decoração, quarto...)" />
+      <input id="searchInput" type="text" placeholder="Buscar item (ex.: panela, decoração, quarto...)" />
     </div>
 
     <div class="filters">
@@ -484,123 +468,65 @@
   const PAGAMENTO_CARTAO_URL = "https://seu-link-de-pagamento.com"; // TODO
   const PIX_KEY = "INSERIR_SUA_CHAVE_PIX_AQUI"; // TODO
 
-  // Usando imagens reais via Unsplash Source (safe para GitHub Pages)
-  // Dica: o "sig" força variação entre imagens.
-const uimg = (keywords, sig) =>
-  `https://picsum.photos/seed/${encodeURIComponent(keywords + "-" + sig)}/800/600`;
+  // Itens fictícios com ícones
+ const ITENS = [
 
-  // 100 itens (valores fictícios) - teto R$ 5.000
-  const ITENS = [
-    // COZINHA (1-25)
-    {cat:"Cozinha", img:uimg("kitchen pots",1), nome:"Kit de panelas premium", desc:"Para cozinhar com carinho na nossa casinha.", valor: 680},
-    {cat:"Cozinha", img:uimg("cutlery set",2), nome:"Faqueiro inox completo", desc:"Para receber e celebrar bons momentos.", valor: 420},
-    {cat:"Cozinha", img:uimg("dinnerware plates",3), nome:"Aparelho de jantar", desc:"Um clássico para a nova fase.", valor: 520},
-    {cat:"Cozinha", img:uimg("wine glasses",4), nome:"Conjunto de taças", desc:"Brindes e memórias.", valor: 240},
-    {cat:"Cozinha", img:uimg("coffee machine",5), nome:"Cafeteira automática", desc:"Café e conversa todos os dias.", valor: 980},
-    {cat:"Cozinha", img:uimg("toaster kitchen",6), nome:"Torradeira inox", desc:"Pequenos luxos da rotina.", valor: 260},
-    {cat:"Cozinha", img:uimg("kitchen mixer",7), nome:"Batedeira planetária", desc:"Receitas doces e boas lembranças.", valor: 850},
-    {cat:"Cozinha", img:uimg("air fryer",8), nome:"Airfryer", desc:"Praticidade no dia a dia.", valor: 520},
-    {cat:"Cozinha", img:uimg("microwave kitchen",9), nome:"Micro-ondas", desc:"Facilitando a vida.", valor: 790},
-    {cat:"Cozinha", img:uimg("blender",10), nome:"Liquidificador potente", desc:"Sucos, molhos e tudo mais.", valor: 320},
-    {cat:"Cozinha", img:uimg("kitchen knife",11), nome:"Kit de facas", desc:"Essencial para a cozinha.", valor: 280},
-    {cat:"Cozinha", img:uimg("kitchen board",12), nome:"Kit tábuas + utensílios", desc:"Detalhes que fazem diferença.", valor: 190},
-    {cat:"Cozinha", img:uimg("pressure cooker",13), nome:"Panela de pressão elétrica", desc:"Mais praticidade e segurança.", valor: 620},
-    {cat:"Cozinha", img:uimg("kitchen containers",14), nome:"Potes organizadores (kit)", desc:"Organização para o dia a dia.", valor: 210},
-    {cat:"Cozinha", img:uimg("kitchen spices",15), nome:"Kit porta-temperos", desc:"Mais sabor no nosso lar.", valor: 160},
-    {cat:"Cozinha", img:uimg("kitchen towel",16), nome:"Kit panos + avental", desc:"Cozinha com estilo.", valor: 120},
-    {cat:"Cozinha", img:uimg("dish rack",17), nome:"Escorredor de louças", desc:"Organização na pia.", valor: 140},
-    {cat:"Cozinha", img:uimg("kitchen pan",18), nome:"Jogo de frigideiras", desc:"Para receitas a dois.", valor: 260},
-    {cat:"Cozinha", img:uimg("kitchen baking",19), nome:"Kit formas para forno", desc:"Para assar com amor.", valor: 180},
-    {cat:"Cozinha", img:uimg("kitchen kettle",20), nome:"Chaleira elétrica", desc:"Chá, café e aconchego.", valor: 240},
-    {cat:"Cozinha", img:uimg("refrigerator kitchen",21), nome:"Geladeira (contribuição)", desc:"Um sonho grande para nossa casa.", valor: 5000},
-    {cat:"Cozinha", img:uimg("stove cooktop",22), nome:"Cooktop (contribuição)", desc:"Modernidade e praticidade.", valor: 1800},
-    {cat:"Cozinha", img:uimg("oven kitchen",23), nome:"Forno embutido (contribuição)", desc:"Para receitas especiais.", valor: 3200},
-    {cat:"Cozinha", img:uimg("dishwasher",24), nome:"Lava-louças (contribuição)", desc:"Para sobrar tempo pra gente.", valor: 4200},
-    {cat:"Cozinha", img:uimg("water purifier",25), nome:"Purificador de água", desc:"Cuidado e saúde no dia a dia.", valor: 520},
+  /* ===================== COZINHA ===================== */
+  {cat:"Cozinha", icon:"🍳", nome:"Kit de panelas premium", desc:"Para o dia a dia da nossa casinha.", valor: 320},
+  {cat:"Cozinha", icon:"🍳", nome:"Conjunto de panelas completas", desc:"Cozinhar com amor.", valor: 680},
+  {cat:"Cozinha", icon:"🍽️", nome:"Aparelho de jantar 42 peças", desc:"Para receber bem quem amamos.", valor: 450},
+  {cat:"Cozinha", icon:"🥂", nome:"Jogo de taças de cristal", desc:"Brindes especiais.", valor: 520},
+  {cat:"Cozinha", icon:"☕", nome:"Cafeteira automática", desc:"Começar bem todos os dias.", valor: 890},
+  {cat:"Cozinha", icon:"🍞", nome:"Torradeira inox", desc:"Pequenos detalhes da rotina.", valor: 260},
+  {cat:"Cozinha", icon:"🧊", nome:"Geladeira dos sonhos (contribuição)", desc:"Um grande passo para a casa nova.", valor: 2500},
+  {cat:"Cozinha", icon:"🔥", nome:"Cooktop", desc:"Funcionalidade e estilo.", valor: 1350},
+  {cat:"Cozinha", icon:"🧁", nome:"Micro-ondas", desc:"Praticidade no dia a dia.", valor: 980},
+  {cat:"Cozinha", icon:"🥗", nome:"Processador de alimentos", desc:"Facilitando a vida.", valor: 760},
 
-    // SALA (26-50)
-    {cat:"Sala", img:uimg("sofa living room",26), nome:"Sofá confortável", desc:"Nosso cantinho de descanso.", valor: 2800},
-    {cat:"Sala", img:uimg("living room rug",27), nome:"Tapete grande para sala", desc:"Aconchego e estilo.", valor: 650},
-    {cat:"Sala", img:uimg("tv panel living room",28), nome:"Painel para TV", desc:"Organização e elegância.", valor: 980},
-    {cat:"Sala", img:uimg("smart tv",29), nome:"Smart TV (contribuição)", desc:"Cinema em casa.", valor: 3000},
-    {cat:"Sala", img:uimg("soundbar",30), nome:"Soundbar", desc:"Som para filmes e músicas.", valor: 980},
-    {cat:"Sala", img:uimg("coffee table",31), nome:"Mesa de centro", desc:"Detalhe que completa.", valor: 720},
-    {cat:"Sala", img:uimg("side table living",32), nome:"Mesa lateral", desc:"Funcional e bonita.", valor: 430},
-    {cat:"Sala", img:uimg("armchair",33), nome:"Poltrona decorativa", desc:"Conforto com estilo.", valor: 1200},
-    {cat:"Sala", img:uimg("living room lamp",34), nome:"Luminária de chão", desc:"Clima perfeito à noite.", valor: 520},
-    {cat:"Sala", img:uimg("curtains living room",35), nome:"Cortinas para sala", desc:"Aconchego e privacidade.", valor: 980},
-    {cat:"Sala", img:uimg("bookshelf",36), nome:"Estante/livreiro", desc:"Para organizar e decorar.", valor: 1100},
-    {cat:"Sala", img:uimg("wall art",37), nome:"Quadros decorativos (kit)", desc:"Nossa casa com a nossa cara.", valor: 390},
-    {cat:"Sala", img:uimg("throw pillows",38), nome:"Almofadas decorativas", desc:"Detalhes que aquecem.", valor: 160},
-    {cat:"Sala", img:uimg("blanket couch",39), nome:"Manta para sofá", desc:"Conforto em qualquer dia.", valor: 150},
-    {cat:"Sala", img:uimg("living room decor",40), nome:"Kit decoração sala", desc:"Um toque especial no ambiente.", valor: 480},
-    {cat:"Sala", img:uimg("plants living room",41), nome:"Plantas para sala (kit)", desc:"Mais vida e leveza.", valor: 260},
-    {cat:"Sala", img:uimg("mirror living room",42), nome:"Espelho grande", desc:"Amplitude e elegância.", valor: 1200},
-    {cat:"Sala", img:uimg("console table",43), nome:"Aparador", desc:"Perfeito para decorar e apoiar.", valor: 980},
-    {cat:"Sala", img:uimg("pouf ottoman",44), nome:"Puff/ottoman", desc:"Extra conforto e charme.", valor: 420},
-    {cat:"Sala", img:uimg("home theater",45), nome:"Home theater (contribuição)", desc:"Experiência completa em casa.", valor: 3500},
-    {cat:"Sala", img:uimg("air conditioner",46), nome:"Ar-condicionado (contribuição)", desc:"Conforto em dias quentes.", valor: 2900},
-    {cat:"Sala", img:uimg("ceiling fan",47), nome:"Ventilador de teto", desc:"Conforto e estilo.", valor: 680},
-    {cat:"Sala", img:uimg("smart lighting",48), nome:"Iluminação smart (kit)", desc:"Ambientes com clima perfeito.", valor: 950},
-    {cat:"Sala", img:uimg("decor candles",49), nome:"Velas aromáticas (kit)", desc:"Cheiro de casa nova.", valor: 190},
-    {cat:"Sala", img:uimg("frame photos",50), nome:"Porta-retratos (kit)", desc:"Nossas memórias expostas.", valor: 220},
+  /* ===================== SALA ===================== */
+  {cat:"Sala", icon:"🛋️", nome:"Sofá confortável", desc:"Para descansar e curtir juntos.", valor: 1800},
+  {cat:"Sala", icon:"🛋️", nome:"Sofá dos sonhos (contribuição)", desc:"Nosso cantinho de aconchego.", valor: 3200},
+  {cat:"Sala", icon:"📺", nome:"Painel para TV", desc:"Organização e estilo.", valor: 980},
+  {cat:"Sala", icon:"📺", nome:"Smart TV (contribuição)", desc:"Cinema em casa.", valor: 2800},
+  {cat:"Sala", icon:"🧶", nome:"Tapete grande para sala", desc:"Aconchego para o lar.", valor: 650},
+  {cat:"Sala", icon:"💡", nome:"Luminária decorativa", desc:"Iluminar bons momentos.", valor: 420},
+  {cat:"Sala", icon:"🖼️", nome:"Quadros decorativos", desc:"Nossa identidade na parede.", valor: 390},
+  {cat:"Sala", icon:"🪑", nome:"Poltronas decorativas", desc:"Conforto com estilo.", valor: 1400},
 
-    // QUARTO (51-75)
-    {cat:"Quarto", img:uimg("bedroom bedding",51), nome:"Jogo de lençóis premium", desc:"Noites tranquilas.", valor: 420},
-    {cat:"Quarto", img:uimg("duvet",52), nome:"Edredom confortável", desc:"Aquele aconchego a dois.", valor: 520},
-    {cat:"Quarto", img:uimg("blackout curtains",53), nome:"Cortinas blackout", desc:"Privacidade e conforto.", valor: 890},
-    {cat:"Quarto", img:uimg("bed headboard",54), nome:"Cabeceira estofada", desc:"Detalhe que faz diferença.", valor: 1200},
-    {cat:"Quarto", img:uimg("mattress",55), nome:"Colchão (contribuição)", desc:"Para dormir e sonhar melhor.", valor: 3500},
-    {cat:"Quarto", img:uimg("bedroom nightstand",56), nome:"Mesa de cabeceira (par)", desc:"Organização ao lado da cama.", valor: 980},
-    {cat:"Quarto", img:uimg("wardrobe closet",57), nome:"Guarda-roupa (contribuição)", desc:"Um sonho para a organização.", valor: 5000},
-    {cat:"Quarto", img:uimg("bedroom mirror",58), nome:"Espelho de corpo inteiro", desc:"Funcional e elegante.", valor: 680},
-    {cat:"Quarto", img:uimg("bedroom lamp",59), nome:"Abajures (par)", desc:"Luz suave para relaxar.", valor: 420},
-    {cat:"Quarto", img:uimg("closet organizer",60), nome:"Organizadores de closet (kit)", desc:"Tudo no lugar.", valor: 240},
-    {cat:"Quarto", img:uimg("pillows",61), nome:"Travesseiros premium (kit)", desc:"Conforto que abraça.", valor: 260},
-    {cat:"Quarto", img:uimg("bathrobe",62), nome:"Roupões (par)", desc:"Um luxo gostoso.", valor: 380},
-    {cat:"Quarto", img:uimg("bed linen",63), nome:"Jogo de cama completo", desc:"Para renovar o enxoval.", valor: 680},
-    {cat:"Quarto", img:uimg("blankets",64), nome:"Mantas (kit)", desc:"Para dias mais frios.", valor: 210},
-    {cat:"Quarto", img:uimg("laundry basket",65), nome:"Cestos organizadores (kit)", desc:"Organização com estilo.", valor: 180},
-    {cat:"Quarto", img:uimg("dresser",66), nome:"Cômoda", desc:"Espaço extra para o dia a dia.", valor: 1400},
-    {cat:"Quarto", img:uimg("bedroom decor",67), nome:"Decoração do quarto (kit)", desc:"Nosso refúgio com nossa cara.", valor: 520},
-    {cat:"Quarto", img:uimg("aroma diffuser",68), nome:"Difusor de aromas", desc:"Clima leve no ambiente.", valor: 240},
-    {cat:"Quarto", img:uimg("smart alarm clock",69), nome:"Relógio/alarme smart", desc:"Rotina mais prática.", valor: 320},
-    {cat:"Quarto", img:uimg("iron steamer",70), nome:"Vaporizador de roupas", desc:"Praticidade no dia a dia.", valor: 380},
-    {cat:"Quarto", img:uimg("luggage travel",71), nome:"Conjunto de malas (contribuição)", desc:"Para viagens a dois.", valor: 1600},
-    {cat:"Quarto", img:uimg("bed frame",72), nome:"Cama dos sonhos (contribuição)", desc:"Onde tudo recomeça.", valor: 4800},
-    {cat:"Quarto", img:uimg("curtains bedroom",73), nome:"Cortina leve (extra)", desc:"Para completar o ambiente.", valor: 420},
-    {cat:"Quarto", img:uimg("closet lighting",74), nome:"Iluminação para closet", desc:"Mais praticidade.", valor: 520},
-    {cat:"Quarto", img:uimg("photo wall bedroom",75), nome:"Parede de fotos (kit)", desc:"Memórias bonitas por perto.", valor: 260},
+  /* ===================== QUARTO ===================== */
+  {cat:"Quarto", icon:"🛏️", nome:"Jogo de lençóis premium", desc:"Noites tranquilas.", valor: 420},
+  {cat:"Quarto", icon:"🛏️", nome:"Jogo de cama completo", desc:"Conforto todos os dias.", valor: 680},
+  {cat:"Quarto", icon:"🧸", nome:"Edredom king size", desc:"Aconchego para dois.", valor: 750},
+  {cat:"Quarto", icon:"🪟", nome:"Cortinas blackout", desc:"Privacidade e conforto.", valor: 890},
+  {cat:"Quarto", icon:"🛌", nome:"Cabeceira estofada", desc:"Detalhes que fazem diferença.", valor: 1200},
+  {cat:"Quarto", icon:"🛌", nome:"Cama dos sonhos (contribuição)", desc:"Onde tudo começa e termina.", valor: 4800},
 
-    // DECORAÇÃO (76-90)
-    {cat:"Decoração", img:uimg("home decor",76), nome:"Kit decoração completo", desc:"Detalhes que transformam.", valor: 980},
-    {cat:"Decoração", img:uimg("vases flowers",77), nome:"Vasos decorativos", desc:"Toque de elegância.", valor: 320},
-    {cat:"Decoração", img:uimg("candles home",78), nome:"Velas aromáticas (kit)", desc:"Cheiro de lar.", valor: 190},
-    {cat:"Decoração", img:uimg("wall clock",79), nome:"Relógio de parede", desc:"Um charme a mais.", valor: 260},
-    {cat:"Decoração", img:uimg("bathroom decor",80), nome:"Kit banheiro premium", desc:"Organização com estilo.", valor: 420},
-    {cat:"Decoração", img:uimg("towels",81), nome:"Toalhas premium (kit)", desc:"Conforto no dia a dia.", valor: 520},
-    {cat:"Decoração", img:uimg("mirror decor",82), nome:"Espelho decorativo", desc:"Beleza e funcionalidade.", valor: 980},
-    {cat:"Decoração", img:uimg("painting abstract",83), nome:"Quadros (kit)", desc:"Arte no nosso lar.", valor: 520},
-    {cat:"Decoração", img:uimg("scent diffuser",84), nome:"Aromatizador (kit)", desc:"Casa com cheiro bom.", valor: 210},
-    {cat:"Decoração", img:uimg("table centerpiece",85), nome:"Centro de mesa", desc:"Detalhe delicado.", valor: 260},
-    {cat:"Decoração", img:uimg("books decor",86), nome:"Kit livros decorativos", desc:"Estilo e personalidade.", valor: 180},
-    {cat:"Decoração", img:uimg("kitchen decor",87), nome:"Decoração cozinha (kit)", desc:"Pequenos detalhes.", valor: 240},
-    {cat:"Decoração", img:uimg("entryway decor",88), nome:"Decoração entrada (kit)", desc:"Boas-vindas com charme.", valor: 320},
-    {cat:"Decoração", img:uimg("curtain rods",89), nome:"Varões + instalação (contribuição)", desc:"Para finalizar com capricho.", valor: 1200},
-    {cat:"Decoração", img:uimg("home makeover",90), nome:"Decoração completa da casa (contribuição)", desc:"Nosso sonho de lar perfeito.", valor: 5000},
+  /* ===================== BANHEIRO ===================== */
+  {cat:"Decoração", icon:"🛁", nome:"Kit banheiro completo", desc:"Organização com charme.", valor: 260},
+  {cat:"Decoração", icon:"🛁", nome:"Toalhas premium", desc:"Conforto no dia a dia.", valor: 420},
+  {cat:"Decoração", icon:"🪞", nome:"Espelho decorativo", desc:"Beleza e funcionalidade.", valor: 980},
 
-    // EXPERIÊNCIAS (91-100)
-    {cat:"Experiências", img:uimg("honeymoon beach",91), nome:"Lua de mel (contribuição)", desc:"Memórias inesquecíveis a dois.", valor: 3000},
-    {cat:"Experiências", img:uimg("travel tropical",92), nome:"Viagem dos sonhos (contribuição)", desc:"Para viver algo único.", valor: 5000},
-    {cat:"Experiências", img:uimg("romantic dinner",93), nome:"Jantar romântico", desc:"Uma noite especial.", valor: 480},
-    {cat:"Experiências", img:uimg("spa couple",94), nome:"Day spa a dois", desc:"Relaxar e curtir juntos.", valor: 750},
-    {cat:"Experiências", img:uimg("couple photoshoot",95), nome:"Ensaio fotográfico", desc:"Registrar nossa história.", valor: 1200},
-    {cat:"Experiências", img:uimg("concert tickets",96), nome:"Show/experiência cultural", desc:"Criar memórias divertidas.", valor: 680},
-    {cat:"Experiências", img:uimg("restaurant gift",97), nome:"Vale restaurante", desc:"Um mimo para nossa rotina.", valor: 350},
-    {cat:"Experiências", img:uimg("weekend getaway",98), nome:"Fim de semana especial", desc:"Uma escapada a dois.", valor: 1600},
-    {cat:"Experiências", img:uimg("home improvement",99), nome:"Fundo para casa (contribuição)", desc:"Para montar tudo com carinho.", valor: 2500},
-    {cat:"Experiências", img:uimg("love heart gift",100), nome:"Contribuição livre", desc:"Qualquer valor com muito amor ♥️", valor: 200},
-  ];
+  /* ===================== DECORAÇÃO ===================== */
+  {cat:"Decoração", icon:"🪴", nome:"Plantas e vasos decorativos", desc:"Mais vida para a casa.", valor: 360},
+  {cat:"Decoração", icon:"🕯️", nome:"Velas aromáticas", desc:"Cheiro de lar.", valor: 190},
+  {cat:"Decoração", icon:"🖼️", nome:"Decoração parede completa", desc:"Personalidade no ambiente.", valor: 1500},
+  {cat:"Decoração", icon:"🪑", nome:"Mesa lateral decorativa", desc:"Funcional e elegante.", valor: 720},
+  {cat:"Decoração", icon:"🏡", nome:"Decoração completa da casa", desc:"Nosso lar com a nossa cara.", valor: 5000},
+
+  /* ===================== EXPERIÊNCIAS ===================== */
+  {cat:"Experiências", icon:"🌴", nome:"Lua de mel (contribuição)", desc:"Criar memórias inesquecíveis.", valor: 3000},
+  {cat:"Experiências", icon:"🌍", nome:"Viagem dos sonhos", desc:"Explorar o mundo juntos.", valor: 5000},
+  {cat:"Experiências", icon:"🍷", nome:"Jantar romântico especial", desc:"Uma noite só nossa.", valor: 480},
+  {cat:"Experiências", icon:"🚗", nome:"Passeio especial", desc:"Momentos leves e felizes.", valor: 650},
+  {cat:"Experiências", icon:"🎶", nome:"Experiência inesquecível", desc:"Criar memórias para a vida.", valor: 1200},
+
+  /* ===================== CONTRIBUIÇÕES LIVRES ===================== */
+  {cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Qualquer valor com muito amor.", valor: 100},
+  {cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Um gesto cheio de carinho.", valor: 250},
+  {cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Ajudando a realizar sonhos.", valor: 500},
+  {cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Para nossa nova fase.", valor: 1000},
+  {cat:"Experiências", icon:"💖", nome:"Contribuição especial", desc:"Um presente inesquecível.", valor: 2000},
+];
 
   // Helpers
   const formatBRL = (n) => n.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
@@ -618,25 +544,25 @@ const uimg = (keywords, sig) =>
       const card = document.createElement("div");
       card.className = "card";
       card.innerHTML = `
-        <div class="photo">
-        <img src="${it.img}" alt="${it.nome}" referrerpolicy="no-referrer"
-     onerror="this.style.display='none'; this.parentElement.style.background='linear-gradient(135deg,#f7e3e1,#f4d3b8)';" />
-          <div class="chip">${it.cat}</div>
+        <div class="top">
+          <div class="icon" aria-hidden="true">${it.icon}</div>
+          <div class="meta">
+            <div class="cat">${it.cat}</div>
+            <h3>${it.nome}</h3>
+          </div>
         </div>
-        <div class="content">
-          <div class="title">${it.nome}</div>
-          <div class="desc">${it.desc}</div>
-          <div class="bottom">
-            <div class="price">${formatBRL(it.valor)}</div>
-            <div style="display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:flex-end;">
-              <button class="btn ghost" data-action="pix" data-item="${it.nome}">PIX</button>
-              <a class="btn primary" href="${PAGAMENTO_CARTAO_URL}" target="_blank" rel="noopener noreferrer">Cartão</a>
-            </div>
+        <div class="desc">${it.desc}</div>
+        <div class="bottom">
+          <div class="price">${formatBRL(it.valor)}</div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:flex-end;">
+            <button class="btn ghost" data-action="pix">PIX</button>
+            <a class="btn primary" href="${PAGAMENTO_CARTAO_URL}" target="_blank" rel="noopener noreferrer">Cartão</a>
           </div>
         </div>
       `;
       grid.appendChild(card);
-      card.querySelector('button[data-action="pix"]').addEventListener("click", () => openPix(it.nome));
+
+      card.querySelector('button[data-action="pix"]').addEventListener("click", openPix);
     }
   }
 
@@ -665,13 +591,13 @@ const uimg = (keywords, sig) =>
   const pixKeyEl = document.getElementById("pixKey");
   const toast = document.getElementById("toast");
 
-  function openPix(itemName){
+  function openPix(){
     pixKeyEl.textContent = PIX_KEY;
     backdrop.style.display = "flex";
   }
   function closePix(){ backdrop.style.display = "none"; }
 
-  document.getElementById("openPixTop").addEventListener("click", () => openPix("Lista de presentes"));
+  document.getElementById("openPixTop").addEventListener("click", openPix);
   document.getElementById("closeModal").addEventListener("click", closePix);
   backdrop.addEventListener("click", (e)=>{ if(e.target === backdrop) closePix(); });
   document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closePix(); });
@@ -700,5 +626,3 @@ const uimg = (keywords, sig) =>
 </script>
 </body>
 </html>
-
-
