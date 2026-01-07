@@ -12,6 +12,33 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    .site-header { position: sticky; top: 0; background: rgba(255,255,255,.92); backdrop-filter: blur(10px); z-index: 999; }
+.header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; gap: 12px; }
+.site-nav { display: flex; gap: 14px; align-items: center; }
+.site-nav a { padding: 10px 12px; border-radius: 999px; }
+.site-nav a:hover { background: rgba(0,0,0,.05); }
+
+.menu-btn { display: none; border: 1px solid rgba(0,0,0,.12); background: #fff; padding: 10px 12px; border-radius: 12px; cursor: pointer; }
+
+@media (max-width: 820px){
+  .menu-btn { display: inline-flex; }
+  .site-nav {
+    display: none;
+    position: absolute;
+    right: 16px;
+    top: 58px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.08);
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: 0 18px 45px rgba(0,0,0,.15);
+    flex-direction: column;
+    min-width: 220px;
+  }
+  .site-nav.open { display: flex; }
+  .site-nav a { width: 100%; }
+}
+
     /* =========================
    MOBILE FIRST FIX PACK
    ========================= */
@@ -566,18 +593,19 @@ html, body { max-width: 100%; overflow-x: hidden; }
 </head>
 <body>
   <!-- HEADER -->
-  <header>
-    <div class="nav-container">
-      <div class="logo">Larissa e Rafael</div>
-      <nav>
-        <ul>
-          <li><a href="#noivos">Os noivos</a></li>
-          <li><a href="#detalhes">Cerimônia & festa</a></li>
-          <li><a href="presentes.html">Lista de Presentes</a></li>
-          <li><a href="#rsvp">Confirme sua presença</a></li>
-        </ul>
-      </nav>
-    </div>
+  <header class="site-header">
+  <div class="header-inner">
+    <div class="logo">Larissa & Rafael</div>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+
+    <nav class="site-nav" id="siteNav">
+      <a href="#detalhes">Detalhes</a>
+      <a href="#mapa">Local</a>
+      <a href="presentes.html">Presentes</a>
+      <a href="#rsvp">RSVP</a>
+    </nav>
+  </div>
   </header>
 
   <!-- HERO -->
@@ -907,8 +935,17 @@ html, body { max-width: 100%; overflow-x: hidden; }
       }
     });
   </script>
+  <script>
+  const menuBtn = document.getElementById("menuBtn");
+  const siteNav = document.getElementById("siteNav");
+  if (menuBtn && siteNav) {
+    menuBtn.addEventListener("click", () => siteNav.classList.toggle("open"));
+  }
+</script>
+
 </body>
 </html>
+
 
 
 
