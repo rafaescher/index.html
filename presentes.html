@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -525,12 +526,6 @@
 <div class="toast" id="toast">Chave PIX copiada ✅</div>
 
 <script>
-  document.body.insertAdjacentHTML("afterbegin", "<div style='position:fixed;top:10px;left:10px;z-index:99999;background:#000;color:#fff;padding:8px 10px;border-radius:10px;font:12px/1.2 system-ui'>JS OK ✅</div>");
-window.onerror = (msg, src, line, col) => {
-  document.body.insertAdjacentHTML("afterbegin", `<div style="position:fixed;top:52px;left:10px;right:10px;z-index:99999;background:#b00020;color:#fff;padding:10px;border-radius:10px;font:12px/1.2 system-ui">ERRO JS ❌<br>${msg}<br>Linha: ${line}:${col}</div>`);
-};
-console.log("JS carregou ✅");
-
   // =========================
   // CONFIG (TROQUE AQUI)
   // =========================
@@ -543,6 +538,178 @@ console.log("JS carregou ✅");
   const ITENS = [
     /* ===================== COZINHA ===================== */
     { cat:"Cozinha", icon:"🍳", nome:"Kit de Panelas Premium", desc:"Para as primeiras receitas… e os primeiros “quem queimou isso?” 😂", valor: 320 },
-    { cat:"Cozinha", icon:"🍳", nome:"Conjunto de Panelas Completo", desc:"
+    { cat:"Cozinha", icon:"🍳", nome:"Conjunto de Panelas Completo", desc:"Porque amor também se constrói mexendo panela juntos ❤️", valor: 680 },
+    { cat:"Cozinha", icon:"🍽️", nome:"Aparelho de Jantar (42 peças)", desc:"Para receber quem amamos — e repetir o prato sem culpa 🍽️", valor: 450 },
+    { cat:"Cozinha", icon:"🥂", nome:"Jogo de Copos", desc:"Para brindar o amor, a vida e até a água de madrugada 🥂💧", valor: 220 },
+    { cat:"Cozinha", icon:"🍷", nome:"Conjunto de Taças de Vinho", desc:"Para celebrar os dias bons… e sobreviver aos dias difíceis 🍷😂", valor: 520 },
+    { cat:"Cozinha", icon:"🍴", nome:"Kit de Talheres", desc:"Porque comer junto é uma das maiores provas de amor 🍴", valor: 280 },
+    { cat:"Cozinha", icon:"✨", nome:"Jogo Americano / Sousplat", desc:"Para deixar até o miojo com cara de jantar romântico ✨", valor: 190 },
+    { cat:"Cozinha", icon:"🍰", nome:"Pratos de Sobremesa", desc:"Porque sempre cabe um docinho depois ❤️🍰", valor: 210 },
+    { cat:"Cozinha", icon:"⚡", nome:"Panela Elétrica / Airfryer", desc:"Para facilitar a vida e evitar discussões na cozinha 😅", valor: 790 },
+    { cat:"Cozinha", icon:"🥤", nome:"Liquidificador", desc:"Para sucos, vitaminas e receitas improvisadas 🍹", valor: 320 },
+    { cat:"Cozinha", icon:"🎂", nome:"Batedeira", desc:"Para adoçar a vida — e o bolo também 🎂", valor: 520 },
+    { cat:"Cozinha", icon:"☕", nome:"Cafeteira", desc:"Porque amor sem café não funciona ☕😂", valor: 890 },
+    { cat:"Cozinha", icon:"👩‍🍳", nome:"Kit de Assadeiras", desc:"Para receitas de família e experimentos duvidosos 👩‍🍳👨‍🍳", valor: 260 },
+    { cat:"Cozinha", icon:"🧺", nome:"Potes Organizadores", desc:"Para tentar manter a casa organizada… tentar 😌", valor: 210 },
+    { cat:"Cozinha", icon:"😍", nome:"Panelas Antiaderentes", desc:"Para nada grudar — nem as mágoas 😍", valor: 420 },
+
+    /* ===================== SALA ===================== */
+    { cat:"Sala", icon:"🛋️", nome:"Sofá confortável", desc:"Para descansar e curtir juntos.", valor: 1800 },
+    { cat:"Sala", icon:"🛋️", nome:"Sofá dos sonhos (contribuição)", desc:"Nosso cantinho de aconchego.", valor: 3200 },
+    { cat:"Sala", icon:"📺", nome:"Painel para TV", desc:"Organização e estilo.", valor: 980 },
+    { cat:"Sala", icon:"📺", nome:"Smart TV (contribuição)", desc:"Cinema em casa.", valor: 2800 },
+    { cat:"Sala", icon:"🧶", nome:"Tapete grande para sala", desc:"Aconchego para o lar.", valor: 650 },
+    { cat:"Sala", icon:"💡", nome:"Luminária decorativa", desc:"Iluminar bons momentos.", valor: 420 },
+    { cat:"Sala", icon:"🖼️", nome:"Quadros decorativos", desc:"Nossa identidade na parede.", valor: 390 },
+    { cat:"Sala", icon:"🪑", nome:"Poltronas decorativas", desc:"Conforto com estilo.", valor: 1400 },
+
+    /* ===================== QUARTO ===================== */
+    { cat:"Quarto", icon:"🛏️", nome:"Kit Cama (Lençóis + Fronhas)", desc:"Para noites bem dormidas e domingos preguiçosos 🛏️", valor: 520 },
+    { cat:"Quarto", icon:"❄️", nome:"Edredom / Cobertor", desc:"Para aquecer o amor — e disputar quem fica descoberto 😆", valor: 680 },
+    { cat:"Quarto", icon:"✨", nome:"Jogo de Lençol Premium (1.739.272 fios 😅✨)", desc:"Para noites extremamente confortáveis, sonhos ainda melhores e aquele sono de casal feliz ❤️😴", valor: 1200 },
+
+    /* ===================== CASA ===================== */
+    { cat:"Casa", icon:"🧹", nome:"Aspirador de Pó", desc:"Para manter a casa limpa e o amor em dia ✨", valor: 980 },
+    { cat:"Casa", icon:"👕", nome:"Ferro de Passar Roupa", desc:"Para tentar deixar tudo nos conformes (ou quase isso) 👕😂", valor: 260 },
+
+    /* ===================== DECORAÇÃO ===================== */
+    { cat:"Decoração", icon:"🛁", nome:"Jogo de Toalhas", desc:"Para dias de spa em casa e banhos demorados 🛁", valor: 420 },
+    { cat:"Decoração", icon:"⏰", nome:"Relógio Decorativo", desc:"Para lembrar que o tempo passa… mas o amor fica ⏰", valor: 320 },
+    { cat:"Decoração", icon:"🛁", nome:"Kit banheiro completo", desc:"Organização com charme.", valor: 260 },
+    { cat:"Decoração", icon:"🪞", nome:"Espelho decorativo", desc:"Beleza e funcionalidade.", valor: 980 },
+    { cat:"Decoração", icon:"🪴", nome:"Plantas e vasos decorativos", desc:"Mais vida para a casa.", valor: 360 },
+    { cat:"Decoração", icon:"🕯️", nome:"Velas aromáticas", desc:"Cheiro de lar.", valor: 190 },
+    { cat:"Decoração", icon:"🖼️", nome:"Decoração parede completa", desc:"Personalidade no ambiente.", valor: 1500 },
+    { cat:"Decoração", icon:"🪑", nome:"Mesa lateral decorativa", desc:"Funcional e elegante.", valor: 720 },
+    { cat:"Decoração", icon:"🏡", nome:"Decoração completa da casa", desc:"Nosso lar com a nossa cara.", valor: 5000 },
+
+    /* ===================== EXPERIÊNCIAS ===================== */
+    { cat:"Experiências", icon:"🏡", nome:"Vale Presente para o Lar", desc:"Para nos ajudar a construir nosso cantinho do nosso jeito 🏡💕", valor: 500 },
+    { cat:"Experiências", icon:"🍻", nome:"Chopeira", desc:"Para manter o chope gelado e garantir a felicidade do casal… e dos amigos também 😂🍻", valor: 1800 },
+
+    /* ===================== CONTRIBUIÇÕES LIVRES ===================== */
+    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Qualquer valor com muito amor.", valor: 100 },
+    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Um gesto cheio de carinho.", valor: 250 },
+    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Ajudando a realizar sonhos.", valor: 500 },
+    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Para nossa nova fase.", valor: 1000 },
+    { cat:"Experiências", icon:"💖", nome:"Contribuição especial", desc:"Um presente inesquecível.", valor: 2000 }
+  ];
+
+  // ✅ Normalização: garante que nada fique undefined
+  const ICON_BY_CAT = {
+    "Cozinha":"🍳",
+    "Sala":"🛋️",
+    "Quarto":"🛏️",
+    "Decoração":"🕯️",
+    "Casa":"🏡",
+    "Experiências":"💖",
+    "Presentes":"🎁"
+  };
+  for (const it of ITENS) {
+    if (!it.cat) it.cat = "Presentes";
+    if (!it.desc) it.desc = "";
+    if (!it.icon) it.icon = ICON_BY_CAT[it.cat] || "🎁";
+  }
+
+  // Helpers
+  const formatBRL = (n) => n.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+  const normalize = (str) => (str||"").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+
+  function render(items){
+    const grid = document.getElementById("grid");
+    const empty = document.getElementById("emptyState");
+    grid.innerHTML = "";
+
+    if(!items.length){ empty.style.display = "block"; return; }
+    empty.style.display = "none";
+
+    for(const it of items){
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="top">
+          <div class="icon">${it.icon}</div>
+          <div class="meta">
+            <div class="cat">${it.cat}</div>
+            <h3>${it.nome}</h3>
+          </div>
+        </div>
+        <div class="desc">${it.desc}</div>
+        <div class="bottom">
+          <div class="price">${formatBRL(it.valor)}</div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:flex-end;">
+            <button class="btn ghost" data-action="pix">PIX</button>
+            <a class="btn primary" href="${PAGAMENTO_CARTAO_URL}" target="_blank" rel="noopener noreferrer">Cartão</a>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+
+      card.querySelector('button[data-action="pix"]').addEventListener("click", openPix);
+    }
+  }
+
+  function applyFilters(){
+    const q = normalize(document.getElementById("searchInput").value.trim());
+    const cat = document.getElementById("categorySelect").value;
+    const sort = document.getElementById("sortSelect").value;
+
+    let items = [...ITENS];
+
+    if(cat !== "all") items = items.filter(x => x.cat === cat);
+
+    if(q){
+      items = items.filter(x => normalize(`${x.nome} ${x.desc} ${x.cat}`).includes(q));
+    }
+
+    if(sort === "menor") items.sort((a,b)=>a.valor-b.valor);
+    if(sort === "maior") items.sort((a,b)=>b.valor-a.valor);
+    if(sort === "az") items.sort((a,b)=>a.nome.localeCompare(b.nome, "pt-BR"));
+
+    render(items);
+  }
+
+  // Modal PIX
+  const backdrop = document.getElementById("modalBackdrop");
+  const pixKeyEl = document.getElementById("pixKey");
+  const toast = document.getElementById("toast");
+
+  function openPix(){
+    pixKeyEl.textContent = PIX_KEY;
+    backdrop.style.display = "flex";
+  }
+  function closePix(){ backdrop.style.display = "none"; }
+
+  document.getElementById("openPixTop").addEventListener("click", openPix);
+  document.getElementById("closeModal").addEventListener("click", closePix);
+  backdrop.addEventListener("click", (e)=>{ if(e.target === backdrop) closePix(); });
+  document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closePix(); });
+
+  document.getElementById("copyPix").addEventListener("click", async ()=>{
+    try{
+      await navigator.clipboard.writeText(PIX_KEY);
+      toast.style.display = "block";
+      setTimeout(()=>toast.style.display="none", 2000);
+    }catch(err){
+      alert("Não foi possível copiar automaticamente. Copie manualmente a chave PIX.");
+    }
+  });
+
+  // init links
+  document.getElementById("payCardTop").href = PAGAMENTO_CARTAO_URL;
+  document.getElementById("payCardModal").href = PAGAMENTO_CARTAO_URL;
+
+  // listeners
+  document.getElementById("searchInput").addEventListener("input", applyFilters);
+  document.getElementById("categorySelect").addEventListener("change", applyFilters);
+  document.getElementById("sortSelect").addEventListener("change", applyFilters);
+
+  // first render
+  applyFilters();
+</script>
+</body>
+</html>
+
+
 
 
