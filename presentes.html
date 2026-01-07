@@ -368,7 +368,107 @@
   .pill { flex: 1; justify-content: center; }
   .search { min-width: 100%; }
 }
+/* =========================
+   AJUSTES MOBILE – PRESENTES
+   ========================= */
+@media (max-width: 640px) {
 
+  /* HEADER */
+  header {
+    position: relative;
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .brand {
+    text-align: center;
+    font-size: 1.1rem;
+  }
+
+  /* BOTÕES DO TOPO */
+  .nav-right {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pill {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+
+  /* HERO / CARD PRINCIPAL */
+  .hero {
+    padding: 1.5rem 1.2rem;
+    border-radius: 20px;
+  }
+
+  .hero h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .hero p {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .note {
+    padding: 1rem;
+    font-size: 0.95rem;
+  }
+
+  /* BUSCA */
+  .controls {
+    gap: 12px;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  /* GRID DE ITENS */
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .card {
+    border-radius: 18px;
+  }
+
+  .photo {
+    height: 200px;
+  }
+
+  .bottom {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .bottom .btn {
+    width: 100%;
+  }
+
+  /* MODAL PIX */
+  .modal {
+    border-radius: 18px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .modal-actions .btn {
+    width: 100%;
+  }
+}
   </style>
 </head>
 <body>
@@ -634,6 +734,7 @@
 </script>
 </body>
 </html>
+
 
 
 
