@@ -26,6 +26,8 @@
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
+    html, body { max-width:100%; overflow-x:hidden; }
+
     body{
       font-family:"Poppins",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:var(--bg);
@@ -195,6 +197,7 @@
       font-size:22px;
       flex:0 0 auto;
       box-shadow: 0 10px 20px rgba(0,0,0,0.06);
+      user-select:none;
     }
 
     .meta h3{
@@ -247,6 +250,12 @@
       background:var(--primary);
       color:#fff;
       box-shadow: 0 10px 25px rgba(197,139,139,0.25);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      font-weight:600;
+      letter-spacing:0.03em;
     }
     .btn.primary:hover{background:var(--primary-dark); transform:translateY(-1px)}
 
@@ -358,128 +367,63 @@
     @media (max-width: 980px){
       .card{grid-column: span 6;}
     }
+
+    /* mobile */
     @media (max-width: 640px){
       .card{grid-column: span 12;}
       .nav{align-items:flex-start}
+      .nav{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .brand{
+        text-align:center;
+        font-size: 1.1rem;
+      }
+      .nav-right{
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .pill{
+        width: 100%;
+        justify-content: center;
+        font-size: 0.95rem;
+        padding: 12px;
+      }
+      .hero{
+        padding: 1.5rem 1.2rem;
+        border-radius: 20px;
+      }
+      .hero h1{
+        font-size: 1.8rem;
+        text-align: center;
+      }
+      .hero p{
+        font-size: 1rem;
+        text-align: center;
+      }
+      .note{
+        padding: 1rem;
+        font-size: 0.95rem;
+      }
+      .controls{ gap: 12px; }
+      .search{ width: 100%; min-width: 100%; }
+      .grid{ grid-template-columns: 1fr !important; }
+      .card{ border-radius: 18px; }
+      .bottom{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .bottom .btn{ width: 100%; }
+      .modal{ border-radius: 18px; }
+      .modal-actions{
+        flex-direction: column;
+      }
+      .modal-actions .btn{ width: 100%; }
     }
-    @media (max-width: 640px){
-  .photo{ height: 190px !important; }
-  .nav-right { width: 100%; justify-content: flex-start; }
-  .pill { flex: 1; justify-content: center; }
-  .search { min-width: 100%; }
-}
-/* =========================
-   AJUSTES MOBILE – PRESENTES
-   ========================= */
-@media (max-width: 640px) {
-
-  /* HEADER */
-  header {
-    position: relative;
-  }
-
-  .nav {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-
-  .brand {
-    text-align: center;
-    font-size: 1.1rem;
-  }
-
-  /* BOTÕES DO TOPO */
-  .nav-right {
-    width: 100%;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .pill {
-    width: 100%;
-    justify-content: center;
-    font-size: 0.95rem;
-    padding: 12px;
-  }
-
-  /* HERO / CARD PRINCIPAL */
-  .hero {
-    padding: 1.5rem 1.2rem;
-    border-radius: 20px;
-  }
-
-  .hero h1 {
-    font-size: 1.8rem;
-    text-align: center;
-  }
-
-  .hero p {
-    font-size: 1rem;
-    text-align: center;
-  }
-
-  .note {
-    padding: 1rem;
-    font-size: 0.95rem;
-  }
-
-  /* BUSCA */
-  .controls {
-    gap: 12px;
-  }
-
-  .search {
-    width: 100%;
-  }
-
-  /* GRID DE ITENS */
-  .grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  .card {
-    border-radius: 18px;
-  }
-
-  .photo {
-    height: 200px;
-  }
-
-  .bottom {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 10px;
-  }
-
-  .bottom .btn {
-    width: 100%;
-  }
-
-  /* MODAL PIX */
-  .modal {
-    border-radius: 18px;
-  }
-
-  .modal-actions {
-    flex-direction: column;
-  }
-
-  .modal-actions .btn {
-    width: 100%;
-  }
-}
-    /* Centralizar texto do botão Cartão */
-.btn.primary {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-    .btn.primary {
-  font-weight: 600;
-  letter-spacing: 0.03em;
-}
   </style>
 </head>
 <body>
@@ -498,26 +442,26 @@
 
 <div class="wrap">
   <section class="hero">
-    <h1>Lista de presentes </h1>
-  <p>
-  Criamos essa lista com muito carinho, pensando em cada detalhe da nossa casinha.
-    
-  Uma forma especial de vocês fazerem parte dessa nova fase, cheia de sonhos e amor.
-</p>
+    <h1>Lista de Presentes</h1>
 
-<div class="note">
-  <div>
-    <strong>Como funciona:</strong>
-    escolha um item e finalize pelo <em>PIX</em> ou <em>cartão</em>.
-  </div>
-  <small>
-    Se preferir, você também pode contribuir com qualquer outro valor — toda contribuição
-    será recebida com muito carinho no coração♥️
-  </small>
-  <small style="margin-top:0.3rem;">
-    <em>PS: os itens são simbólicos/fictícios e representam os nossos sonhos ✨</em>
-  </small>
-</div>
+    <p>
+      Criamos essa lista com muito carinho, pensando em cada detalhe da nossa casinha.
+      Uma forma especial de vocês fazerem parte dessa nova fase, cheia de sonhos e amor.
+    </p>
+
+    <div class="note">
+      <div>
+        <strong>Como funciona:</strong>
+        escolha um item e finalize pelo <em>PIX</em> ou <em>cartão</em>.
+      </div>
+      <small>
+        Se preferir, você também pode contribuir com qualquer outro valor — toda contribuição
+        será recebida com muito carinho no coração ♥️
+      </small>
+      <small style="margin-top:0.3rem;">
+        <em>PS: os itens são simbólicos/fictícios e representam os nossos sonhos ✨</em>
+      </small>
+    </div>
   </section>
 
   <div class="controls">
@@ -533,6 +477,7 @@
         <option value="Sala">Sala</option>
         <option value="Quarto">Quarto</option>
         <option value="Decoração">Decoração</option>
+        <option value="Casa">Casa</option>
         <option value="Experiências">Experiências</option>
       </select>
 
@@ -584,210 +529,13 @@
   // =========================
   // CONFIG (TROQUE AQUI)
   // =========================
-  const PAGAMENTO_CARTAO_URL = "https://seu-link-de-pagamento.com"; // TODO
-  const PIX_KEY = "INSERIR_SUA_CHAVE_PIX_AQUI"; // TODO
+  const PAGAMENTO_CARTAO_URL = "https://seu-link-de-pagamento.com"; // TODO: coloque seu link real
+  const PIX_KEY = "INSERIR_SUA_CHAVE_PIX_AQUI"; // TODO: coloque sua chave PIX real
 
-  // Itens fictícios com ícones
- const ITENS = [
-// ✅ Garantir que todo item tenha imagem e evitar "undefined"
-const makeImage = (it, i) => {
-  // opção A: picsum (fixo por item)
-  return `https://picsum.photos/seed/${encodeURIComponent(it.cat + "-" + it.nome + "-" + i)}/800/600`;
-};
-
-// Se faltar img (ou icon), cria automaticamente
-for (let i = 0; i < ITENS.length; i++) {
-  if (!ITENS[i].img) ITENS[i].img = makeImage(ITENS[i], i + 1);
-  if (!ITENS[i].cat) ITENS[i].cat = "Presentes";
-  if (!ITENS[i].desc) ITENS[i].desc = "";
-}
-
-  /* ===================== COZINHA ===================== */
- { cat:"Cozinha", nome:"Kit de Panelas Premium", desc:"Para as primeiras receitas… e os primeiros “quem queimou isso?” 😂", valor: 320 },
-
-{ cat:"Cozinha", nome:"Conjunto de Panelas Completo", desc:"Porque amor também se constrói mexendo panela juntos ❤️", valor: 680 },
-
-{ cat:"Cozinha", nome:"Aparelho de Jantar (42 peças)", desc:"Para receber quem amamos — e repetir o prato sem culpa 🍽️", valor: 450 },
-
-{ cat:"Cozinha", nome:"Jogo de Copos", desc:"Para brindar o amor, a vida e até a água de madrugada 🥂💧", valor: 220 },
-
-{ cat:"Cozinha", nome:"Conjunto de Taças de Vinho", desc:"Para celebrar os dias bons… e sobreviver aos dias difíceis 🍷😂", valor: 520 },
-
-{ cat:"Cozinha", nome:"Kit de Talheres", desc:"Porque comer junto é uma das maiores provas de amor 🍴", valor: 280 },
-
-{ cat:"Cozinha", nome:"Jogo Americano / Sousplat", desc:"Para deixar até o miojo com cara de jantar romântico ✨", valor: 190 },
-
-{ cat:"Cozinha", nome:"Pratos de Sobremesa", desc:"Porque sempre cabe um docinho depois ❤️🍰", valor: 210 },
-
-{ cat:"Cozinha", nome:"Panela Elétrica / Airfryer", desc:"Para facilitar a vida e evitar discussões na cozinha 😅", valor: 790 },
-
-{ cat:"Cozinha", nome:"Liquidificador", desc:"Para sucos, vitaminas e receitas improvisadas 🍹", valor: 320 },
-
-{ cat:"Cozinha", nome:"Batedeira", desc:"Para adoçar a vida — e o bolo também 🎂", valor: 520 },
-
-{ cat:"Cozinha", nome:"Cafeteira", desc:"Porque amor sem café não funciona ☕😂", valor: 890 },
-
-{ cat:"Cozinha", nome:"Kit de Assadeiras", desc:"Para receitas de família e experimentos duvidosos 👩‍🍳👨‍🍳", valor: 260 },
-
-{ cat:"Cozinha", nome:"Potes Organizadores", desc:"Para tentar manter a casa organizada… tentar 😌", valor: 210 },
-
-{ cat:"Cozinha", nome:"Panelas Antiaderentes", desc:"Para nada grudar — nem as mágoas 😍", valor: 420 },
-   
-  /* ===================== SALA ===================== */
-  {cat:"Sala", icon:"🛋️", nome:"Sofá confortável", desc:"Para descansar e curtir juntos.", valor: 1800},
-  {cat:"Sala", icon:"🛋️", nome:"Sofá dos sonhos (contribuição)", desc:"Nosso cantinho de aconchego.", valor: 3200},
-  {cat:"Sala", icon:"📺", nome:"Painel para TV", desc:"Organização e estilo.", valor: 980},
-  {cat:"Sala", icon:"📺", nome:"Smart TV (contribuição)", desc:"Cinema em casa.", valor: 2800},
-  {cat:"Sala", icon:"🧶", nome:"Tapete grande para sala", desc:"Aconchego para o lar.", valor: 650},
-  {cat:"Sala", icon:"💡", nome:"Luminária decorativa", desc:"Iluminar bons momentos.", valor: 420},
-  {cat:"Sala", icon:"🖼️", nome:"Quadros decorativos", desc:"Nossa identidade na parede.", valor: 390},
-  {cat:"Sala", icon:"🪑", nome:"Poltronas decorativas", desc:"Conforto com estilo.", valor: 1400},
-
-  /* ===================== QUARTO ===================== */
-{ cat:"Quarto", nome:"Kit Cama (Lençóis + Fronhas)", desc:"Para noites bem dormidas e domingos preguiçosos 🛏️", valor: 520 },
-
-{ cat:"Quarto", nome:"Edredom / Cobertor", desc:"Para aquecer o amor — e disputar quem fica descoberto 😆", valor: 680 },
-
-{ cat:"Quarto", nome:"Jogo de Lençol Premium (1.739.272 fios 😅✨)", desc:"Para noites extremamente confortáveis, sonhos ainda melhores e aquele sono de casal feliz ❤️😴", valor: 1200 },
-
-   /* ===================== CASA ===================== */
-{ cat:"Casa", nome:"Aspirador de Pó", desc:"Para manter a casa limpa e o amor em dia ✨", valor: 980 },
-
-{ cat:"Casa", nome:"Ferro de Passar Roupa", desc:"Para tentar deixar tudo nos conformes (ou quase isso) 👕😂", valor: 260 },
-
-   /* ===================== DECORAÇÃO ===================== */
-{ cat:"Decoração", nome:"Jogo de Toalhas", desc:"Para dias de spa em casa e banhos demorados 🛁", valor: 420 },
-
-{ cat:"Decoração", nome:"Relógio Decorativo", desc:"Para lembrar que o tempo passa… mas o amor fica ⏰", valor: 320 },
-
-  /* ===================== BANHEIRO ===================== */
-  {cat:"Decoração", icon:"🛁", nome:"Kit banheiro completo", desc:"Organização com charme.", valor: 260},
-  {cat:"Decoração", icon:"🛁", nome:"Toalhas premium", desc:"Conforto no dia a dia.", valor: 420},
-  {cat:"Decoração", icon:"🪞", nome:"Espelho decorativo", desc:"Beleza e funcionalidade.", valor: 980},
-
-  /* ===================== DECORAÇÃO ===================== */
-  {cat:"Decoração", icon:"🪴", nome:"Plantas e vasos decorativos", desc:"Mais vida para a casa.", valor: 360},
-  {cat:"Decoração", icon:"🕯️", nome:"Velas aromáticas", desc:"Cheiro de lar.", valor: 190},
-  {cat:"Decoração", icon:"🖼️", nome:"Decoração parede completa", desc:"Personalidade no ambiente.", valor: 1500},
-  {cat:"Decoração", icon:"🪑", nome:"Mesa lateral decorativa", desc:"Funcional e elegante.", valor: 720},
-  {cat:"Decoração", icon:"🏡", nome:"Decoração completa da casa", desc:"Nosso lar com a nossa cara.", valor: 5000},
-
-  /* ===================== EXPERIÊNCIAS ===================== */
-{ cat:"Experiências", nome:"Vale Presente para o Lar", desc:"Para nos ajudar a construir nosso cantinho do nosso jeito 🏡💕", valor: 500 },
-
-{ cat:"Experiências", nome:"Chopeira", desc:"Para manter o chope gelado e garantir a felicidade do casal… e dos amigos também 😂🍻", valor: 1800 },
-
-
-  /* ===================== CONTRIBUIÇÕES LIVRES ===================== */
-  {cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Qualquer valor com muito amor.", valor: 100},
-  {cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Um gesto cheio de carinho.", valor: 250},
-  {cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Ajudando a realizar sonhos.", valor: 500},
-  {cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Para nossa nova fase.", valor: 1000},
-  {cat:"Experiências", icon:"💖", nome:"Contribuição especial", desc:"Um presente inesquecível.", valor: 2000},
-];
-
-  // Helpers
-  const formatBRL = (n) => n.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
-  const normalize = (str) => (str||"").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
-
-  function render(items){
-    const grid = document.getElementById("grid");
-    const empty = document.getElementById("emptyState");
-    grid.innerHTML = "";
-
-    if(!items.length){ empty.style.display = "block"; return; }
-    empty.style.display = "none";
-
-    for(const it of items){
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <div class="top">
-          <div class="icon">${it.icon ?? ""}</div>
-          <div class="meta">
-            <div class="cat">${it.cat}</div>
-            <h3>${it.nome}</h3>
-          </div>
-        </div>
-        <div class="desc">${it.desc}</div>
-        <div class="bottom">
-          <div class="price">${formatBRL(it.valor)}</div>
-          <div style="display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:flex-end;">
-            <button class="btn ghost" data-action="pix">PIX</button>
-            <a class="btn primary" href="${PAGAMENTO_CARTAO_URL}" target="_blank" rel="noopener noreferrer">Cartão</a>
-          </div>
-        </div>
-      `;
-      grid.appendChild(card);
-
-      card.querySelector('button[data-action="pix"]').addEventListener("click", openPix);
-    }
-  }
-
-  function applyFilters(){
-    const q = normalize(document.getElementById("searchInput").value.trim());
-    const cat = document.getElementById("categorySelect").value;
-    const sort = document.getElementById("sortSelect").value;
-
-    let items = [...ITENS];
-
-    if(cat !== "all") items = items.filter(x => x.cat === cat);
-
-    if(q){
-      items = items.filter(x => normalize(`${x.nome} ${x.desc} ${x.cat}`).includes(q));
-    }
-
-    if(sort === "menor") items.sort((a,b)=>a.valor-b.valor);
-    if(sort === "maior") items.sort((a,b)=>b.valor-a.valor);
-    if(sort === "az") items.sort((a,b)=>a.nome.localeCompare(b.nome, "pt-BR"));
-
-    render(items);
-  }
-
-  // Modal PIX
-  const backdrop = document.getElementById("modalBackdrop");
-  const pixKeyEl = document.getElementById("pixKey");
-  const toast = document.getElementById("toast");
-
-  function openPix(){
-    pixKeyEl.textContent = PIX_KEY;
-    backdrop.style.display = "flex";
-  }
-  function closePix(){ backdrop.style.display = "none"; }
-
-  document.getElementById("openPixTop").addEventListener("click", openPix);
-  document.getElementById("closeModal").addEventListener("click", closePix);
-  backdrop.addEventListener("click", (e)=>{ if(e.target === backdrop) closePix(); });
-  document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closePix(); });
-
-  document.getElementById("copyPix").addEventListener("click", async ()=>{
-    try{
-      await navigator.clipboard.writeText(PIX_KEY);
-      toast.style.display = "block";
-      setTimeout(()=>toast.style.display="none", 2000);
-    }catch(err){
-      alert("Não foi possível copiar automaticamente. Copie manualmente a chave PIX.");
-    }
-  });
-
-  // init links
-  document.getElementById("payCardTop").href = PAGAMENTO_CARTAO_URL;
-  document.getElementById("payCardModal").href = PAGAMENTO_CARTAO_URL;
-
-  // listeners
-  document.getElementById("searchInput").addEventListener("input", applyFilters);
-  document.getElementById("categorySelect").addEventListener("change", applyFilters);
-  document.getElementById("sortSelect").addEventListener("change", applyFilters);
-
-  // first render
-  applyFilters();
-</script>
-</body>
-</html>
-
-
-
-
-
-
-
+  // =========================
+  // ITENS
+  // =========================
+  const ITENS = [
+    /* ===================== COZINHA ===================== */
+    { cat:"Cozinha", icon:"🍳", nome:"Kit de Panelas Premium", desc:"Para as primeiras receitas… e os primeiros “quem queimou isso?” 😂", valor: 320 },
+    { cat:"Cozinha", icon:"🍳", nome:"Conjunto de Panelas Completo", desc:"
