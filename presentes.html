@@ -368,10 +368,9 @@
       .card{grid-column: span 6;}
     }
 
-    /* mobile */
     @media (max-width: 640px){
       .card{grid-column: span 12;}
-      .nav{align-items:flex-start}
+      header { position: relative; }
       .nav{
         flex-direction: column;
         align-items: stretch;
@@ -529,91 +528,56 @@
   // =========================
   // CONFIG (TROQUE AQUI)
   // =========================
-  const PAGAMENTO_CARTAO_URL = "https://seu-link-de-pagamento.com"; // TODO: coloque seu link real
-  const PIX_KEY = "INSERIR_SUA_CHAVE_PIX_AQUI"; // TODO: coloque sua chave PIX real
+  const PAGAMENTO_CARTAO_URL = "https://mpago.li/SEU_LINK_GERAL"; // link geral (opcional)
+  const PIX_KEY = "INSERIR_SUA_CHAVE_PIX_AQUI"; // sua chave real
 
   // =========================
-  // ITENS
+  // ITENS (coloque 1 link por item em `card`)
   // =========================
   const ITENS = [
     /* ===================== COZINHA ===================== */
-    { cat:"Cozinha", icon:"🍳", nome:"Kit de Panelas Premium", desc:"Para as primeiras receitas… e os primeiros “quem queimou isso?” 😂", valor: 320 },
-    { cat:"Cozinha", icon:"🍳", nome:"Conjunto de Panelas Completo", desc:"Porque amor também se constrói mexendo panela juntos ❤️", valor: 680 },
-    { cat:"Cozinha", icon:"🍽️", nome:"Aparelho de Jantar (42 peças)", desc:"Para receber quem amamos — e repetir o prato sem culpa 🍽️", valor: 450 },
-    { cat:"Cozinha", icon:"🥂", nome:"Jogo de Copos", desc:"Para brindar o amor, a vida e até a água de madrugada 🥂💧", valor: 220 },
-    { cat:"Cozinha", icon:"🍷", nome:"Conjunto de Taças de Vinho", desc:"Para celebrar os dias bons… e sobreviver aos dias difíceis 🍷😂", valor: 520 },
-    { cat:"Cozinha", icon:"🍴", nome:"Kit de Talheres", desc:"Porque comer junto é uma das maiores provas de amor 🍴", valor: 280 },
-    { cat:"Cozinha", icon:"✨", nome:"Jogo Americano / Sousplat", desc:"Para deixar até o miojo com cara de jantar romântico ✨", valor: 190 },
-    { cat:"Cozinha", icon:"🍰", nome:"Pratos de Sobremesa", desc:"Porque sempre cabe um docinho depois ❤️🍰", valor: 210 },
-    { cat:"Cozinha", icon:"⚡", nome:"Panela Elétrica / Airfryer", desc:"Para facilitar a vida e evitar discussões na cozinha 😅", valor: 790 },
-    { cat:"Cozinha", icon:"🥤", nome:"Liquidificador", desc:"Para sucos, vitaminas e receitas improvisadas 🍹", valor: 320 },
-    { cat:"Cozinha", icon:"🎂", nome:"Batedeira", desc:"Para adoçar a vida — e o bolo também 🎂", valor: 520 },
-    { cat:"Cozinha", icon:"☕", nome:"Cafeteira", desc:"Porque amor sem café não funciona ☕😂", valor: 890 },
-    { cat:"Cozinha", icon:"👩‍🍳", nome:"Kit de Assadeiras", desc:"Para receitas de família e experimentos duvidosos 👩‍🍳👨‍🍳", valor: 260 },
-    { cat:"Cozinha", icon:"🧺", nome:"Potes Organizadores", desc:"Para tentar manter a casa organizada… tentar 😌", valor: 210 },
-    { cat:"Cozinha", icon:"😍", nome:"Panelas Antiaderentes", desc:"Para nada grudar — nem as mágoas 😍", valor: 420 },
+    { cat:"Cozinha", icon:"🍳", nome:"Kit de Panelas Premium", desc:"Para as primeiras receitas… e os primeiros “quem queimou isso?” 😂", valor: 320, card:"https://mpago.li/LINK_DO_ITEM_320" },
+    { cat:"Cozinha", icon:"🍳", nome:"Conjunto de Panelas Completo", desc:"Porque amor também se constrói mexendo panela juntos ❤️", valor: 680, card:"https://mpago.li/LINK_DO_ITEM_680" },
+    { cat:"Cozinha", icon:"🍽️", nome:"Aparelho de Jantar (42 peças)", desc:"Para receber quem amamos — e repetir o prato sem culpa 🍽️", valor: 450, card:"https://mpago.li/LINK_DO_ITEM_450" },
+    { cat:"Cozinha", icon:"🥂", nome:"Jogo de Copos", desc:"Para brindar o amor, a vida e até a água de madrugada 🥂💧", valor: 220, card:"https://mpago.li/LINK_DO_ITEM_220" },
+    { cat:"Cozinha", icon:"🍷", nome:"Conjunto de Taças de Vinho", desc:"Para celebrar os dias bons… e sobreviver aos dias difíceis 🍷😂", valor: 520, card:"https://mpago.li/LINK_DO_ITEM_520" },
 
     /* ===================== SALA ===================== */
-    { cat:"Sala", icon:"🛋️", nome:"Sofá confortável", desc:"Para descansar e curtir juntos.", valor: 1800 },
-    { cat:"Sala", icon:"🛋️", nome:"Sofá dos sonhos (contribuição)", desc:"Nosso cantinho de aconchego.", valor: 3200 },
-    { cat:"Sala", icon:"📺", nome:"Painel para TV", desc:"Organização e estilo.", valor: 980 },
-    { cat:"Sala", icon:"📺", nome:"Smart TV (contribuição)", desc:"Cinema em casa.", valor: 2800 },
-    { cat:"Sala", icon:"🧶", nome:"Tapete grande para sala", desc:"Aconchego para o lar.", valor: 650 },
-    { cat:"Sala", icon:"💡", nome:"Luminária decorativa", desc:"Iluminar bons momentos.", valor: 420 },
-    { cat:"Sala", icon:"🖼️", nome:"Quadros decorativos", desc:"Nossa identidade na parede.", valor: 390 },
-    { cat:"Sala", icon:"🪑", nome:"Poltronas decorativas", desc:"Conforto com estilo.", valor: 1400 },
+    { cat:"Sala", icon:"🛋️", nome:"Sofá confortável", desc:"Para descansar e curtir juntos.", valor: 1800, card:"https://mpago.li/LINK_DO_ITEM_1800" },
+    { cat:"Sala", icon:"📺", nome:"Painel para TV", desc:"Organização e estilo.", valor: 980, card:"https://mpago.li/LINK_DO_ITEM_980" },
+    { cat:"Sala", icon:"💡", nome:"Luminária decorativa", desc:"Iluminar bons momentos.", valor: 420, card:"https://mpago.li/LINK_DO_ITEM_420" },
 
     /* ===================== QUARTO ===================== */
-    { cat:"Quarto", icon:"🛏️", nome:"Kit Cama (Lençóis + Fronhas)", desc:"Para noites bem dormidas e domingos preguiçosos 🛏️", valor: 520 },
-    { cat:"Quarto", icon:"❄️", nome:"Edredom / Cobertor", desc:"Para aquecer o amor — e disputar quem fica descoberto 😆", valor: 680 },
-    { cat:"Quarto", icon:"✨", nome:"Jogo de Lençol Premium (1.739.272 fios 😅✨)", desc:"Para noites extremamente confortáveis, sonhos ainda melhores e aquele sono de casal feliz ❤️😴", valor: 1200 },
+    { cat:"Quarto", icon:"🛏️", nome:"Kit Cama (Lençóis + Fronhas)", desc:"Para noites bem dormidas e domingos preguiçosos 🛏️", valor: 520, card:"https://mpago.li/LINK_DO_ITEM_520_Q" },
+    { cat:"Quarto", icon:"❄️", nome:"Edredom / Cobertor", desc:"Para aquecer o amor — e disputar quem fica descoberto 😆", valor: 680, card:"https://mpago.li/LINK_DO_ITEM_680_Q" },
 
     /* ===================== CASA ===================== */
-    { cat:"Casa", icon:"🧹", nome:"Aspirador de Pó", desc:"Para manter a casa limpa e o amor em dia ✨", valor: 980 },
-    { cat:"Casa", icon:"👕", nome:"Ferro de Passar Roupa", desc:"Para tentar deixar tudo nos conformes (ou quase isso) 👕😂", valor: 260 },
+    { cat:"Casa", icon:"🧹", nome:"Aspirador de Pó", desc:"Para manter a casa limpa e o amor em dia ✨", valor: 980, card:"https://mpago.li/LINK_DO_ITEM_980_CASA" },
+    { cat:"Casa", icon:"👕", nome:"Ferro de Passar Roupa", desc:"Para tentar deixar tudo nos conformes (ou quase isso) 👕😂", valor: 260, card:"https://mpago.li/LINK_DO_ITEM_260" },
 
     /* ===================== DECORAÇÃO ===================== */
-    { cat:"Decoração", icon:"🛁", nome:"Jogo de Toalhas", desc:"Para dias de spa em casa e banhos demorados 🛁", valor: 420 },
-    { cat:"Decoração", icon:"⏰", nome:"Relógio Decorativo", desc:"Para lembrar que o tempo passa… mas o amor fica ⏰", valor: 320 },
-    { cat:"Decoração", icon:"🛁", nome:"Kit banheiro completo", desc:"Organização com charme.", valor: 260 },
-    { cat:"Decoração", icon:"🪞", nome:"Espelho decorativo", desc:"Beleza e funcionalidade.", valor: 980 },
-    { cat:"Decoração", icon:"🪴", nome:"Plantas e vasos decorativos", desc:"Mais vida para a casa.", valor: 360 },
-    { cat:"Decoração", icon:"🕯️", nome:"Velas aromáticas", desc:"Cheiro de lar.", valor: 190 },
-    { cat:"Decoração", icon:"🖼️", nome:"Decoração parede completa", desc:"Personalidade no ambiente.", valor: 1500 },
-    { cat:"Decoração", icon:"🪑", nome:"Mesa lateral decorativa", desc:"Funcional e elegante.", valor: 720 },
-    { cat:"Decoração", icon:"🏡", nome:"Decoração completa da casa", desc:"Nosso lar com a nossa cara.", valor: 5000 },
+    { cat:"Decoração", icon:"🕯️", nome:"Velas aromáticas", desc:"Cheiro de lar.", valor: 190, card:"https://mpago.li/LINK_DO_ITEM_190" },
+    { cat:"Decoração", icon:"🏡", nome:"Decoração completa da casa", desc:"Nosso lar com a nossa cara.", valor: 5000, card:"https://mpago.li/LINK_DO_ITEM_5000" },
 
     /* ===================== EXPERIÊNCIAS ===================== */
-    { cat:"Experiências", icon:"🏡", nome:"Vale Presente para o Lar", desc:"Para nos ajudar a construir nosso cantinho do nosso jeito 🏡💕", valor: 500 },
-    { cat:"Experiências", icon:"🍻", nome:"Chopeira", desc:"Para manter o chope gelado e garantir a felicidade do casal… e dos amigos também 😂🍻", valor: 1800 },
+    { cat:"Experiências", icon:"💖", nome:"Vale Presente para o Lar", desc:"Para nos ajudar a construir nosso cantinho do nosso jeito 🏡💕", valor: 500, card:"https://mpago.li/LINK_DO_ITEM_500" },
+    { cat:"Experiências", icon:"🍻", nome:"Chopeira", desc:"Para manter o chope gelado e garantir a felicidade do casal… e dos amigos também 😂🍻", valor: 1800, card:"https://mpago.li/LINK_DO_ITEM_1800_CHOP" },
 
     /* ===================== CONTRIBUIÇÕES LIVRES ===================== */
-    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Qualquer valor com muito amor.", valor: 100 },
-    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Um gesto cheio de carinho.", valor: 250 },
-    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Ajudando a realizar sonhos.", valor: 500 },
-    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Para nossa nova fase.", valor: 1000 },
-    { cat:"Experiências", icon:"💖", nome:"Contribuição especial", desc:"Um presente inesquecível.", valor: 2000 }
+    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Qualquer valor com muito amor.", valor: 100, card:"https://mpago.li/LINK_DO_ITEM_100" },
+    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Um gesto cheio de carinho.", valor: 250, card:"https://mpago.li/LINK_DO_ITEM_250" },
+    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Ajudando a realizar sonhos.", valor: 500, card:"https://mpago.li/LINK_DO_ITEM_500_LIVRE" },
+    { cat:"Experiências", icon:"💖", nome:"Contribuição especial", desc:"Um presente inesquecível.", valor: 2000, card:"https://mpago.li/LINK_DO_ITEM_2000" }
   ];
-
-  // ✅ Normalização: garante que nada fique undefined
-  const ICON_BY_CAT = {
-    "Cozinha":"🍳",
-    "Sala":"🛋️",
-    "Quarto":"🛏️",
-    "Decoração":"🕯️",
-    "Casa":"🏡",
-    "Experiências":"💖",
-    "Presentes":"🎁"
-  };
-  for (const it of ITENS) {
-    if (!it.cat) it.cat = "Presentes";
-    if (!it.desc) it.desc = "";
-    if (!it.icon) it.icon = ICON_BY_CAT[it.cat] || "🎁";
-  }
 
   // Helpers
   const formatBRL = (n) => n.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
   const normalize = (str) => (str||"").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+
+  function getCardLinkForItem(it){
+    // Se o item tiver link próprio, usa ele. Se não tiver, usa o link geral.
+    return (it.card && it.card.trim()) ? it.card.trim() : (PAGAMENTO_CARTAO_URL || "#");
+  }
 
   function render(items){
     const grid = document.getElementById("grid");
@@ -624,22 +588,26 @@
     empty.style.display = "none";
 
     for(const it of items){
+      const cardLink = getCardLinkForItem(it);
+
       const card = document.createElement("div");
       card.className = "card";
       card.innerHTML = `
         <div class="top">
-          <div class="icon">${it.icon}</div>
+          <div class="icon">${it.icon ?? "🎁"}</div>
           <div class="meta">
             <div class="cat">${it.cat}</div>
             <h3>${it.nome}</h3>
           </div>
         </div>
-        <div class="desc">${it.desc}</div>
+        <div class="desc">${it.desc ?? ""}</div>
         <div class="bottom">
           <div class="price">${formatBRL(it.valor)}</div>
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:flex-end;">
             <button class="btn ghost" data-action="pix">PIX</button>
-            <a class="btn primary" href="${PAGAMENTO_CARTAO_URL}" target="_blank" rel="noopener noreferrer">Cartão</a>
+            ${cardLink !== "#" ? `
+              <a class="btn primary" href="${cardLink}" target="_blank" rel="noopener noreferrer">Cartão</a>
+            ` : ``}
           </div>
         </div>
       `;
@@ -695,9 +663,9 @@
     }
   });
 
-  // init links
-  document.getElementById("payCardTop").href = PAGAMENTO_CARTAO_URL;
-  document.getElementById("payCardModal").href = PAGAMENTO_CARTAO_URL;
+  // init links (topo e modal = link geral)
+  document.getElementById("payCardTop").href = PAGAMENTO_CARTAO_URL || "#";
+  document.getElementById("payCardModal").href = PAGAMENTO_CARTAO_URL || "#";
 
   // listeners
   document.getElementById("searchInput").addEventListener("input", applyFilters);
@@ -709,6 +677,8 @@
 </script>
 </body>
 </html>
+
+
 
 
 
