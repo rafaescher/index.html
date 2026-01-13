@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <title>Obrigado! | Larissa e Rafael</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Agradecimento pela contribuição no casamento de Larissa e Rafael.">
+  <meta name="description" content="Agradecimento pela contribuição no casamento de Larissa e Rafael." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,8 +15,161 @@
       --primary:#c58b8b;
       --primary-dark:#a96c6c;
       --bg:#0f0f10;
-      --card:rgba(255,255,255,0.06);
+      --card:rgba(255,255,255,0.07);
       --text:rgba(255,255,255,0.92);
-      --muted:rgba(255,255,255,0.70);
-      --ring:0 0 0 2px rgba(197,139,139,0.22);
-      --shadow
+      --muted:rgba(255,255,255,0.72);
+      --border:rgba(255,255,255,0.10);
+      --shadow:0 18px 60px rgba(0,0,0,0.38);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"Poppins",system-ui,-apple-system,Segoe UI,sans-serif;
+      background: radial-gradient(circle at top left, rgba(197,139,139,0.24), transparent 45%),
+                  radial-gradient(circle at bottom right, rgba(244,211,184,0.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .wrap{
+      width:min(820px, 100%);
+    }
+
+    .card{
+      background: var(--card);
+      border:1px solid var(--border);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+      padding: 26px 22px;
+      overflow:hidden;
+      position:relative;
+      backdrop-filter: blur(10px);
+    }
+
+    .brand{
+      font-family:"Playfair Display",serif;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.86);
+      text-align:center;
+      margin-bottom: 10px;
+    }
+
+    h1{
+      font-family:"Playfair Display",serif;
+      font-size: clamp(2.0rem, 4.5vw, 2.7rem);
+      line-height:1.08;
+      text-align:center;
+      margin-bottom: 10px;
+    }
+
+    .lead{
+      text-align:center;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height:1.6;
+      margin: 0 auto 18px;
+      max-width: 64ch;
+    }
+
+    .pill{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin: 14px 0 18px;
+    }
+
+    .tag{
+      border:1px solid var(--border);
+      background: rgba(0,0,0,0.18);
+      border-radius:999px;
+      padding: 10px 12px;
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.84);
+    }
+
+    .actions{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    a.btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      border-radius: 16px;
+      min-height: 46px;
+      padding: 12px 14px;
+      font-weight: 600;
+      transition: .15s;
+      border: 1px solid transparent;
+    }
+
+    .btn.primary{
+      background: var(--primary);
+      color:#fff;
+    }
+    .btn.primary:hover{ background: var(--primary-dark); transform: translateY(-1px); }
+
+    .btn.ghost{
+      background: rgba(0,0,0,0.18);
+      color: rgba(255,255,255,0.92);
+      border-color: var(--border);
+    }
+    .btn.ghost:hover{ background: rgba(255,255,255,0.06); transform: translateY(-1px); }
+
+    .small{
+      text-align:center;
+      color: rgba(255,255,255,0.62);
+      font-size: 0.92rem;
+      margin-top: 16px;
+    }
+
+    .heart{
+      color: rgba(255,255,255,0.92);
+    }
+
+    @media (max-width: 640px){
+      .card{ padding: 22px 18px; border-radius: 20px; }
+      .actions{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="brand">Larissa & Rafael</div>
+      <h1>Obrigado pela sua colaboração! <span class="heart">♥️</span></h1>
+      <p class="lead">
+        Sua contribuição significa muito pra gente. Você faz parte dessa nova fase e do nosso grande dia.
+        Que Deus abençoe você e sua família — com carinho, <strong>Larissa & Rafael</strong>.
+      </p>
+
+      <div class="pill">
+        <div class="tag">🌊 Casamento na praia</div>
+        <div class="tag">📅 11 de Setembro de 2026</div>
+        <div class="tag">✨ Gratidão</div>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="index.html">Voltar ao site</a>
+        <a class="btn ghost" href="presentes.html">Ver lista de presentes</a>
+      </div>
+
+      <div class="small">
+        Se você pagou pelo cartão e foi redirecionado(a) pra cá, está tudo certo ✅<br/>
+        Qualquer dúvida, fale com os noivos.
+      </div>
+    </div>
+  </div>
+</body>
+</html>
