@@ -651,15 +651,30 @@ html, body { max-width: 100%; overflow-x: hidden; }
     gap: 12px !important;
   }
 
-  /* Contador: destaque e respiro */
-  .countdown, #countdown, .timer {
-    margin-top: 16px !important;
-    padding: 12px 14px !important;
-    border-radius: 16px !important;
-    background: rgba(255,255,255,0.06) !important;
-    border: 1px solid rgba(255,255,255,0.08) !important;
+/* =========================
+   CONTADOR (HOME)
+   ========================= */
+#countdown.hero-countdown{
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  backdrop-filter: blur(8px);
+  color: rgba(255,255,255,0.90);
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+/* Mobile: um pouco maior e com melhor leitura */
+@media (max-width: 640px){
+  #countdown.hero-countdown{
+    font-size: 1.02rem;
+    padding: 14px 14px;
   }
 }
+
   </style>
 </head>
 <body>
@@ -1014,8 +1029,41 @@ html, body { max-width: 100%; overflow-x: hidden; }
   }
 </script>
 
+  <script>
+  const WHATSAPP_DESTINO = "19974032632"; // ex: 5511999999999
+
+  const form = document.getElementById("rsvpForm");
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const nome = (document.getElementById("rsvpNome")?.value || "").trim();
+      const tel  = (document.getElementById("rsvpTelefone")?.value || "").trim();
+      const qtd  = (document.getElementById("rsvpQtd")?.value || "").trim();
+      const msg  = (document.getElementById("rsvpMsg")?.value || "").trim();
+
+      const texto =
+`Confirmação de Presença ✅
+Nome: ${nome || "-"}
+WhatsApp: ${tel || "-"}
+Quantidade: ${qtd || "-"}
+Observações: ${msg || "-"}
+
+Casamento Larissa & Rafael — 11/09/2026`;
+
+      const url = `https://wa.me/${WHATSAPP_DESTINO}?text=${encodeURIComponent(texto)}`;
+      window.open(url, "_blank");
+
+      // opcional: mostrar mensagem na tela
+      alert("Abrimos o WhatsApp com a mensagem pronta. É só enviar ✅");
+      form.reset();
+    });
+  }
+</script>
+
 </body>
 </html>
+
 
 
 
