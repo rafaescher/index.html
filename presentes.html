@@ -10,6 +10,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+  <!-- QR Code (leve e confiável) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
   <style>
     :root{
       --primary:#c58b8b;
@@ -27,6 +30,7 @@
 
     *{box-sizing:border-box;margin:0;padding:0}
     html, body { max-width:100%; overflow-x:hidden; }
+
     body{
       font-family:"Poppins",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
       background:var(--bg);
@@ -52,7 +56,7 @@
       font-family:"Playfair Display",serif;
       color:var(--primary-dark);
       letter-spacing:0.06em;
-      font-size:1.15rem;
+      font-size:1.25rem;
       text-transform:uppercase;
       white-space:nowrap;
     }
@@ -62,7 +66,7 @@
     }
 
     .pill{
-      display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;
+      display:inline-flex;align-items:center;gap:0.5rem;
       border-radius:999px;
       padding:0.55rem 1rem;
       font-size:0.92rem;
@@ -70,7 +74,6 @@
       background:#fff;
       transition:0.15s;
       cursor:pointer;
-      min-height:44px;
     }
     .pill:hover{transform:translateY(-1px);background:#fdf5f4}
     .pill.primary{
@@ -106,39 +109,21 @@
     .hero p{
       color:var(--muted);
       margin-bottom:1rem;
-      max-width:80ch;
+      max-width:75ch;
       font-size:0.98rem;
     }
 
     .note{
-      background:rgba(255,255,255,0.90);
+      background:rgba(255,255,255,0.88);
       border:1px solid rgba(0,0,0,0.06);
       border-radius:18px;
       padding:1rem 1.1rem;
       display:grid;
       gap:0.6rem;
-      max-width:920px;
+      max-width:860px;
     }
-
     .note strong{color:#2e2e2e}
     .note small{color:#7a7a7a}
-    .note .mini{
-      display:flex;
-      flex-wrap:wrap;
-      gap:0.6rem 1rem;
-      align-items:center;
-      margin-top:0.1rem;
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:0.45rem;
-      font-size:0.85rem;
-      padding:0.4rem 0.75rem;
-      border-radius:999px;
-      background:#fff;
-      border:1px solid rgba(0,0,0,0.06);
-    }
 
     .controls{
       display:flex;
@@ -160,7 +145,6 @@
       border-radius:999px;
       padding:0.6rem 0.9rem;
       box-shadow: 0 8px 20px rgba(0,0,0,0.04);
-      min-height:44px;
     }
 
     .search input{
@@ -180,7 +164,6 @@
       background:#fff;
       font-size:0.92rem;
       outline:none;
-      min-height:44px;
     }
     select:focus{box-shadow:var(--ring); border-color:rgba(197,139,139,0.7)}
 
@@ -196,39 +179,12 @@
       background:var(--card);
       border-radius:var(--radius);
       box-shadow:var(--shadow);
+      padding:1.2rem 1.2rem 1.1rem;
       border:1px solid rgba(0,0,0,0.04);
       display:flex;
       flex-direction:column;
-      overflow:hidden;
-      min-height: 360px;
-    }
-
-    .photo{
-      width:100%;
-      height:180px;
-      background:#eee;
-      position:relative;
-      overflow:hidden;
-    }
-    .photo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-    .photo::after{
-      content:"";
-      position:absolute; inset:0;
-      background:linear-gradient(to top, rgba(0,0,0,0.28), rgba(0,0,0,0.0) 55%);
-      pointer-events:none;
-    }
-
-    .card-body{
-      padding:1.1rem 1.1rem 1rem;
-      display:flex;
-      flex-direction:column;
-      gap:0.6rem;
-      flex:1;
+      gap:0.7rem;
+      min-height: 220px;
     }
 
     .top{
@@ -269,7 +225,7 @@
 
     .bottom{
       display:flex;
-      align-items:flex-end;
+      align-items:center;
       justify-content:space-between;
       gap:0.7rem;
       margin-top:0.2rem;
@@ -282,13 +238,6 @@
       white-space:nowrap;
     }
 
-    .actions{
-      display:flex;
-      gap:0.5rem;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-
     .btn{
       border:none;
       border-radius:999px;
@@ -297,19 +246,18 @@
       cursor:pointer;
       transition:0.15s;
       white-space:nowrap;
-      min-height:42px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
     }
 
     .btn.primary{
       background:var(--primary);
       color:#fff;
       box-shadow: 0 10px 25px rgba(197,139,139,0.25);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
       font-weight:600;
-      letter-spacing:0.02em;
+      letter-spacing:0.03em;
     }
     .btn.primary:hover{background:var(--primary-dark); transform:translateY(-1px)}
 
@@ -326,13 +274,12 @@
       text-align:center;
       color:#5b5b5b;
       font-size:0.9rem;
-      border-top: 1px solid rgba(0,0,0,0.04);
     }
 
     /* MODAL PIX */
     .modal-backdrop{
       position:fixed; inset:0;
-      background:rgba(0,0,0,0.38);
+      background:rgba(0,0,0,0.35);
       display:none;
       align-items:center;
       justify-content:center;
@@ -341,7 +288,7 @@
     }
 
     .modal{
-      width:min(600px, 100%);
+      width:min(620px, 100%);
       background:#fff;
       border-radius:22px;
       box-shadow:0 18px 60px rgba(0,0,0,0.25);
@@ -350,28 +297,35 @@
     }
 
     .modal-head{
-      padding:1.2rem 1.2rem 0.95rem;
+      padding:1.2rem 1.2rem 0.9rem;
       background:linear-gradient(135deg, #f7e3e1, #fff);
       border-bottom:1px solid rgba(0,0,0,0.06);
     }
 
     .modal-head h4{
       font-family:"Playfair Display",serif;
-      font-size:1.28rem;
+      font-size:1.25rem;
       margin-bottom:0.2rem;
     }
     .modal-head p{color:#6d6d6d; font-size:0.92rem}
 
     .modal-body{
       padding:1.1rem 1.2rem 1.2rem;
-      display:grid; gap:0.85rem;
+      display:grid; gap:0.9rem;
+    }
+
+    .pix-row{
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 0.9rem;
+      align-items: start;
     }
 
     .pixbox{
       border:1px dashed rgba(0,0,0,0.18);
       border-radius:18px;
-      padding:0.95rem 1rem;
-      background:rgba(255,255,255,0.95);
+      padding:0.9rem 1rem;
+      background:rgba(255,255,255,0.9);
     }
 
     .pixbox .label{
@@ -383,27 +337,29 @@
     }
 
     .pixbox .key{
-      font-weight:800;
+      font-weight:700;
       color:#2f2f2f;
       word-break:break-all;
-      margin-bottom:0.55rem;
-      font-size:1.04rem;
+      margin-bottom:0.4rem;
+      font-size: 0.95rem;
     }
 
-    .pix-details{
-      margin-top:0.35rem;
-      display:grid;
-      gap:0.28rem;
-      font-size:0.94rem;
-      color:#555;
-    }
-    .pix-details strong{ color:#2f2f2f; }
-
-    .hint{
-      font-size:0.85rem;
+    .pixbox .small{
       color:#777;
-      margin-top:0.55rem;
+      font-size:0.86rem;
     }
+
+    .qrbox{
+      border:1px solid rgba(0,0,0,0.08);
+      border-radius:18px;
+      padding:0.9rem;
+      background:#fff;
+      display:grid;
+      place-items:center;
+      min-height: 220px;
+    }
+
+    #qrcode { width: 180px; height: 180px; }
 
     .modal-actions{
       display:flex;
@@ -440,19 +396,40 @@
     }
     @media (max-width: 640px){
       .card{grid-column: span 12;}
-      .nav{flex-direction:column; align-items:stretch; gap:12px;}
-      .brand{text-align:center;}
-      .nav-right{width:100%; flex-direction:column;}
-      .pill{width:100%;}
-      .controls{gap:12px;}
-      .search{min-width:100%;}
-      .filters{width:100%;}
-      select{width:100%;}
-      .bottom{flex-direction:column; align-items:stretch;}
-      .actions .btn{width:100%;}
-      .photo{height:190px;}
-      .modal-actions{flex-direction:column;}
-      .modal-actions .btn{width:100%;}
+      .nav{align-items:flex-start}
+      .nav{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+      .brand{
+        text-align:center;
+        font-size: 1.1rem;
+      }
+      .nav-right{
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .pill{
+        width: 100%;
+        justify-content: center;
+        font-size: 0.95rem;
+        padding: 12px;
+      }
+      .controls{ gap: 12px; }
+      .search{ width: 100%; min-width: 100%; }
+      .grid{ grid-template-columns: 1fr !important; }
+      .bottom{
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .bottom .btn{ width: 100%; }
+      .modal-actions{ flex-direction: column; }
+      .modal-actions .btn{ width: 100%; }
+      .pix-row{ grid-template-columns: 1fr; }
+      .qrbox{ min-height: 200px; }
     }
   </style>
 </head>
@@ -460,7 +437,7 @@
 
 <header>
   <div class="nav">
-    <div class="brand">Larissa & Rafael — Presentes</div>
+    <div class="brand">Larissa e Rafael</div>
 
     <div class="nav-right">
       <a class="pill" href="index.html">← Voltar ao site</a>
@@ -487,15 +464,9 @@
         Se preferir, você também pode contribuir com qualquer outro valor — toda contribuição
         será recebida com muito carinho no coração ♥️
       </small>
-      <small style="margin-top:0.2rem;">
+      <small style="margin-top:0.3rem;">
         <em>PS: os itens são simbólicos/fictícios e representam os nossos sonhos ✨</em>
       </small>
-
-      <div class="mini">
-        <span class="badge">🔐 PIX: <strong style="margin-left:4px">38004449840</strong></span>
-        <span class="badge">💳 Cartão: link seguro</span>
-        <span class="badge">🎁 Identificação do item no modal</span>
-      </div>
     </div>
   </section>
 
@@ -511,8 +482,8 @@
         <option value="Cozinha">Cozinha</option>
         <option value="Sala">Sala</option>
         <option value="Quarto">Quarto</option>
-        <option value="Casa">Casa</option>
         <option value="Decoração">Decoração</option>
+        <option value="Casa">Casa</option>
         <option value="Experiências">Experiências</option>
       </select>
 
@@ -538,57 +509,53 @@
 <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-label="PIX">
   <div class="modal">
     <div class="modal-head">
-      <h4>Contribuir via PIX</h4>
-      <p>Use a chave abaixo e, para facilitar a identificação, copie a mensagem do presente.</p>
+      <h4 id="pixTitle">Contribuir via PIX</h4>
+      <p id="pixSubtitle">Copie e cole o PIX abaixo (ou use o link do cartão, se preferir).</p>
     </div>
 
     <div class="modal-body">
-      <div class="pixbox">
-        <div class="label">Chave PIX</div>
-        <div class="key" id="pixKey">38004449840</div>
-
-        <div class="pix-details">
-          <div><strong>Presente:</strong> <span id="pixItem">—</span></div>
-          <div><strong>Valor sugerido:</strong> <span id="pixValor">—</span></div>
+      <div class="pix-row">
+        <div class="pixbox">
+          <div class="label">PIX “copia e cola”</div>
+          <div class="key" id="pixPayload">—</div>
+          <div class="small" id="pixMeta">—</div>
         </div>
 
-        <div class="hint">
-          💡 Dica: após transferir, coloque no comprovante a mensagem do presente para os noivos identificarem com carinho.
+        <div class="qrbox">
+          <div id="qrcode"></div>
+          <div class="small" style="margin-top:10px; color:#777; text-align:center">
+            Aponte a câmera do banco para o QR.
+          </div>
         </div>
       </div>
 
       <div class="modal-actions">
         <button class="btn ghost" id="closeModal">Fechar</button>
-        <button class="btn ghost" id="copyPix">Copiar chave</button>
-        <button class="btn ghost" id="copyMsg">Copiar mensagem do presente</button>
+        <button class="btn ghost" id="copyPix">Copiar PIX</button>
         <a class="btn primary" id="payCardModal" href="#" target="_blank" rel="noopener noreferrer">Pagar no cartão 💳</a>
       </div>
     </div>
   </div>
 </div>
 
-<div class="toast" id="toast">Copiado ✅</div>
+<div class="toast" id="toast">PIX copiado ✅</div>
 
 <script>
   // =========================
-  // CONFIG (TROQUE APENAS AQUI)
+  // CONFIG (TROQUE AQUI SE QUISER)
   // =========================
-  const PAGAMENTO_CARTAO_URL = "https://seu-link-do-mercado-pago-aqui.com"; // TODO: cole seu link real
-  const PIX_KEY = "38004449840"; // ✅ fixo
+  const PIX_KEY = "38004449840"; // sua chave (fixo)
+  const PIX_RECEIVER_NAME = "LARISSA E RAFAEL"; // recomendado: nome do recebedor (independente do banco)
+  const PIX_RECEIVER_CITY = "UBATUBA";          // recomendado: cidade (sem acento)
+  const PAGAMENTO_CARTAO_URL_PADRAO = "https://seu-link-de-pagamento.com"; // coloque o link do Mercado Pago (geral)
 
-  // Helpers
-  const formatBRL = (n) => Number(n).toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
-  const normalize = (str) => (str||"").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
-
-  // Imagens fixas por item (seed estável)
-  const makeImage = (it, i) =>
-    `https://picsum.photos/seed/${encodeURIComponent(it.cat + "-" + it.nome + "-" + i)}/900/650`;
+  // Se você quiser link de cartão diferente por item:
+  // coloque "cardUrl" dentro do item. Se não tiver, usa o padrão acima.
 
   // =========================
-  // ITENS (você pode editar à vontade)
+  // LISTA (edite livremente)
   // =========================
   const ITENS = [
-    // COZINHA
     { cat:"Cozinha", icon:"🍳", nome:"Kit de Panelas Premium", desc:"Para as primeiras receitas… e os primeiros “quem queimou isso?” 😂", valor: 320 },
     { cat:"Cozinha", icon:"🍳", nome:"Conjunto de Panelas Completo", desc:"Porque amor também se constrói mexendo panela juntos ❤️", valor: 680 },
     { cat:"Cozinha", icon:"🍽️", nome:"Aparelho de Jantar (42 peças)", desc:"Para receber quem amamos — e repetir o prato sem culpa 🍽️", valor: 450 },
@@ -597,55 +564,90 @@
     { cat:"Cozinha", icon:"🍴", nome:"Kit de Talheres", desc:"Porque comer junto é uma das maiores provas de amor 🍴", valor: 280 },
     { cat:"Cozinha", icon:"✨", nome:"Jogo Americano / Sousplat", desc:"Para deixar até o miojo com cara de jantar romântico ✨", valor: 190 },
     { cat:"Cozinha", icon:"🍰", nome:"Pratos de Sobremesa", desc:"Porque sempre cabe um docinho depois ❤️🍰", valor: 210 },
-    { cat:"Cozinha", icon:"🔥", nome:"Airfryer (contribuição)", desc:"Para facilitar a vida e evitar discussões na cozinha 😅", valor: 790 },
+    { cat:"Cozinha", icon:"🔥", nome:"Panela Elétrica / Airfryer", desc:"Para facilitar a vida e evitar discussões na cozinha 😅", valor: 790 },
     { cat:"Cozinha", icon:"🥤", nome:"Liquidificador", desc:"Para sucos, vitaminas e receitas improvisadas 🍹", valor: 320 },
     { cat:"Cozinha", icon:"🎂", nome:"Batedeira", desc:"Para adoçar a vida — e o bolo também 🎂", valor: 520 },
     { cat:"Cozinha", icon:"☕", nome:"Cafeteira", desc:"Porque amor sem café não funciona ☕😂", valor: 890 },
-    { cat:"Cozinha", icon:"👩‍🍳", nome:"Kit de Assadeiras", desc:"Para receitas de família e experimentos duvidosos 👩‍🍳👨‍🍳", valor: 260 },
-    { cat:"Cozinha", icon:"🫙", nome:"Potes Organizadores", desc:"Para tentar manter a casa organizada… tentar 😌", valor: 210 },
-    { cat:"Cozinha", icon:"🍳", nome:"Panelas Antiaderentes", desc:"Para nada grudar — nem as mágoas 😍", valor: 420 },
 
-    // SALA
     { cat:"Sala", icon:"🛋️", nome:"Sofá confortável", desc:"Para descansar e curtir juntos.", valor: 1800 },
-    { cat:"Sala", icon:"🛋️", nome:"Sofá dos sonhos (contribuição)", desc:"Nosso cantinho de aconchego.", valor: 3200 },
     { cat:"Sala", icon:"📺", nome:"Painel para TV", desc:"Organização e estilo.", valor: 980 },
-    { cat:"Sala", icon:"🎬", nome:"Smart TV (contribuição)", desc:"Cinema em casa.", valor: 2800 },
     { cat:"Sala", icon:"🧶", nome:"Tapete grande para sala", desc:"Aconchego para o lar.", valor: 650 },
-    { cat:"Sala", icon:"💡", nome:"Luminária decorativa", desc:"Iluminar bons momentos.", valor: 420 },
-    { cat:"Sala", icon:"🖼️", nome:"Quadros decorativos", desc:"Nossa identidade na parede.", valor: 390 },
-    { cat:"Sala", icon:"🪑", nome:"Poltrona decorativa (contribuição)", desc:"Conforto com estilo.", valor: 1400 },
 
-    // QUARTO
     { cat:"Quarto", icon:"🛏️", nome:"Kit Cama (Lençóis + Fronhas)", desc:"Para noites bem dormidas e domingos preguiçosos 🛏️", valor: 520 },
-    { cat:"Quarto", icon:"❄️", nome:"Edredom / Cobertor", desc:"Para aquecer o amor — e disputar quem fica descoberto 😆", valor: 680 },
-    { cat:"Quarto", icon:"✨", nome:"Jogo de Lençol Premium (1.739.272 fios 😅)", desc:"Noites extremamente confortáveis e aquele sono de casal feliz ❤️😴", valor: 1200 },
+    { cat:"Quarto", icon:"🧣", nome:"Edredom / Cobertor", desc:"Para aquecer o amor — e disputar quem fica descoberto 😆", valor: 680 },
+    { cat:"Quarto", icon:"😴", nome:"Jogo de Lençol Premium (1.739.272 fios 😅✨)", desc:"Para noites extremamente confortáveis e sono de casal feliz ❤️😴", valor: 1200 },
 
-    // CASA
     { cat:"Casa", icon:"🧹", nome:"Aspirador de Pó", desc:"Para manter a casa limpa e o amor em dia ✨", valor: 980 },
-    { cat:"Casa", icon:"👕", nome:"Ferro de Passar Roupa", desc:"Para tentar deixar tudo nos conformes (ou quase isso) 👕😂", valor: 260 },
+    { cat:"Casa", icon:"👕", nome:"Ferro de Passar", desc:"Para tentar deixar tudo nos conformes (ou quase isso) 👕😂", valor: 260 },
 
-    // DECORAÇÃO
-    { cat:"Decoração", icon:"🛁", nome:"Jogo de Toalhas", desc:"Para dias de spa em casa e banhos demorados 🛁", valor: 420 },
-    { cat:"Decoração", icon:"⏰", nome:"Relógio Decorativo", desc:"Para lembrar que o tempo passa… mas o amor fica ⏰", valor: 320 },
-    { cat:"Decoração", icon:"🪴", nome:"Plantas e vasos decorativos", desc:"Mais vida para a casa.", valor: 360 },
     { cat:"Decoração", icon:"🕯️", nome:"Velas aromáticas", desc:"Cheiro de lar.", valor: 190 },
-    { cat:"Decoração", icon:"🏡", nome:"Decoração completa da casa (contribuição)", desc:"Nosso lar com a nossa cara.", valor: 5000 },
+    { cat:"Decoração", icon:"🪴", nome:"Plantas e vasos decorativos", desc:"Mais vida para a casa.", valor: 360 },
+    { cat:"Decoração", icon:"🏡", nome:"Decoração completa da casa", desc:"Nosso lar com a nossa cara.", valor: 5000 },
 
-    // EXPERIÊNCIAS
     { cat:"Experiências", icon:"🏡", nome:"Vale Presente para o Lar", desc:"Para nos ajudar a construir nosso cantinho do nosso jeito 🏡💕", valor: 500 },
-    { cat:"Experiências", icon:"🍻", nome:"Chopeira (contribuição)", desc:"Chope gelado e felicidade do casal… e dos amigos também 😂🍻", valor: 1800 },
+    { cat:"Experiências", icon:"🍺", nome:"Chopeira", desc:"Chope sempre gelado e felicidade do casal… e dos amigos também 😂🍻", valor: 1800 },
+
     { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Qualquer valor com muito amor.", valor: 100 },
-    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Um gesto cheio de carinho.", valor: 250 },
-    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Ajudando a realizar sonhos.", valor: 500 },
-    { cat:"Experiências", icon:"💖", nome:"Contribuição especial", desc:"Um presente inesquecível.", valor: 2000 },
+    { cat:"Experiências", icon:"💖", nome:"Contribuição especial", desc:"Um presente inesquecível.", valor: 2000 }
   ];
 
-  // Garante img e pixValor (valor sugerido no PIX)
-  for (let i=0; i<ITENS.length; i++){
-    const it = ITENS[i];
-    if (!it.img) it.img = makeImage(it, i+1);
-    if (!it.pixValor) it.pixValor = it.valor;
+  // =========================
+  // PIX BR CODE (copia e cola com VALOR)
+  // =========================
+  function pad2(n){ return String(n).padStart(2,"0"); }
+
+  function emv(id, value){
+    const v = value ?? "";
+    return id + pad2(v.length) + v;
   }
+
+  // CRC16-CCITT (0x1021) inicial 0xFFFF
+  function crc16(str){
+    let crc = 0xFFFF;
+    for(let i=0; i<str.length; i++){
+      crc ^= (str.charCodeAt(i) << 8);
+      for(let j=0; j<8; j++){
+        if(crc & 0x8000) crc = ((crc << 1) ^ 0x1021) & 0xFFFF;
+        else crc = (crc << 1) & 0xFFFF;
+      }
+    }
+    return crc.toString(16).toUpperCase().padStart(4, "0");
+  }
+
+  // Monta payload PIX com valor e descrição
+  // Observação: alguns bancos exibem "descrição" como "informações adicionais"
+  function buildPixPayload({key, name, city, amount, txid, description}){
+    // Merchant Account Information (26)
+    // GUI: br.gov.bcb.pix
+    // Key: 01
+    // Desc (opcional): 02
+    const gui = emv("00", "br.gov.bcb.pix");
+    const k   = emv("01", key);
+    const d   = description ? emv("02", description) : "";
+    const mai = emv("26", gui + k + d);
+
+    const payloadNoCrc =
+      emv("00","01") +                 // payload format indicator
+      emv("01","12") +                 // point of initiation method (12 = dynamic? / 11 static; usamos 12 por compat)
+      mai +
+      emv("52","0000") +               // MCC
+      emv("53","986") +                // BRL
+      emv("54", Number(amount).toFixed(2)) + // amount
+      emv("58","BR") +
+      emv("59", name.substring(0,25)) +
+      emv("60", city.substring(0,15)) +
+      emv("62", emv("05", txid.substring(0,25))) + // additional data field template (TXID)
+      "6304";                          // CRC placeholder
+
+    const crc = crc16(payloadNoCrc);
+    return payloadNoCrc + crc;
+  }
+
+  // =========================
+  // UI HELPERS
+  // =========================
+  const formatBRL = (n) => n.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+  const normalize = (str) => (str||"").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
 
   function render(items){
     const grid = document.getElementById("grid");
@@ -658,40 +660,34 @@
     for(const it of items){
       const card = document.createElement("div");
       card.className = "card";
+
+      const cardUrl = it.cardUrl || PAGAMENTO_CARTAO_URL_PADRAO;
+
       card.innerHTML = `
-        <div class="photo">
-          <img src="${it.img}" alt="${it.nome}" loading="lazy">
+        <div class="top">
+          <div class="icon">${it.icon ?? "🎁"}</div>
+          <div class="meta">
+            <div class="cat">${it.cat}</div>
+            <h3>${it.nome}</h3>
+          </div>
         </div>
 
-        <div class="card-body">
-          <div class="top">
-            <div class="icon">${it.icon ?? "🎁"}</div>
-            <div class="meta">
-              <div class="cat">${it.cat}</div>
-              <h3>${it.nome}</h3>
-            </div>
-          </div>
+        <div class="desc">${it.desc || ""}</div>
 
-          <div class="desc">${it.desc || ""}</div>
-
-          <div class="bottom">
-            <div class="price">${formatBRL(it.valor)}</div>
-            <div class="actions">
-              <button
-                class="btn ghost"
-                data-action="pix"
-                data-nome="${it.nome}"
-                data-valor="${it.pixValor}">
-                PIX
-              </button>
-              <a class="btn primary" href="${PAGAMENTO_CARTAO_URL}" target="_blank" rel="noopener noreferrer">Cartão</a>
-            </div>
+        <div class="bottom">
+          <div class="price">${formatBRL(it.valor)}</div>
+          <div style="display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:flex-end;">
+            <button class="btn ghost" data-action="pix">PIX</button>
+            <a class="btn primary" href="${cardUrl}" target="_blank" rel="noopener noreferrer">Cartão</a>
           </div>
         </div>
       `;
+
       grid.appendChild(card);
 
-      card.querySelector('button[data-action="pix"]').addEventListener("click", openPixFromButton);
+      card.querySelector('button[data-action="pix"]').addEventListener("click", ()=>{
+        openPixForItem(it);
+      });
     }
   }
 
@@ -719,80 +715,118 @@
   // MODAL PIX (por item)
   // =========================
   const backdrop = document.getElementById("modalBackdrop");
-  const pixKeyEl = document.getElementById("pixKey");
-  const pixItemEl = document.getElementById("pixItem");
-  const pixValorEl = document.getElementById("pixValor");
   const toast = document.getElementById("toast");
+  const pixPayloadEl = document.getElementById("pixPayload");
+  const pixMetaEl = document.getElementById("pixMeta");
+  const pixTitleEl = document.getElementById("pixTitle");
+  const pixSubtitleEl = document.getElementById("pixSubtitle");
 
-  // Info atual (para copiar a mensagem do presente)
-  let currentPixItem = "Contribuição";
-  let currentPixValor = 0;
+  let currentPixPayload = "";
 
-  function showToast(text){
-    toast.textContent = text;
-    toast.style.display = "block";
-    clearTimeout(window.__toastTimer);
-    window.__toastTimer = setTimeout(()=>toast.style.display="none", 2200);
+  function clearQr(){
+    const q = document.getElementById("qrcode");
+    q.innerHTML = "";
   }
 
-  function openPix(itemName = "Contribuição", itemValor = 0){
-    currentPixItem = itemName;
-    currentPixValor = Number(itemValor) || 0;
+  function openPixForItem(item){
+    const amount = Number(item.valor || 0);
+    const cleanName = (PIX_RECEIVER_NAME || "RECEBEDOR").toUpperCase().replace(/[^\w\s&]/g,"").trim();
+    const cleanCity = (PIX_RECEIVER_CITY || "CIDADE").toUpperCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+      .replace(/[^A-Z\s]/g,"").trim();
 
-    pixKeyEl.textContent = PIX_KEY;
-    pixItemEl.textContent = currentPixItem;
-    pixValorEl.textContent = currentPixValor ? formatBRL(currentPixValor) : "Livre";
+    // TXID curto e estável (não pode ser gigante)
+    const baseTx = ("LARIRAFA-" + normalize(item.nome).replace(/[^a-z0-9]+/g,"-").slice(0,18)).toUpperCase();
+    const txid = baseTx.substring(0,25);
+
+    const description = `Presente: ${item.nome}`.substring(0, 60);
+
+    const payload = buildPixPayload({
+      key: PIX_KEY,
+      name: cleanName,
+      city: cleanCity,
+      amount,
+      txid,
+      description
+    });
+
+    currentPixPayload = payload;
+
+    pixTitleEl.textContent = "Contribuir via PIX";
+    pixSubtitleEl.textContent = `Item: ${item.nome} • Valor: ${formatBRL(amount)}`;
+
+    pixPayloadEl.textContent = payload;
+    pixMetaEl.textContent = `Chave: ${PIX_KEY} • TXID: ${txid}`;
+
+    clearQr();
+    new QRCode(document.getElementById("qrcode"), {
+      text: payload,
+      width: 180,
+      height: 180,
+      correctLevel: QRCode.CorrectLevel.M
+    });
 
     backdrop.style.display = "flex";
   }
 
-  function openPixFromButton(e){
-    const btn = e.currentTarget;
-    const nome = btn.getAttribute("data-nome") || "Contribuição";
-    const valor = btn.getAttribute("data-valor") || "0";
-    openPix(nome, valor);
+  function openPixGeneric(){
+    // PIX genérico sem valor (para "ver pix" do topo)
+    const payload = buildPixPayload({
+      key: PIX_KEY,
+      name: (PIX_RECEIVER_NAME || "LARISSA E RAFAEL").toUpperCase(),
+      city: (PIX_RECEIVER_CITY || "UBATUBA").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""),
+      amount: 0.00,
+      txid: "PRESENTE",
+      description: "Contribuicao livre"
+    });
+
+    currentPixPayload = payload;
+
+    pixTitleEl.textContent = "Contribuir via PIX";
+    pixSubtitleEl.textContent = "Contribuição livre (sem valor fixo).";
+
+    pixPayloadEl.textContent = payload;
+    pixMetaEl.textContent = `Chave: ${PIX_KEY} • TXID: PRESENTE`;
+
+    clearQr();
+    new QRCode(document.getElementById("qrcode"), {
+      text: payload,
+      width: 180,
+      height: 180,
+      correctLevel: QRCode.CorrectLevel.M
+    });
+
+    backdrop.style.display = "flex";
   }
 
   function closePix(){ backdrop.style.display = "none"; }
 
-  document.getElementById("openPixTop").addEventListener("click", ()=>openPix("Contribuição", 0));
+  document.getElementById("openPixTop").addEventListener("click", openPixGeneric);
   document.getElementById("closeModal").addEventListener("click", closePix);
   backdrop.addEventListener("click", (e)=>{ if(e.target === backdrop) closePix(); });
   document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closePix(); });
 
   document.getElementById("copyPix").addEventListener("click", async ()=>{
+    const text = currentPixPayload || "";
     try{
-      await navigator.clipboard.writeText(PIX_KEY);
-      showToast("Chave PIX copiada ✅");
+      await navigator.clipboard.writeText(text);
+      toast.style.display = "block";
+      setTimeout(()=>toast.style.display="none", 2000);
     }catch(err){
-      alert("Não foi possível copiar automaticamente. Copie manualmente a chave PIX.");
+      alert("Não foi possível copiar automaticamente. Selecione e copie manualmente o PIX.");
     }
   });
 
-  document.getElementById("copyMsg").addEventListener("click", async ()=>{
-    const msg =
-`Presente: ${currentPixItem}
-Valor sugerido: ${currentPixValor ? formatBRL(currentPixValor) : "Livre"}
-Casamento Larissa & Rafael — 11/09/2026`;
+  // Link do cartão (topo e modal)
+  document.getElementById("payCardTop").href = PAGAMENTO_CARTAO_URL_PADRAO;
+  document.getElementById("payCardModal").href = PAGAMENTO_CARTAO_URL_PADRAO;
 
-    try{
-      await navigator.clipboard.writeText(msg);
-      showToast("Mensagem do presente copiada ✅");
-    }catch(err){
-      alert("Não foi possível copiar automaticamente. Copie manualmente a mensagem do presente.");
-    }
-  });
-
-  // init links
-  document.getElementById("payCardTop").href = PAGAMENTO_CARTAO_URL;
-  document.getElementById("payCardModal").href = PAGAMENTO_CARTAO_URL;
-
-  // listeners
+  // filtros
   document.getElementById("searchInput").addEventListener("input", applyFilters);
   document.getElementById("categorySelect").addEventListener("change", applyFilters);
   document.getElementById("sortSelect").addEventListener("change", applyFilters);
 
-  // first render
+  // render inicial
   applyFilters();
 </script>
 </body>
