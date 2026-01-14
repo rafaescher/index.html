@@ -12,91 +12,80 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
-    .site-header { position: sticky; top: 0; background: rgba(255,255,255,.92); backdrop-filter: blur(10px); z-index: 999; }
-.header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; gap: 12px; }
-.site-nav { display: flex; gap: 14px; align-items: center; }
-.site-nav a { padding: 10px 12px; border-radius: 999px; }
-.site-nav a:hover { background: rgba(0,0,0,.05); }
+    /* =========================
+       HEADER (menu mobile)
+       ========================= */
+    .site-header { position: sticky; top: 0; background: rgba(255,255,255,.92); backdrop-filter: blur(10px); z-index: 999; border-bottom: 1px solid rgba(0,0,0,.03); }
+    .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; gap: 12px; position: relative; }
+    .site-nav { display: flex; gap: 14px; align-items: center; }
+    .site-nav a { padding: 10px 12px; border-radius: 999px; }
+    .site-nav a:hover { background: rgba(0,0,0,.05); }
 
-.menu-btn { display: none; border: 1px solid rgba(0,0,0,.12); background: #fff; padding: 10px 12px; border-radius: 12px; cursor: pointer; }
+    .menu-btn { display: none; border: 1px solid rgba(0,0,0,.12); background: #fff; padding: 10px 12px; border-radius: 12px; cursor: pointer; }
 
-@media (max-width: 820px){
-  .menu-btn { display: inline-flex; }
-  .site-nav {
-    display: none;
-    position: absolute;
-    right: 16px;
-    top: 58px;
-    background: #fff;
-    border: 1px solid rgba(0,0,0,.08);
-    border-radius: 16px;
-    padding: 10px;
-    box-shadow: 0 18px 45px rgba(0,0,0,.15);
-    flex-direction: column;
-    min-width: 220px;
-  }
-  .site-nav.open { display: flex; }
-  .site-nav a { width: 100%; }
-}
+    @media (max-width: 820px){
+      .menu-btn { display: inline-flex; }
+      .site-nav {
+        display: none;
+        position: absolute;
+        right: 16px;
+        top: 58px;
+        background: #fff;
+        border: 1px solid rgba(0,0,0,.08);
+        border-radius: 16px;
+        padding: 10px;
+        box-shadow: 0 18px 45px rgba(0,0,0,.15);
+        flex-direction: column;
+        min-width: 220px;
+      }
+      .site-nav.open { display: flex; }
+      .site-nav a { width: 100%; }
+    }
 
     /* =========================
-   MOBILE FIRST FIX PACK
-   ========================= */
+       MOBILE FIRST FIX PACK
+       ========================= */
+    html, body { max-width: 100%; overflow-x: hidden; }
 
-/* Evita overflow horizontal no mobile */
-html, body { max-width: 100%; overflow-x: hidden; }
+    @media (max-width: 640px) {
+      body { font-size: 16px; }
+      h1 { font-size: 2rem !important; line-height: 1.1 !important; }
+      h2 { font-size: 1.45rem !important; }
+      p  { font-size: 1rem !important; }
+    }
 
-/* Tipografia mais confortável */
-@media (max-width: 640px) {
-  body { font-size: 16px; }
-  h1 { font-size: 2rem !important; line-height: 1.1 !important; }
-  h2 { font-size: 1.45rem !important; }
-  p  { font-size: 1rem !important; }
-}
+    @media (max-width: 900px) {
+      .container, .wrap, .content, .section, main {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+      }
+    }
 
-/* Container padrão */
-@media (max-width: 900px) {
-  .container, .wrap, .content, .section, main {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-}
+    @media (max-width: 640px) {
+      a, button, .btn { min-height: 44px; }
+    }
 
-/* Botões clicáveis no dedo */
-@media (max-width: 640px) {
-  a, button, .btn { min-height: 44px; }
-}
+    @media (max-width: 900px) {
+      .grid, .cards, .columns {
+        grid-template-columns: 1fr !important;
+      }
+    }
 
-/* Grid vira 1 coluna no celular */
-@media (max-width: 900px) {
-  .grid, .cards, .columns {
-    grid-template-columns: 1fr !important;
-  }
-}
+    @media (max-width: 640px) {
+      .card { border-radius: 16px !important; }
+      .card, .box, .panel { padding: 16px !important; }
+    }
 
-/* Cards com padding melhor */
-@media (max-width: 640px) {
-  .card { border-radius: 16px !important; }
-  .card, .box, .panel { padding: 16px !important; }
-}
+    @media (max-width: 640px) {
+      .map-embed iframe { height: 320px !important; }
+    }
 
-/* MAPA: altura boa no celular */
-@media (max-width: 640px) {
-  .map-embed iframe {
-    height: 320px !important;
-  }
-}
-
-/* Form (RSVP) mais confortável */
-@media (max-width: 640px) {
-  input, select, textarea {
-    width: 100% !important;
-    font-size: 16px !important;
-  }
-}
+    @media (max-width: 640px) {
+      input, select, textarea { width: 100% !important; font-size: 16px !important; }
+    }
 
     :root {
-      --primary: #c58b8b;          /* rosé */
+      --primary: #c58b8b;
       --primary-dark: #a96c6c;
       --background: #fff9f8;
       --text: #3b3b3b;
@@ -128,40 +117,13 @@ html, body { max-width: 100%; overflow-x: hidden; }
       border-bottom: 1px solid rgba(0,0,0,0.03);
     }
 
-    .nav-container {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0.8rem 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
     .logo {
       font-family: "Playfair Display", serif;
       font-size: 1.4rem;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--primary-dark);
-    }
-
-    nav ul {
-      display: flex;
-      gap: 1rem;
-      list-style: none;
-      font-size: 0.95rem;
-    }
-
-    nav a {
-      padding: 0.4rem 0.7rem;
-      border-radius: 999px;
-      transition: background 0.2s, color 0.2s, transform 0.1s;
-    }
-
-    nav a:hover {
-      background: var(--primary);
-      color: #fff;
-      transform: translateY(-1px);
+      white-space: nowrap;
     }
 
     /* HERO */
@@ -207,30 +169,11 @@ html, body { max-width: 100%; overflow-x: hidden; }
       margin-bottom: 1.2rem;
     }
 
-    .hero-date {
-      font-weight: 500;
-      font-size: 1.05rem;
-      margin-bottom: 0.25rem;
-    }
+    .hero-date { font-weight: 500; font-size: 1.05rem; margin-bottom: 0.25rem; }
+    .hero-location { font-size: 0.95rem; color: #6b6b6b; margin-bottom: 0.3rem; }
+    .hero-dresscode { font-size: 0.9rem; color: #7a7a7a; margin-bottom: 1.4rem; }
 
-    .hero-location {
-      font-size: 0.95rem;
-      color: #6b6b6b;
-      margin-bottom: 0.3rem;
-    }
-
-    .hero-dresscode {
-      font-size: 0.9rem;
-      color: #7a7a7a;
-      margin-bottom: 1.6rem;
-    }
-
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin-bottom: 1rem;
-    }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1rem; }
 
     .btn {
       border-radius: 999px;
@@ -240,36 +183,64 @@ html, body { max-width: 100%; overflow-x: hidden; }
       cursor: pointer;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.4rem;
       transition: transform 0.1s, box-shadow 0.15s, background 0.15s, color 0.15s;
       white-space: nowrap;
     }
 
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-      box-shadow: var(--shadow);
-    }
+    .btn-primary { background: var(--primary); color: white; box-shadow: var(--shadow); }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
 
-    .btn-primary:hover {
-      background: var(--primary-dark);
-      transform: translateY(-1px);
-    }
+    .btn-outline { background: #fff; border: 1px solid rgba(0,0,0,0.07); }
+    .btn-outline:hover { background: #fdf5f4; transform: translateY(-1px); }
 
-    .btn-outline {
-      background: #fff;
-      border: 1px solid rgba(0,0,0,0.07);
+    /* CONTADOR BONITO */
+    .hero-countdown{
+      margin-top: 14px;
+      padding: 14px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+      max-width: 540px;
     }
-
-    .btn-outline:hover {
-      background: #fdf5f4;
-      transform: translateY(-1px);
+    .cd-title{
+      font-size: .78rem;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: #7a7a7a;
+      margin-bottom: 10px;
     }
-
-    .hero-countdown {
-      font-size: 0.9rem;
-      color: #6b6b6b;
-      margin-top: 0.4rem;
+    .cd-grid{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap: 10px;
+    }
+    .cd-box{
+      background:#fff;
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 16px;
+      padding: 10px 8px;
+      text-align:center;
+    }
+    .cd-num{
+      font-family:"Playfair Display",serif;
+      font-size: 1.6rem;
+      line-height: 1;
+      color: #2c2c2c;
+    }
+    .cd-lab{
+      margin-top: 6px;
+      font-size: .78rem;
+      color: #8a8a8a;
+    }
+    @media (max-width:640px){
+      .hero-countdown{ max-width: 100%; }
+      .cd-grid{ gap: 8px; }
+      .cd-num{ font-size: 1.45rem; }
+      .hero-buttons{ display:grid; width:100%; }
+      .btn{ width:100%; min-height:46px; border-radius:16px; }
     }
 
     .hero-photo-card {
@@ -289,11 +260,13 @@ html, body { max-width: 100%; overflow-x: hidden; }
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #fff;
-      font-family: "Playfair Display", serif;
-      font-size: 1.5rem;
-      text-align: center;
-      padding: 0 1rem;
+    }
+
+    .hero-photo-frame img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display:block;
     }
 
     .hero-tag {
@@ -312,93 +285,24 @@ html, body { max-width: 100%; overflow-x: hidden; }
 
     /* SEÇÕES GENÉRICAS */
     section { padding: 3rem 1.2rem; }
-
-    .section-inner {
-      max-width: 980px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      text-align: center;
-      font-family: "Playfair Display", serif;
-      font-size: 1.9rem;
-      margin-bottom: 0.4rem;
-      color: #2f2f2f;
-    }
-
-    .section-subtitle {
-      text-align: center;
-      font-size: 0.95rem;
-      color: #777;
-      margin-bottom: 2rem;
-    }
+    .section-inner { max-width: 980px; margin: 0 auto; }
+    .section-title { text-align: center; font-family: "Playfair Display", serif; font-size: 1.9rem; margin-bottom: 0.4rem; color: #2f2f2f; }
+    .section-subtitle { text-align: center; font-size: 0.95rem; color: #777; margin-bottom: 2rem; }
 
     /* OS NOIVOS */
-    .couple-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: var(--radius);
-      padding: 1.5rem 1.8rem;
-      box-shadow: var(--shadow);
-    }
-
-    .card-title {
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      font-size: 1.1rem;
-    }
-
-    .card-sub {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      color: #999;
-      margin-bottom: 0.8rem;
-    }
+    .couple-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+    .card { background: #fff; border-radius: var(--radius); padding: 1.5rem 1.8rem; box-shadow: var(--shadow); }
+    .card-title { font-weight: 600; margin-bottom: 0.4rem; font-size: 1.1rem; }
+    .card-sub { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.13em; color: #999; margin-bottom: 0.8rem; }
 
     /* DETALHES */
-    .details-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1.2rem;
-      margin-top: 1rem;
-    }
-
-    .detail-item {
-      background: #fff;
-      border-radius: var(--radius);
-      padding: 1.2rem 1.4rem;
-      box-shadow: var(--shadow);
-      font-size: 0.92rem;
-    }
-
-    .detail-label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #999;
-      margin-bottom: 0.4rem;
-    }
-
-    .detail-main {
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
+    .details-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; margin-top: 1rem; }
+    .detail-item { background: #fff; border-radius: var(--radius); padding: 1.2rem 1.4rem; box-shadow: var(--shadow); font-size: 0.92rem; }
+    .detail-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.14em; color: #999; margin-bottom: 0.4rem; }
+    .detail-main { font-weight: 600; margin-bottom: 0.3rem; }
 
     /* HISTÓRIA */
-    .story {
-      background: #fff;
-      border-radius: 26px;
-      padding: 2rem 2.1rem;
-      box-shadow: var(--shadow);
-      font-size: 0.98rem;
-    }
-
+    .story { background: #fff; border-radius: 26px; padding: 2rem 2.1rem; box-shadow: var(--shadow); font-size: 0.98rem; }
     .story p + p { margin-top: 0.9rem; }
 
     /* PRESENTES / PIX */
@@ -413,11 +317,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
       align-items: center;
     }
 
-    .gift-box p {
-      font-size: 0.96rem;
-      color: #4a4a4a;
-      margin-bottom: 0.6rem;
-    }
+    .gift-box p { font-size: 0.96rem; color: #4a4a4a; margin-bottom: 0.6rem; }
 
     .pix-box {
       background: rgba(255, 255, 255, 0.85);
@@ -427,55 +327,18 @@ html, body { max-width: 100%; overflow-x: hidden; }
       font-size: 0.95rem;
     }
 
-    .pix-label {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: #999;
-      margin-bottom: 0.3rem;
-    }
-
-    .pix-key {
-      font-weight: 600;
-      word-wrap: break-word;
-      margin-bottom: 0.4rem;
-    }
-
-    .pix-note {
-      font-size: 0.8rem;
-      color: #777;
-    }
-
-    .gift-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      margin-top: 0.6rem;
-    }
+    .pix-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.14em; color: #999; margin-bottom: 0.3rem; }
+    .pix-key { font-weight: 600; word-wrap: break-word; margin-bottom: 0.4rem; }
+    .pix-note { font-size: 0.8rem; color: #777; }
+    .gift-links { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.6rem; }
 
     /* RSVP */
-    .rsvp-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 2rem;
-      align-items: flex-start;
-    }
+    .rsvp-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 2rem; align-items: flex-start; }
 
-    form {
-      background: #fff;
-      border-radius: 26px;
-      padding: 1.8rem 1.9rem;
-      box-shadow: var(--shadow);
-    }
+    form { background: #fff; border-radius: 26px; padding: 1.8rem 1.9rem; box-shadow: var(--shadow); }
 
     .form-row { margin-bottom: 1rem; }
-
-    label {
-      display: block;
-      font-size: 0.85rem;
-      margin-bottom: 0.3rem;
-      color: #555;
-    }
+    label { display: block; font-size: 0.85rem; margin-bottom: 0.3rem; color: #555; }
 
     input, select, textarea {
       width: 100%;
@@ -489,209 +352,56 @@ html, body { max-width: 100%; overflow-x: hidden; }
       transition: border 0.15s, box-shadow 0.15s;
     }
 
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 1px rgba(197,139,139,0.25);
-    }
+    input:focus, select:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 0 1px rgba(197,139,139,0.25); }
+    textarea { min-height: 90px; resize: vertical; }
 
-    textarea {
-      min-height: 90px;
-      resize: vertical;
-    }
-
-    .rsvp-info {
-      font-size: 0.93rem;
-      color: #555;
-    }
-
+    .rsvp-info { font-size: 0.93rem; color: #555; }
     .rsvp-info p + p { margin-top: 0.5rem; }
 
-    .rsvp-success {
-      margin-top: 0.8rem;
-      font-size: 0.85rem;
-      color: #2e7d32;
-      display: none;
-    }
-
-    .rsvp-error {
-      margin-top: 0.8rem;
-      font-size: 0.85rem;
-      color: #c62828;
-      display: none;
-    }
+    .rsvp-success { margin-top: 0.8rem; font-size: 0.85rem; color: #2e7d32; display: none; }
+    .rsvp-error { margin-top: 0.8rem; font-size: 0.85rem; color: #c62828; display: none; }
 
     /* MAPA */
-    .map-embed {
-      margin-top: 1.5rem;
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .map-embed iframe {
-      border: 0;
-      width: 100%;
-      height: 300px;
-    }
+    .map-embed { margin-top: 1.5rem; border-radius: 18px; overflow: hidden; box-shadow: var(--shadow); }
+    .map-embed iframe { border: 0; width: 100%; height: 300px; }
 
     /* FOOTER */
-    footer {
-      padding: 2.2rem 1.2rem 1.6rem;
-      background: #f4e2e0;
-      margin-top: 2rem;
-    }
-
-    .footer-inner {
-      max-width: 980px;
-      margin: 0 auto;
-      text-align: center;
-      font-size: 0.85rem;
-      color: #5c5c5c;
-    }
-
-    .footer-names {
-      font-family: "Playfair Display", serif;
-      font-size: 1.2rem;
-      margin-bottom: 0.2rem;
-    }
+    footer { padding: 2.2rem 1.2rem 1.6rem; background: #f4e2e0; margin-top: 2rem; }
+    .footer-inner { max-width: 980px; margin: 0 auto; text-align: center; font-size: 0.85rem; color: #5c5c5c; }
+    .footer-names { font-family: "Playfair Display", serif; font-size: 1.2rem; margin-bottom: 0.2rem; }
 
     /* RESPONSIVO */
     @media (max-width: 900px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
+      .hero-inner { grid-template-columns: minmax(0, 1fr); }
       .hero-photo-card { order: -1; }
-
-      .gift-box {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .rsvp-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .details-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .gift-box { grid-template-columns: minmax(0, 1fr); }
+      .rsvp-grid { grid-template-columns: minmax(0, 1fr); }
+      .details-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 650px) {
-      nav ul { display: none; }
-
-      .details-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .couple-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
+      .details-grid { grid-template-columns: minmax(0, 1fr); }
+      .couple-grid { grid-template-columns: minmax(0, 1fr); }
       .hero { padding-top: 2rem; }
     }
-    /* =========================
-   HOME — MOBILE POLISH PACK
-   ========================= */
-@media (max-width: 640px){
-
-  /* Respiro geral */
-  .wrap, main, .container, .section {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
-  }
-
-  /* Header mais compacto */
-  header, .header, .site-header {
-    padding-top: 6px !important;
-    padding-bottom: 6px !important;
-  }
-
-  /* Títulos: mais legível no mobile */
-  h1, .title, .hero-title {
-    font-size: 2.05rem !important;
-    line-height: 1.06 !important;
-    letter-spacing: 0.01em !important;
-  }
-  h2 {
-    font-size: 1.35rem !important;
-    line-height: 1.15 !important;
-  }
-
-  /* Texto: conforto */
-  p, .subtitle, .lead {
-    font-size: 1rem !important;
-    line-height: 1.55 !important;
-  }
-
-  /* Bloco de infos (data/local/traje) – melhora leitura */
-  .info, .details, .meta, .event-info {
-    font-size: 1rem !important;
-    line-height: 1.55 !important;
-  }
-
-  /* Foto principal: evita ficar pequena */
-  .hero img, .cover img, .photo img {
-    width: 100% !important;
-    height: auto !important;
-    border-radius: 18px !important;
-  }
-
-  /* Botões: full width e “tap friendly” */
-  .btn, button, a.button, .cta {
-    width: 100% !important;
-    min-height: 46px !important;
-    padding: 14px 16px !important;
-    border-radius: 16px !important;
-    font-size: 1rem !important;
-  }
-
-  /* Espaçamento entre CTAs */
-  .cta-group, .buttons, .actions {
-    display: grid !important;
-    gap: 12px !important;
-  }
-
-/* =========================
-   CONTADOR (HOME)
-   ========================= */
-#countdown.hero-countdown{
-  margin-top: 16px;
-  padding: 14px 16px;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
-  backdrop-filter: blur(8px);
-  color: rgba(255,255,255,0.90);
-  text-align: center;
-  font-size: 1rem;
-  line-height: 1.35;
-}
-
-/* Mobile: um pouco maior e com melhor leitura */
-@media (max-width: 640px){
-  #countdown.hero-countdown{
-    font-size: 1.02rem;
-    padding: 14px 14px;
-  }
-}
-
   </style>
 </head>
 <body>
+
   <!-- HEADER -->
   <header class="site-header">
-  <div class="header-inner">
-    <div class="logo">Larissa & Rafael</div>
+    <div class="header-inner">
+      <div class="logo">Larissa & Rafael</div>
 
-    <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
 
-    <nav class="site-nav" id="siteNav">
-      <a href="#detalhes">Detalhes</a>
-      <a href="#mapa">Local</a>
-      <a href="presentes.html">Presentes</a>
-      <a href="#rsvp">RSVP</a>
-    </nav>
-  </div>
+      <nav class="site-nav" id="siteNav">
+        <a href="#detalhes">Detalhes</a>
+        <a href="#mapa">Local</a>
+        <a href="presentes.html">Presentes</a>
+        <a href="#rsvp">RSVP</a>
+      </nav>
+    </div>
   </header>
 
   <!-- HERO -->
@@ -708,27 +418,27 @@ html, body { max-width: 100%; overflow-x: hidden; }
         <p class="hero-dresscode"><strong>Traje:</strong> Esporte fino.</p>
 
         <div class="hero-buttons">
-          <button class="btn btn-primary" onclick="scrollToSection('rsvp')">
-            Confirmar presença
-          </button>
-          <button class="btn btn-outline" onclick="scrollToSection('detalhes')">
-            Ver detalhes do evento
-          </button>
+          <button class="btn btn-primary" onclick="scrollToSection('rsvp')">Confirmar presença</button>
+          <button class="btn btn-outline" onclick="scrollToSection('detalhes')">Ver detalhes do evento</button>
         </div>
 
-        <p class="hero-countdown" id="countdown">
-          Faltam alguns dias para o nosso grande momento...
-        </p>
+        <!-- ✅ CONTADOR EM CARDS -->
+        <div class="hero-countdown" id="countdown">
+          <div class="cd-title">Contagem regressiva</div>
+          <div class="cd-grid">
+            <div class="cd-box"><div class="cd-num" id="cdDays">--</div><div class="cd-lab">Dias</div></div>
+            <div class="cd-box"><div class="cd-num" id="cdHours">--</div><div class="cd-lab">Horas</div></div>
+            <div class="cd-box"><div class="cd-num" id="cdMins">--</div><div class="cd-lab">Min</div></div>
+            <div class="cd-box"><div class="cd-num" id="cdSecs">--</div><div class="cd-lab">Seg</div></div>
+          </div>
+        </div>
       </div>
 
       <div class="hero-photo-card">
-        <!-- TODO: QUANDO TIVER A FOTO DO CASAL, TROCAR O BLOCO ABAIXO POR <img src="foto.jpg" alt="Larissa e Rafael"> -->
         <div class="hero-photo-frame">
           <img src="IMG-20250821-WA0163.jpg" alt="Larissa e Rafael">
         </div>
-        <div class="hero-tag">
-          🌊 Casamento na praia
-        </div>
+        <div class="hero-tag">🌊 Casamento na praia</div>
       </div>
     </div>
   </section>
@@ -762,14 +472,13 @@ html, body { max-width: 100%; overflow-x: hidden; }
     </div>
   </section>
 
-  <!-- NOSSA HISTÓRIA (texto genérico por enquanto) -->
+  <!-- HISTÓRIA -->
   <section id="historia">
     <div class="section-inner">
       <h2 class="section-title">Nossa história</h2>
       <p class="section-subtitle">Cada capítulo nos trouxe até aqui.</p>
 
       <div class="story">
-        <!-- TODO: SE VOCÊ QUISER, POSSO REESCREVER ESTA HISTÓRIA DEPOIS COM DETALHES REAIS -->
         <p>
           Ao longo dos anos, Larissa e Rafael descobriram que as melhores coisas da vida
           acontecem quando existe parceria, respeito e muita risada dividida no dia a dia.
@@ -787,7 +496,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     </div>
   </section>
 
-  <!-- DETALHES DO CASAMENTO -->
+  <!-- DETALHES -->
   <section id="detalhes">
     <div class="section-inner">
       <h2 class="section-title">Cerimônia & festa</h2>
@@ -811,19 +520,18 @@ html, body { max-width: 100%; overflow-x: hidden; }
         </div>
       </div>
 
-  <div class="map-embed">
- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3486.8637313058257!2d-45.167262!3d-23.5199528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cd522134cfae13%3A0xfc0f49b82de3167f!2sPapillon%20Beach%20Casamento%20na%20Praia!5e1!3m2!1spt-BR!2sbr!4v1767802694247!5m2!1spt-BR!2sbr" 
-   width="600" 
-   height="450" 
-   style="border:0;" 
-   allowfullscreen="" 
-   loading="lazy" 
-   referrerpolicy="no-referrer-when-downgrade">
- </iframe>
-</div>
+      <div class="map-embed" id="mapa">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3486.8637313058257!2d-45.167262!3d-23.5199528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cd522134cfae13%3A0xfc0f49b82de3167f!2sPapillon%20Beach%20Casamento%20na%20Praia!5e1!3m2!1spt-BR!2sbr!4v1767802694247!5m2!1spt-BR!2sbr"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
   </section>
 
-  <!-- PRESENTES / PIX / CARTÃO -->
+  <!-- PRESENTES -->
   <section id="presentes">
     <div class="section-inner">
       <h2 class="section-title">Presentes</h2>
@@ -843,19 +551,20 @@ html, body { max-width: 100%; overflow-x: hidden; }
           </p>
 
           <div class="gift-links">
-            <!-- TODO: TROCAR O LINK ABAIXO PELO LINK REAL DE PAGAMENTO (cartão) -->
             <a class="btn btn-primary" href="https://seulinkdepagamento.com" target="_blank" rel="noopener noreferrer">
               Contribuir com cartão 💳
             </a>
             <a class="btn btn-outline" href="#pix">
               Ver chave PIX
             </a>
+            <a class="btn btn-outline" href="presentes.html">
+              Abrir lista de presentes 🎁
+            </a>
           </div>
         </div>
 
         <div id="pix" class="pix-box">
           <div class="pix-label">Chave PIX</div>
-          <!-- TODO: QUANDO DEFINIR A CHAVE PIX, TROCAR A LINHA ABAIXO -->
           <div class="pix-key">INSERIR SUA CHAVE PIX AQUI</div>
           <div class="pix-note">
             Após fazer o PIX, se quiser, envie o comprovante para os noivos pelo WhatsApp. Obrigado por todo carinho! 💕
@@ -903,9 +612,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
             <textarea id="mensagem" name="mensagem"></textarea>
           </div>
 
-          <button type="submit" class="btn btn-primary">
-            Enviar confirmação
-          </button>
+          <button type="submit" class="btn btn-primary">Enviar confirmação</button>
 
           <div id="rsvpSuccess" class="rsvp-success">
             Obrigado! Sua presença foi registrada com sucesso. 💕
@@ -916,14 +623,11 @@ html, body { max-width: 100%; overflow-x: hidden; }
         </form>
 
         <div class="rsvp-info">
+          <p>Se preferir, você também pode confirmar sua presença diretamente com os noivos.</p>
           <p>
-            Se preferir, você também pode confirmar sua presença diretamente com os noivos.
-          </p>
-          <p>
-            <!-- TODO: QUANDO QUISER, COLOQUE OS WHATS REAIS AQUI -->
             Larissa: (19) 97403-2632<br>
             Rafael: (19) 99593-5646
-          </p>         
+          </p>
         </div>
       </div>
     </div>
@@ -934,144 +638,132 @@ html, body { max-width: 100%; overflow-x: hidden; }
     <div class="footer-inner">
       <div class="footer-names">Larissa e Rafael</div>
       <p>Estamos contando os dias para viver esse momento com você na praia.</p>
-      <p style="margin-top: 0.4rem; font-size: 0.78rem;">
-        Desenvolvido com amor 💛
-      </p>
+      <p style="margin-top: 0.4rem; font-size: 0.78rem;">Desenvolvido com amor 💛</p>
     </div>
   </footer>
 
   <script>
-    // Rolagem suave
+    // ===== Rolagem suave =====
     function scrollToSection(id) {
       const el = document.getElementById(id);
       if (!el) return;
-      window.scrollTo({
-        top: el.offsetTop - 80,
-        behavior: "smooth"
+      window.scrollTo({ top: el.offsetTop - 80, behavior: "smooth" });
+    }
+
+    // ===== Menu mobile =====
+    const menuBtn = document.getElementById("menuBtn");
+    const siteNav = document.getElementById("siteNav");
+    if (menuBtn && siteNav) {
+      menuBtn.addEventListener("click", () => siteNav.classList.toggle("open"));
+      document.addEventListener("click", (e) => {
+        if (!siteNav.contains(e.target) && e.target !== menuBtn) siteNav.classList.remove("open");
       });
     }
 
-    // Contagem regressiva (data do casamento)
-    // 11/09/2026 às 16h (horário de Brasília)
+    // ===== Contador (cards) =====
     const weddingDate = new Date("2026-09-11T16:00:00-03:00");
+    function pad2(n){ return String(n).padStart(2,"0"); }
 
-    function updateCountdown() {
+    function updateCountdown(){
       const now = new Date();
-      const diff = weddingDate - now;
-      const countdownEl = document.getElementById("countdown");
-      if (!countdownEl) return;
+      let diff = weddingDate - now;
 
-      if (diff <= 0) {
-        countdownEl.textContent = "Chegou o grande dia! 💍";
+      const dEl = document.getElementById("cdDays");
+      const hEl = document.getElementById("cdHours");
+      const mEl = document.getElementById("cdMins");
+      const sEl = document.getElementById("cdSecs");
+      if (!dEl || !hEl || !mEl || !sEl) return;
+
+      if (diff <= 0){
+        dEl.textContent = "00";
+        hEl.textContent = "00";
+        mEl.textContent = "00";
+        sEl.textContent = "00";
         return;
       }
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
+      const days = Math.floor(diff / (1000*60*60*24));
+      diff -= days * (1000*60*60*24);
 
-      countdownEl.textContent =
-        "Faltam " +
-        days +
-        " dias, " +
-        hours +
-        " horas e " +
-        minutes +
-        " minutos para o nosso grande dia.";
+      const hours = Math.floor(diff / (1000*60*60));
+      diff -= hours * (1000*60*60);
+
+      const mins = Math.floor(diff / (1000*60));
+      diff -= mins * (1000*60);
+
+      const secs = Math.floor(diff / 1000);
+
+      dEl.textContent = pad2(days);
+      hEl.textContent = pad2(hours);
+      mEl.textContent = pad2(mins);
+      sEl.textContent = pad2(secs);
     }
 
     updateCountdown();
-    setInterval(updateCountdown, 60000);
+    setInterval(updateCountdown, 1000);
 
-    // RSVP -> envio para Google Sheets via Apps Script
+    // ===== RSVP -> WhatsApp + (opcional) Google Sheets =====
+    const WHATSAPP_DESTINO = "5519974032632"; // ✅ 55 + DDD + número (Larissa)
+    const SCRIPT_URL = "https://script.google.com/macros/s/SEU_SCRIPT_AQUI/exec"; // deixe assim ou coloque o seu
+
     const rsvpForm = document.getElementById("rsvpForm");
     const rsvpSuccess = document.getElementById("rsvpSuccess");
     const rsvpError = document.getElementById("rsvpError");
 
-    rsvpForm.addEventListener("submit", async function (e) {
-      e.preventDefault();
-      rsvpSuccess.style.display = "none";
-      rsvpError.style.display = "none";
+    if (rsvpForm){
+      rsvpForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        rsvpSuccess.style.display = "none";
+        rsvpError.style.display = "none";
 
-      const formData = new FormData(rsvpForm);
+        const nome = (document.getElementById("nome")?.value || "").trim();
+        const email = (document.getElementById("email")?.value || "").trim();
+        const telefone = (document.getElementById("telefone")?.value || "").trim();
+        const presenca = (document.getElementById("presenca")?.value || "").trim();
+        const acompanhantes = (document.getElementById("acompanhantes")?.value || "0").trim();
+        const mensagem = (document.getElementById("mensagem")?.value || "").trim();
 
-      try {
-        // TODO: TROCAR A URL ABAIXO PELO SEU WEB APP DO GOOGLE APPS SCRIPT
-        const scriptURL = "https://script.google.com/macros/s/SEU_SCRIPT_AQUI/exec";
+        const presencaTxt = presenca === "sim" ? "Sim, estarei presente" : "Infelizmente não poderei ir";
 
-        const response = await fetch(scriptURL, {
-          method: "POST",
-          body: formData,
-        });
-
-        if (!response.ok) throw new Error("Resposta não OK");
-
-        rsvpSuccess.style.display = "block";
-        rsvpForm.reset();
-
-        setTimeout(() => {
-          rsvpSuccess.style.display = "none";
-        }, 6000);
-      } catch (error) {
-        console.error("Erro no envio do RSVP:", error);
-        rsvpError.style.display = "block";
-        setTimeout(() => {
-          rsvpError.style.display = "none";
-        }, 6000);
-      }
-    });
-  </script>
-  <script>
-  const menuBtn = document.getElementById("menuBtn");
-  const siteNav = document.getElementById("siteNav");
-  if (menuBtn && siteNav) {
-    menuBtn.addEventListener("click", () => siteNav.classList.toggle("open"));
-  }
-</script>
-
-  <script>
-  const WHATSAPP_DESTINO = "19974032632"; // ex: 5511999999999
-
-  const form = document.getElementById("rsvpForm");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const nome = (document.getElementById("rsvpNome")?.value || "").trim();
-      const tel  = (document.getElementById("rsvpTelefone")?.value || "").trim();
-      const qtd  = (document.getElementById("rsvpQtd")?.value || "").trim();
-      const msg  = (document.getElementById("rsvpMsg")?.value || "").trim();
-
-      const texto =
+        const texto =
 `Confirmação de Presença ✅
 Nome: ${nome || "-"}
-WhatsApp: ${tel || "-"}
-Quantidade: ${qtd || "-"}
-Observações: ${msg || "-"}
+E-mail: ${email || "-"}
+WhatsApp: ${telefone || "-"}
+Presença: ${presencaTxt}
+Acompanhantes: ${acompanhantes || "0"}
+Mensagem: ${mensagem || "-"}
 
 Casamento Larissa & Rafael — 11/09/2026`;
 
-      const url = `https://wa.me/${WHATSAPP_DESTINO}?text=${encodeURIComponent(texto)}`;
-      window.open(url, "_blank");
+        // abre WhatsApp
+        const waUrl = `https://wa.me/${WHATSAPP_DESTINO}?text=${encodeURIComponent(texto)}`;
+        window.open(waUrl, "_blank");
 
-      // opcional: mostrar mensagem na tela
-      alert("Abrimos o WhatsApp com a mensagem pronta. É só enviar ✅");
-      form.reset();
-    });
-  }
-</script>
+        // tenta enviar para Sheets (se configurado)
+        const hasSheets = SCRIPT_URL && SCRIPT_URL.includes("script.google.com/macros/s/");
+        if (hasSheets) {
+          try{
+            const formData = new FormData(rsvpForm);
+            const resp = await fetch(SCRIPT_URL, { method:"POST", body: formData });
+            if (!resp.ok) throw new Error("Sheets respondeu não-OK");
+
+            rsvpSuccess.style.display = "block";
+            setTimeout(()=> rsvpSuccess.style.display="none", 6000);
+          }catch(err){
+            console.error(err);
+            rsvpError.style.display = "block";
+            setTimeout(()=> rsvpError.style.display="none", 6000);
+          }
+        } else {
+          rsvpSuccess.style.display = "block";
+          setTimeout(()=> rsvpSuccess.style.display="none", 6000);
+        }
+
+        rsvpForm.reset();
+      });
+    }
+  </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
