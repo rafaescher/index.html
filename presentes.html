@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- QR Code (leve e confiável) -->
+  <!-- QR Code -->
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
   <style>
@@ -187,9 +187,7 @@
       min-height: 220px;
     }
 
-    .top{
-      display:flex;gap:0.85rem;align-items:flex-start;
-    }
+    .top{ display:flex;gap:0.85rem;align-items:flex-start; }
 
     .icon{
       width:46px;height:46px;
@@ -203,10 +201,8 @@
     }
 
     .meta h3{
-      font-size:1rem;
-      line-height:1.25;
-      margin-bottom:0.2rem;
-      font-weight:600;
+      font-size:1rem; line-height:1.25;
+      margin-bottom:0.2rem; font-weight:600;
     }
 
     .meta .cat{
@@ -224,11 +220,8 @@
     }
 
     .bottom{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:0.7rem;
-      margin-top:0.2rem;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:0.7rem; margin-top:0.2rem;
     }
 
     .price{
@@ -252,12 +245,8 @@
       background:var(--primary);
       color:#fff;
       box-shadow: 0 10px 25px rgba(197,139,139,0.25);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      font-weight:600;
-      letter-spacing:0.03em;
+      display:flex; align-items:center; justify-content:center;
+      text-align:center; font-weight:600; letter-spacing:0.03em;
     }
     .btn.primary:hover{background:var(--primary-dark); transform:translateY(-1px)}
 
@@ -341,7 +330,7 @@
       color:#2f2f2f;
       word-break:break-all;
       margin-bottom:0.4rem;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
     }
 
     .pixbox .small{
@@ -396,35 +385,14 @@
     }
     @media (max-width: 640px){
       .card{grid-column: span 12;}
-      .nav{align-items:flex-start}
-      .nav{
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-      }
-      .brand{
-        text-align:center;
-        font-size: 1.1rem;
-      }
-      .nav-right{
-        width: 100%;
-        flex-direction: column;
-        gap: 10px;
-      }
-      .pill{
-        width: 100%;
-        justify-content: center;
-        font-size: 0.95rem;
-        padding: 12px;
-      }
+      .nav{flex-direction: column; align-items: stretch; gap: 12px;}
+      .brand{text-align:center; font-size: 1.1rem;}
+      .nav-right{width: 100%; flex-direction: column; gap: 10px;}
+      .pill{width: 100%; justify-content: center; font-size: 0.95rem; padding: 12px;}
       .controls{ gap: 12px; }
       .search{ width: 100%; min-width: 100%; }
       .grid{ grid-template-columns: 1fr !important; }
-      .bottom{
-        flex-direction: column;
-        align-items: stretch;
-        gap: 10px;
-      }
+      .bottom{flex-direction: column; align-items: stretch; gap: 10px;}
       .bottom .btn{ width: 100%; }
       .modal-actions{ flex-direction: column; }
       .modal-actions .btn{ width: 100%; }
@@ -542,66 +510,43 @@
 
 <script>
   // =========================
-  // CONFIG (TROQUE AQUI SE QUISER)
+  // CONFIG
   // =========================
-  const PIX_KEY = "38004449840"; // sua chave (fixo)
-  const PIX_RECEIVER_NAME = "LARISSA E RAFAEL"; // recomendado: nome do recebedor (independente do banco)
-  const PIX_RECEIVER_CITY = "UBATUBA";          // recomendado: cidade (sem acento)
-  const PAGAMENTO_CARTAO_URL_PADRAO = "https://seu-link-de-pagamento.com"; // coloque o link do Mercado Pago (geral)
+  const PIX_KEY = "38004449840";
+  const PIX_RECEIVER_NAME = "LARISSA E RAFAEL";
+  const PIX_RECEIVER_CITY = "UBATUBA";
 
-  // Se você quiser link de cartão diferente por item:
-  // coloque "cardUrl" dentro do item. Se não tiver, usa o padrão acima.
+  // COLE AQUI O SEU LINK PADRÃO DO MERCADO PAGO (SE QUISER UM ÚNICO LINK)
+  const PAGAMENTO_CARTAO_URL_PADRAO = "COLE_SEU_LINK_AQUI"; // pode deixar "" se você usa cardUrl por item
 
   // =========================
-  // LISTA (edite livremente)
+  // ITENS (COLE SEUS LINKS DE CARTÃO AQUI – onde está cardUrl)
   // =========================
   const ITENS = [
-    { cat:"Cozinha", icon:"🍳", nome:"Kit de Panelas Premium", desc:"Para as primeiras receitas… e os primeiros “quem queimou isso?” 😂", valor: 320 },
-    { cat:"Cozinha", icon:"🍳", nome:"Conjunto de Panelas Completo", desc:"Porque amor também se constrói mexendo panela juntos ❤️", valor: 680 },
-    { cat:"Cozinha", icon:"🍽️", nome:"Aparelho de Jantar (42 peças)", desc:"Para receber quem amamos — e repetir o prato sem culpa 🍽️", valor: 450 },
-    { cat:"Cozinha", icon:"🥂", nome:"Jogo de Copos", desc:"Para brindar o amor, a vida e até a água de madrugada 🥂💧", valor: 220 },
-    { cat:"Cozinha", icon:"🍷", nome:"Conjunto de Taças de Vinho", desc:"Para celebrar os dias bons… e sobreviver aos dias difíceis 🍷😂", valor: 520 },
-    { cat:"Cozinha", icon:"🍴", nome:"Kit de Talheres", desc:"Porque comer junto é uma das maiores provas de amor 🍴", valor: 280 },
-    { cat:"Cozinha", icon:"✨", nome:"Jogo Americano / Sousplat", desc:"Para deixar até o miojo com cara de jantar romântico ✨", valor: 190 },
-    { cat:"Cozinha", icon:"🍰", nome:"Pratos de Sobremesa", desc:"Porque sempre cabe um docinho depois ❤️🍰", valor: 210 },
-    { cat:"Cozinha", icon:"🔥", nome:"Panela Elétrica / Airfryer", desc:"Para facilitar a vida e evitar discussões na cozinha 😅", valor: 790 },
-    { cat:"Cozinha", icon:"🥤", nome:"Liquidificador", desc:"Para sucos, vitaminas e receitas improvisadas 🍹", valor: 320 },
-    { cat:"Cozinha", icon:"🎂", nome:"Batedeira", desc:"Para adoçar a vida — e o bolo também 🎂", valor: 520 },
-    { cat:"Cozinha", icon:"☕", nome:"Cafeteira", desc:"Porque amor sem café não funciona ☕😂", valor: 890 },
+    { cat:"Cozinha", icon:"🍳", nome:"Kit de Panelas Premium", desc:"Para as primeiras receitas… e os primeiros “quem queimou isso?” 😂", valor: 320, cardUrl:"" },
+    { cat:"Cozinha", icon:"🍳", nome:"Conjunto de Panelas Completo", desc:"Porque amor também se constrói mexendo panela juntos ❤️", valor: 680, cardUrl:"" },
+    { cat:"Cozinha", icon:"🍽️", nome:"Aparelho de Jantar (42 peças)", desc:"Para receber quem amamos — e repetir o prato sem culpa 🍽️", valor: 450, cardUrl:"" },
+    { cat:"Cozinha", icon:"🥂", nome:"Jogo de Copos", desc:"Para brindar o amor, a vida e até a água de madrugada 🥂💧", valor: 220, cardUrl:"" },
+    { cat:"Cozinha", icon:"🍷", nome:"Conjunto de Taças de Vinho", desc:"Para celebrar os dias bons… e sobreviver aos dias difíceis 🍷😂", valor: 520, cardUrl:"" },
+    { cat:"Cozinha", icon:"🍴", nome:"Kit de Talheres", desc:"Porque comer junto é uma das maiores provas de amor 🍴", valor: 280, cardUrl:"" },
 
-    { cat:"Sala", icon:"🛋️", nome:"Sofá confortável", desc:"Para descansar e curtir juntos.", valor: 1800 },
-    { cat:"Sala", icon:"📺", nome:"Painel para TV", desc:"Organização e estilo.", valor: 980 },
-    { cat:"Sala", icon:"🧶", nome:"Tapete grande para sala", desc:"Aconchego para o lar.", valor: 650 },
-
-    { cat:"Quarto", icon:"🛏️", nome:"Kit Cama (Lençóis + Fronhas)", desc:"Para noites bem dormidas e domingos preguiçosos 🛏️", valor: 520 },
-    { cat:"Quarto", icon:"🧣", nome:"Edredom / Cobertor", desc:"Para aquecer o amor — e disputar quem fica descoberto 😆", valor: 680 },
-    { cat:"Quarto", icon:"😴", nome:"Jogo de Lençol Premium (1.739.272 fios 😅✨)", desc:"Para noites extremamente confortáveis e sono de casal feliz ❤️😴", valor: 1200 },
-
-    { cat:"Casa", icon:"🧹", nome:"Aspirador de Pó", desc:"Para manter a casa limpa e o amor em dia ✨", valor: 980 },
-    { cat:"Casa", icon:"👕", nome:"Ferro de Passar", desc:"Para tentar deixar tudo nos conformes (ou quase isso) 👕😂", valor: 260 },
-
-    { cat:"Decoração", icon:"🕯️", nome:"Velas aromáticas", desc:"Cheiro de lar.", valor: 190 },
-    { cat:"Decoração", icon:"🪴", nome:"Plantas e vasos decorativos", desc:"Mais vida para a casa.", valor: 360 },
-    { cat:"Decoração", icon:"🏡", nome:"Decoração completa da casa", desc:"Nosso lar com a nossa cara.", valor: 5000 },
-
-    { cat:"Experiências", icon:"🏡", nome:"Vale Presente para o Lar", desc:"Para nos ajudar a construir nosso cantinho do nosso jeito 🏡💕", valor: 500 },
-    { cat:"Experiências", icon:"🍺", nome:"Chopeira", desc:"Chope sempre gelado e felicidade do casal… e dos amigos também 😂🍻", valor: 1800 },
-
-    { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Qualquer valor com muito amor.", valor: 100 },
-    { cat:"Experiências", icon:"💖", nome:"Contribuição especial", desc:"Um presente inesquecível.", valor: 2000 }
+    { cat:"Sala", icon:"🛋️", nome:"Sofá confortável", desc:"Para descansar e curtir juntos.", valor: 1800, cardUrl:"" },
+    { cat:"Quarto", icon:"🛏️", nome:"Kit Cama (Lençóis + Fronhas)", desc:"Para noites bem dormidas e domingos preguiçosos 🛏️", valor: 520, cardUrl:"" },
+    { cat:"Casa", icon:"🧹", nome:"Aspirador de Pó", desc:"Para manter a casa limpa e o amor em dia ✨", valor: 980, cardUrl:"" },
+    { cat:"Decoração", icon:"🏡", nome:"Decoração completa da casa", desc:"Nosso lar com a nossa cara.", valor: 5000, cardUrl:"" },
+    { cat:"Experiências", icon:"🍺", nome:"Chopeira", desc:"Chope sempre gelado e felicidade do casal… e dos amigos também 😂🍻", valor: 1800, cardUrl:"" }
   ];
 
   // =========================
-  // PIX BR CODE (copia e cola com VALOR)
+  // EMV + CRC (PIX)
   // =========================
   function pad2(n){ return String(n).padStart(2,"0"); }
-
   function emv(id, value){
     const v = value ?? "";
     return id + pad2(v.length) + v;
   }
 
-  // CRC16-CCITT (0x1021) inicial 0xFFFF
+  // CRC16-CCITT (0x1021) init 0xFFFF
   function crc16(str){
     let crc = 0xFFFF;
     for(let i=0; i<str.length; i++){
@@ -614,40 +559,59 @@
     return crc.toString(16).toUpperCase().padStart(4, "0");
   }
 
-  // Monta payload PIX com valor e descrição
-  // Observação: alguns bancos exibem "descrição" como "informações adicionais"
+  function cleanUpper(str){
+    return (str || "")
+      .toUpperCase()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+      .replace(/[^A-Z0-9 &]/g,"")
+      .trim();
+  }
+
   function buildPixPayload({key, name, city, amount, txid, description}){
-    // Merchant Account Information (26)
-    // GUI: br.gov.bcb.pix
-    // Key: 01
-    // Desc (opcional): 02
+    const cleanName = cleanUpper(name).slice(0,25);
+    const cleanCity = cleanUpper(city).slice(0,15);
+    const cleanTxid = cleanUpper(txid).replace(/\s+/g,"").slice(1,25) || "PRESENTE";
+
     const gui = emv("00", "br.gov.bcb.pix");
-    const k   = emv("01", key);
-    const d   = description ? emv("02", description) : "";
+    const k   = emv("01", String(key).trim());
+    const d   = description ? emv("02", description.slice(0,60)) : "";
     const mai = emv("26", gui + k + d);
 
-    const payloadNoCrc =
-      emv("00","01") +                 // payload format indicator
-      emv("01","12") +                 // point of initiation method (12 = dynamic? / 11 static; usamos 12 por compat)
-      mai +
-      emv("52","0000") +               // MCC
-      emv("53","986") +                // BRL
-      emv("54", Number(amount).toFixed(2)) + // amount
-      emv("58","BR") +
-      emv("59", name.substring(0,25)) +
-      emv("60", city.substring(0,15)) +
-      emv("62", emv("05", txid.substring(0,25))) + // additional data field template (TXID)
-      "6304";                          // CRC placeholder
+    const hasAmount = typeof amount === "number" && amount > 0;
 
-    const crc = crc16(payloadNoCrc);
-    return payloadNoCrc + crc;
+    // POI method = 11 (estático)
+    let payload =
+      emv("00","01") +
+      emv("01","11") +
+      mai +
+      emv("52","0000") +
+      emv("53","986") +
+      (hasAmount ? emv("54", amount.toFixed(2)) : "") +
+      emv("58","BR") +
+      emv("59", cleanName) +
+      emv("60", cleanCity) +
+      emv("62", emv("05", cleanTxid)) +
+      "6304";
+
+    const crc = crc16(payload);
+    return payload + crc;
   }
 
   // =========================
-  // UI HELPERS
+  // UI
   // =========================
   const formatBRL = (n) => n.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
   const normalize = (str) => (str||"").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+
+  function getCardUrlForItem(item){
+    const specific = (item.cardUrl || "").trim();
+    const fallback = (PAGAMENTO_CARTAO_URL_PADRAO || "").trim();
+
+    // se você já tinha links, aqui é onde eles ficam preservados:
+    // - item.cardUrl tem prioridade
+    // - se vazio, usa o padrão
+    return specific || fallback || "";
+  }
 
   function render(items){
     const grid = document.getElementById("grid");
@@ -658,10 +622,10 @@
     empty.style.display = "none";
 
     for(const it of items){
+      const cardUrl = getCardUrlForItem(it);
+
       const card = document.createElement("div");
       card.className = "card";
-
-      const cardUrl = it.cardUrl || PAGAMENTO_CARTAO_URL_PADRAO;
 
       card.innerHTML = `
         <div class="top">
@@ -678,16 +642,13 @@
           <div class="price">${formatBRL(it.valor)}</div>
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:flex-end;">
             <button class="btn ghost" data-action="pix">PIX</button>
-            <a class="btn primary" href="${cardUrl}" target="_blank" rel="noopener noreferrer">Cartão</a>
+            ${cardUrl ? `<a class="btn primary" href="${cardUrl}" target="_blank" rel="noopener noreferrer">Cartão</a>` : ``}
           </div>
         </div>
       `;
 
       grid.appendChild(card);
-
-      card.querySelector('button[data-action="pix"]').addEventListener("click", ()=>{
-        openPixForItem(it);
-      });
+      card.querySelector('button[data-action="pix"]').addEventListener("click", ()=> openPixForItem(it));
     }
   }
 
@@ -699,10 +660,7 @@
     let items = [...ITENS];
 
     if(cat !== "all") items = items.filter(x => x.cat === cat);
-
-    if(q){
-      items = items.filter(x => normalize(`${x.nome} ${x.desc} ${x.cat}`).includes(q));
-    }
+    if(q) items = items.filter(x => normalize(`${x.nome} ${x.desc} ${x.cat}`).includes(q));
 
     if(sort === "menor") items.sort((a,b)=>a.valor-b.valor);
     if(sort === "maior") items.sort((a,b)=>b.valor-a.valor);
@@ -712,7 +670,7 @@
   }
 
   // =========================
-  // MODAL PIX (por item)
+  // MODAL PIX
   // =========================
   const backdrop = document.getElementById("modalBackdrop");
   const toast = document.getElementById("toast");
@@ -723,31 +681,19 @@
 
   let currentPixPayload = "";
 
-  function clearQr(){
-    const q = document.getElementById("qrcode");
-    q.innerHTML = "";
-  }
+  function clearQr(){ document.getElementById("qrcode").innerHTML = ""; }
 
   function openPixForItem(item){
     const amount = Number(item.valor || 0);
-    const cleanName = (PIX_RECEIVER_NAME || "RECEBEDOR").toUpperCase().replace(/[^\w\s&]/g,"").trim();
-    const cleanCity = (PIX_RECEIVER_CITY || "CIDADE").toUpperCase()
-      .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
-      .replace(/[^A-Z\s]/g,"").trim();
-
-    // TXID curto e estável (não pode ser gigante)
-    const baseTx = ("LARIRAFA-" + normalize(item.nome).replace(/[^a-z0-9]+/g,"-").slice(0,18)).toUpperCase();
-    const txid = baseTx.substring(0,25);
-
-    const description = `Presente: ${item.nome}`.substring(0, 60);
+    const txid = ("LARIRAFA" + normalize(item.nome).replace(/[^a-z0-9]+/g,"").slice(0,18)).toUpperCase();
 
     const payload = buildPixPayload({
       key: PIX_KEY,
-      name: cleanName,
-      city: cleanCity,
-      amount,
-      txid,
-      description
+      name: PIX_RECEIVER_NAME,
+      city: PIX_RECEIVER_CITY,
+      amount: amount,
+      txid: txid || "PRESENTE",
+      description: `Presente: ${item.nome}`
     });
 
     currentPixPayload = payload;
@@ -756,7 +702,7 @@
     pixSubtitleEl.textContent = `Item: ${item.nome} • Valor: ${formatBRL(amount)}`;
 
     pixPayloadEl.textContent = payload;
-    pixMetaEl.textContent = `Chave: ${PIX_KEY} • TXID: ${txid}`;
+    pixMetaEl.textContent = `Chave: ${PIX_KEY} • TXID: ${txid || "PRESENTE"}`;
 
     clearQr();
     new QRCode(document.getElementById("qrcode"), {
@@ -770,12 +716,11 @@
   }
 
   function openPixGeneric(){
-    // PIX genérico sem valor (para "ver pix" do topo)
     const payload = buildPixPayload({
       key: PIX_KEY,
-      name: (PIX_RECEIVER_NAME || "LARISSA E RAFAEL").toUpperCase(),
-      city: (PIX_RECEIVER_CITY || "UBATUBA").toUpperCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""),
-      amount: 0.00,
+      name: PIX_RECEIVER_NAME,
+      city: PIX_RECEIVER_CITY,
+      amount: 0,
       txid: "PRESENTE",
       description: "Contribuicao livre"
     });
@@ -807,9 +752,8 @@
   document.addEventListener("keydown", (e)=>{ if(e.key === "Escape") closePix(); });
 
   document.getElementById("copyPix").addEventListener("click", async ()=>{
-    const text = currentPixPayload || "";
     try{
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(currentPixPayload || "");
       toast.style.display = "block";
       setTimeout(()=>toast.style.display="none", 2000);
     }catch(err){
@@ -817,9 +761,18 @@
     }
   });
 
-  // Link do cartão (topo e modal)
-  document.getElementById("payCardTop").href = PAGAMENTO_CARTAO_URL_PADRAO;
-  document.getElementById("payCardModal").href = PAGAMENTO_CARTAO_URL_PADRAO;
+  // Topo e modal: usa o padrão (se existir). Se não existir, esconde.
+  const topCard = document.getElementById("payCardTop");
+  const modalCard = document.getElementById("payCardModal");
+  const fallback = (PAGAMENTO_CARTAO_URL_PADRAO || "").trim();
+
+  if(fallback && fallback !== "COLE_SEU_LINK_AQUI"){
+    topCard.href = fallback;
+    modalCard.href = fallback;
+  } else {
+    topCard.style.display = "none";
+    modalCard.style.display = "none";
+  }
 
   // filtros
   document.getElementById("searchInput").addEventListener("input", applyFilters);
