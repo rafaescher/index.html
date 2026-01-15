@@ -384,6 +384,34 @@
       .couple-grid { grid-template-columns: minmax(0, 1fr); }
       .hero { padding-top: 2rem; }
     }
+    .gift-actions{
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.gift-actions .btn{
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+  min-height: 46px;
+}
+
+/* No desktop, o botão principal fica levemente maior */
+@media (min-width: 900px){
+  .gift-actions .btn.btn-primary{
+    flex: 1.2;
+  }
+}
+
+/* No mobile, empilha bonito */
+@media (max-width: 640px){
+  .gift-actions .btn{
+    width: 100%;
+    flex: none;
+  }
+}
   </style>
 </head>
 <body>
@@ -768,6 +796,7 @@ Casamento Larissa & Rafael — 11/09/2026`;
 
 </body>
 </html>
+
 
 
 
