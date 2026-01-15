@@ -518,7 +518,7 @@
 
   // ✅ Se quiser 1 link único (para todos), cole aqui:
   // Ex: "https://mpago.la/xxxxxxx"
-  const PAGAMENTO_CARTAO_URL_PADRAO = "link.mercadopago.com.br/la2rafa";
+  const PAGAMENTO_CARTAO_URL_PADRAO = "http://link.mercadopago.com.br/la2rafa";
 
   // =========================
   // ITENS (corrigido: cardUrl dentro de cada objeto + vírgulas)
@@ -683,7 +683,7 @@
       card.querySelector('a[data-action="card"]').addEventListener("click", (e)=>{
         e.preventDefault();
         const link = cardUrl;
-        if(link && link !== "COLE_SEU_LINK_AQUI"){
+        if(link && link !== "http://link.mercadopago.com.br/la2rafa"){
           window.open(link, "_blank", "noopener,noreferrer");
         }else{
           alert("Link de pagamento no cartão ainda não foi configurado. 😊\n\nEm breve estará disponível!");
@@ -862,5 +862,6 @@
 </script>
 </body>
 </html>
+
 
 
