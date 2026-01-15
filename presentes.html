@@ -521,11 +521,10 @@
   const PAGAMENTO_CARTAO_URL_PADRAO = "COLE_SEU_LINK_AQUI";
 
   // =========================
-  // ITENS (NÃO ALTERADOS)
-  // - Se quiser link de cartão por item, adicione: cardUrl:"https://..."
+  // ITENS (somente removi "(contribuição)" nos nomes)
   // =========================
   const ITENS = [
-    // ===================== COZINHA (30) =====================
+    // ===================== COZINHA =====================
     { cat:"Cozinha", icon:"🍳", nome:"Kit de Panelas Premium", desc:"Para as primeiras receitas… e os primeiros “quem queimou isso?” 😂", valor: 320 },
     { cat:"Cozinha", icon:"🍳", nome:"Conjunto de Panelas Completo", desc:"Porque amor também se constrói mexendo panela juntos ❤️", valor: 680 },
     { cat:"Cozinha", icon:"🍽️", nome:"Aparelho de Jantar (42 peças)", desc:"Para receber quem amamos — e repetir o prato sem culpa 🍽️", valor: 450 },
@@ -534,7 +533,7 @@
     { cat:"Cozinha", icon:"🍴", nome:"Kit de Talheres", desc:"Porque comer junto é uma das maiores provas de amor 🍴", valor: 280 },
     { cat:"Cozinha", icon:"✨", nome:"Jogo Americano / Sousplat", desc:"Para deixar até o miojo com cara de jantar romântico ✨", valor: 190 },
     { cat:"Cozinha", icon:"🍰", nome:"Pratos de Sobremesa", desc:"Porque sempre cabe um docinho depois ❤️🍰", valor: 210 },
-    { cat:"Cozinha", icon:"🔥", nome:"Airfryer (contribuição)", desc:"Para facilitar a vida e evitar discussões na cozinha 😅", valor: 790 },
+    { cat:"Cozinha", icon:"🔥", nome:"Airfryer", desc:"Para facilitar a vida e evitar discussões na cozinha 😅", valor: 790 },
     { cat:"Cozinha", icon:"🥤", nome:"Liquidificador", desc:"Para sucos, vitaminas e receitas improvisadas 🍹", valor: 320 },
     { cat:"Cozinha", icon:"🎂", nome:"Batedeira", desc:"Para adoçar a vida — e o bolo também 🎂", valor: 520 },
     { cat:"Cozinha", icon:"☕", nome:"Cafeteira", desc:"Porque amor sem café não funciona ☕😂", valor: 890 },
@@ -542,35 +541,35 @@
     { cat:"Cozinha", icon:"🫙", nome:"Potes Organizadores", desc:"Para tentar manter a casa organizada… tentar 😌", valor: 210 },
     { cat:"Cozinha", icon:"🍳", nome:"Panelas Antiaderentes", desc:"Para nada grudar — nem as mágoas 😍", valor: 420 },
 
-    // SALA
+    // ===================== SALA =====================
     { cat:"Sala", icon:"🛋️", nome:"Sofá confortável", desc:"Para descansar e curtir juntos.", valor: 1800 },
-    { cat:"Sala", icon:"🛋️", nome:"Sofá dos sonhos (contribuição)", desc:"Nosso cantinho de aconchego.", valor: 3200 },
+    { cat:"Sala", icon:"🛋️", nome:"Sofá dos sonhos", desc:"Nosso cantinho de aconchego.", valor: 3200 },
     { cat:"Sala", icon:"📺", nome:"Painel para TV", desc:"Organização e estilo.", valor: 980 },
-    { cat:"Sala", icon:"🎬", nome:"Smart TV (contribuição)", desc:"Cinema em casa.", valor: 2800 },
+    { cat:"Sala", icon:"🎬", nome:"Smart TV", desc:"Cinema em casa.", valor: 2800 },
     { cat:"Sala", icon:"🧶", nome:"Tapete grande para sala", desc:"Aconchego para o lar.", valor: 650 },
     { cat:"Sala", icon:"💡", nome:"Luminária decorativa", desc:"Iluminar bons momentos.", valor: 420 },
     { cat:"Sala", icon:"🖼️", nome:"Quadros decorativos", desc:"Nossa identidade na parede.", valor: 390 },
-    { cat:"Sala", icon:"🪑", nome:"Poltrona decorativa (contribuição)", desc:"Conforto com estilo.", valor: 1400 },
+    { cat:"Sala", icon:"🪑", nome:"Poltrona decorativa", desc:"Conforto com estilo.", valor: 1400 },
 
-    // QUARTO
+    // ===================== QUARTO =====================
     { cat:"Quarto", icon:"🛏️", nome:"Kit Cama (Lençóis + Fronhas)", desc:"Para noites bem dormidas e domingos preguiçosos 🛏️", valor: 520 },
     { cat:"Quarto", icon:"❄️", nome:"Edredom / Cobertor", desc:"Para aquecer o amor — e disputar quem fica descoberto 😆", valor: 680 },
     { cat:"Quarto", icon:"✨", nome:"Jogo de Lençol Premium (1.739.272 fios 😅)", desc:"Noites extremamente confortáveis e aquele sono de casal feliz ❤️😴", valor: 1200 },
 
-    // CASA
+    // ===================== CASA =====================
     { cat:"Casa", icon:"🧹", nome:"Aspirador de Pó", desc:"Para manter a casa limpa e o amor em dia ✨", valor: 980 },
     { cat:"Casa", icon:"👕", nome:"Ferro de Passar Roupa", desc:"Para tentar deixar tudo nos conformes (ou quase isso) 👕😂", valor: 260 },
 
-    // DECORAÇÃO
+    // ===================== DECORAÇÃO =====================
     { cat:"Decoração", icon:"🛁", nome:"Jogo de Toalhas", desc:"Para dias de spa em casa e banhos demorados 🛁", valor: 420 },
     { cat:"Decoração", icon:"⏰", nome:"Relógio Decorativo", desc:"Para lembrar que o tempo passa… mas o amor fica ⏰", valor: 320 },
     { cat:"Decoração", icon:"🪴", nome:"Plantas e vasos decorativos", desc:"Mais vida para a casa.", valor: 360 },
     { cat:"Decoração", icon:"🕯️", nome:"Velas aromáticas", desc:"Cheiro de lar.", valor: 190 },
-    { cat:"Decoração", icon:"🏡", nome:"Decoração completa da casa (contribuição)", desc:"Nosso lar com a nossa cara.", valor: 5000 },
+    { cat:"Decoração", icon:"🏡", nome:"Decoração completa da casa", desc:"Nosso lar com a nossa cara.", valor: 5000 },
 
-    // EXPERIÊNCIAS
+    // ===================== EXPERIÊNCIAS =====================
     { cat:"Experiências", icon:"🏡", nome:"Vale Presente para o Lar", desc:"Para nos ajudar a construir nosso cantinho do nosso jeito 🏡💕", valor: 500 },
-    { cat:"Experiências", icon:"🍻", nome:"Chopeira (contribuição)", desc:"Chope gelado e felicidade do casal… e dos amigos também 😂🍻", valor: 1800 },
+    { cat:"Experiências", icon:"🍻", nome:"Chopeira", desc:"Chope gelado e felicidade do casal… e dos amigos também 😂🍻", valor: 1800 },
     { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Qualquer valor com muito amor.", valor: 100 },
     { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Um gesto cheio de carinho.", valor: 250 },
     { cat:"Experiências", icon:"💖", nome:"Contribuição livre", desc:"Ajudando a realizar sonhos.", valor: 500 },
@@ -578,8 +577,7 @@
   ];
 
   // =========================
-  // EMV + CRC (PIX) — versão “curta e estável”
-  // - remove description (campo 02) para evitar payload grande
+  // EMV + CRC (PIX) — estável
   // =========================
   function pad2(n){ return String(n).padStart(2,"0"); }
   function emv(id, value){
@@ -614,15 +612,24 @@
     return Number(val.toFixed(2));
   }
 
-  function safeTxidFromItemName(name){
-    // txid <= 25, sem espaços. Mantém estável por item.
-    const base = ("LR" + (name||"").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase())
-      .replace(/[^a-z0-9]+/g,"")
-      .slice(0,22)
-      .toUpperCase();
-    return (base || "PRESENTE").slice(0,25);
+  // TXID único por item (inclui valor para diferenciar "Contribuição livre")
+  function safeTxid(name, amount){
+    const base = (name || "")
+      .toString()
+      .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+      .toUpperCase()
+      .replace(/[^A-Z0-9]/g,"")
+      .slice(0, 16);
+
+    const cents = safeAmount(amount);
+    const amtTag = cents ? String(Math.round(cents * 100)).slice(0, 7) : "0";
+
+    // ex: LRCONTRIBUICAO10000  (<= 25)
+    const tx = ("LR" + base + amtTag).slice(0,25);
+    return tx || "PRESENTE";
   }
 
+  // Monta payload PIX curto e compatível
   function buildPixPayload({key, name, city, amount, txid}){
     const cleanName = cleanUpper(name).slice(0,25);
     const cleanCity = cleanUpper(city).slice(0,15);
@@ -630,7 +637,7 @@
 
     const gui = emv("00", "br.gov.bcb.pix");
     const k   = emv("01", String(key).trim());
-    // ✅ sem description (campo 02) para não estourar tamanho
+    // sem description para reduzir tamanho e evitar falhas no QR
     const mai = emv("26", gui + k);
 
     const amt = safeAmount(amount);
@@ -738,7 +745,7 @@
 
   function openPixForItem(item){
     const amount = safeAmount(item.valor) || null;
-    const txid = safeTxidFromItemName(item.nome);
+    const txid = safeTxid(item.nome, item.valor);
 
     const payload = buildPixPayload({
       key: PIX_KEY,
@@ -756,8 +763,10 @@
     pixPayloadEl.textContent = payload;
     pixMetaEl.textContent = `Chave: ${PIX_KEY} • TXID: ${txid}`;
 
-    clearQr();
+    // ✅ abre o modal ANTES do QR (mesmo se QR der erro, o PIX aparece)
+    backdrop.style.display = "flex";
 
+    clearQr();
     try{
       new QRCode(document.getElementById("qrcode"), {
         text: payload,
@@ -766,12 +775,9 @@
         correctLevel: QRCode.CorrectLevel.M
       });
     }catch(e){
-      // fallback visual
       document.getElementById("qrcode").innerHTML =
-        "<div style='font-size:12px;color:#b00020;text-align:center'>Não foi possível gerar o QR aqui.<br>Use o “copia e cola” acima.</div>";
+        "<div style='font-size:12px;color:#b00020;text-align:center'>Não foi possível gerar o QR aqui.<br>Use o PIX “copia e cola” ao lado ✅</div>";
     }
-
-    backdrop.style.display = "flex";
   }
 
   function openPixGeneric(){
@@ -791,6 +797,8 @@
     pixPayloadEl.textContent = payload;
     pixMetaEl.textContent = `Chave: ${PIX_KEY} • TXID: PRESENTE`;
 
+    backdrop.style.display = "flex";
+
     clearQr();
     try{
       new QRCode(document.getElementById("qrcode"), {
@@ -801,10 +809,8 @@
       });
     }catch(e){
       document.getElementById("qrcode").innerHTML =
-        "<div style='font-size:12px;color:#b00020;text-align:center'>Não foi possível gerar o QR aqui.<br>Use o “copia e cola” acima.</div>";
+        "<div style='font-size:12px;color:#b00020;text-align:center'>Não foi possível gerar o QR aqui.<br>Use o PIX “copia e cola” ao lado ✅</div>";
     }
-
-    backdrop.style.display = "flex";
   }
 
   function closePix(){ backdrop.style.display = "none"; }
