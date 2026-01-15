@@ -522,8 +522,7 @@
 
   // =========================
   // ITENS (NÃO ALTERADOS)
-  // - cardUrl: se quiser link por item, adicione cardUrl:"https://..." em cada item.
-  // - se cardUrl estiver vazio, usa o PAGAMENTO_CARTAO_URL_PADRAO
+  // - Se quiser link de cartão por item, adicione: cardUrl:"https://..."
   // =========================
   const ITENS = [
     // ===================== COZINHA (30) =====================
@@ -579,7 +578,8 @@
   ];
 
   // =========================
-  // EMV + CRC (PIX)
+  // EMV + CRC (PIX) — versão “curta e estável”
+  // - remove description (campo 02) para evitar payload grande
   // =========================
   function pad2(n){ return String(n).padStart(2,"0"); }
   function emv(id, value){
@@ -608,26 +608,40 @@
       .trim();
   }
 
-  function buildPixPayload({key, name, city, amount, txid, description}){
+  function safeAmount(n){
+    const val = Number(n);
+    if(!isFinite(val) || val <= 0) return null;
+    return Number(val.toFixed(2));
+  }
+
+  function safeTxidFromItemName(name){
+    // txid <= 25, sem espaços. Mantém estável por item.
+    const base = ("LR" + (name||"").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase())
+      .replace(/[^a-z0-9]+/g,"")
+      .slice(0,22)
+      .toUpperCase();
+    return (base || "PRESENTE").slice(0,25);
+  }
+
+  function buildPixPayload({key, name, city, amount, txid}){
     const cleanName = cleanUpper(name).slice(0,25);
     const cleanCity = cleanUpper(city).slice(0,15);
     const cleanTxid = cleanUpper(txid).replace(/\s+/g,"").slice(0,25) || "PRESENTE";
 
     const gui = emv("00", "br.gov.bcb.pix");
     const k   = emv("01", String(key).trim());
-    const d   = description ? emv("02", description.slice(0,60)) : "";
-    const mai = emv("26", gui + k + d);
+    // ✅ sem description (campo 02) para não estourar tamanho
+    const mai = emv("26", gui + k);
 
-    const hasAmount = typeof amount === "number" && amount > 0;
+    const amt = safeAmount(amount);
 
-    // POI method = 11 (estático)
     let payload =
       emv("00","01") +
       emv("01","11") +
       mai +
       emv("52","0000") +
       emv("53","986") +
-      (hasAmount ? emv("54", amount.toFixed(2)) : "") +
+      (amt ? emv("54", amt.toFixed(2)) : "") +
       emv("58","BR") +
       emv("59", cleanName) +
       emv("60", cleanCity) +
@@ -641,14 +655,12 @@
   // =========================
   // UI
   // =========================
-  const formatBRL = (n) => n.toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
+  const formatBRL = (n) => Number(n || 0).toLocaleString("pt-BR", { style:"currency", currency:"BRL" });
   const normalize = (str) => (str||"").toString().normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
 
   function getCardUrlForItem(item){
     const specific = (item.cardUrl || "").trim();
     const fallback = (PAGAMENTO_CARTAO_URL_PADRAO || "").trim();
-
-    // prioridade: cardUrl do item -> padrão -> vazio
     return specific || fallback || "";
   }
 
@@ -681,7 +693,9 @@
           <div class="price">${formatBRL(it.valor)}</div>
           <div style="display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:flex-end;">
             <button class="btn ghost" data-action="pix">PIX</button>
-            ${cardUrl ? `<a class="btn primary" href="${cardUrl}" target="_blank" rel="noopener noreferrer">Cartão</a>` : ``}
+            ${cardUrl && cardUrl !== "COLE_SEU_LINK_AQUI"
+              ? `<a class="btn primary" href="${cardUrl}" target="_blank" rel="noopener noreferrer">Cartão</a>`
+              : ``}
           </div>
         </div>
       `;
@@ -722,14 +736,8 @@
 
   function clearQr(){ document.getElementById("qrcode").innerHTML = ""; }
 
-  function safeTxidFromItemName(name){
-    // txid max 25 chars, sem espaços. Mantém estável por item.
-    const base = ("LR" + normalize(name).replace(/[^a-z0-9]+/g,"").slice(0,20)).toUpperCase();
-    return base.slice(0,25) || "PRESENTE";
-  }
-
   function openPixForItem(item){
-    const amount = Number(item.valor || 0);
+    const amount = safeAmount(item.valor) || null;
     const txid = safeTxidFromItemName(item.nome);
 
     const payload = buildPixPayload({
@@ -737,25 +745,31 @@
       name: PIX_RECEIVER_NAME,
       city: PIX_RECEIVER_CITY,
       amount: amount,
-      txid: txid,
-      description: `Presente: ${item.nome}`
+      txid: txid
     });
 
     currentPixPayload = payload;
 
     pixTitleEl.textContent = "Contribuir via PIX";
-    pixSubtitleEl.textContent = `Item: ${item.nome} • Valor: ${formatBRL(amount)}`;
+    pixSubtitleEl.textContent = `Item: ${item.nome} • Valor: ${formatBRL(item.valor)}`;
 
     pixPayloadEl.textContent = payload;
     pixMetaEl.textContent = `Chave: ${PIX_KEY} • TXID: ${txid}`;
 
     clearQr();
-    new QRCode(document.getElementById("qrcode"), {
-      text: payload,
-      width: 180,
-      height: 180,
-      correctLevel: QRCode.CorrectLevel.M
-    });
+
+    try{
+      new QRCode(document.getElementById("qrcode"), {
+        text: payload,
+        width: 180,
+        height: 180,
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    }catch(e){
+      // fallback visual
+      document.getElementById("qrcode").innerHTML =
+        "<div style='font-size:12px;color:#b00020;text-align:center'>Não foi possível gerar o QR aqui.<br>Use o “copia e cola” acima.</div>";
+    }
 
     backdrop.style.display = "flex";
   }
@@ -765,9 +779,8 @@
       key: PIX_KEY,
       name: PIX_RECEIVER_NAME,
       city: PIX_RECEIVER_CITY,
-      amount: 0,
-      txid: "PRESENTE",
-      description: "Contribuicao livre"
+      amount: null,
+      txid: "PRESENTE"
     });
 
     currentPixPayload = payload;
@@ -779,12 +792,17 @@
     pixMetaEl.textContent = `Chave: ${PIX_KEY} • TXID: PRESENTE`;
 
     clearQr();
-    new QRCode(document.getElementById("qrcode"), {
-      text: payload,
-      width: 180,
-      height: 180,
-      correctLevel: QRCode.CorrectLevel.M
-    });
+    try{
+      new QRCode(document.getElementById("qrcode"), {
+        text: payload,
+        width: 180,
+        height: 180,
+        correctLevel: QRCode.CorrectLevel.M
+      });
+    }catch(e){
+      document.getElementById("qrcode").innerHTML =
+        "<div style='font-size:12px;color:#b00020;text-align:center'>Não foi possível gerar o QR aqui.<br>Use o “copia e cola” acima.</div>";
+    }
 
     backdrop.style.display = "flex";
   }
